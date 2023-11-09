@@ -14,7 +14,19 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@avans-nx-workshop/songlist/common": [
+        "libs/share-a-meal/common/src/index.ts"
+      ],
+      "@indivproj-p2/backend/dto": ["libs/backend/dto/src/index.ts"],
+      "@indivproj-p2/backend/features": ["libs/backend/features/src/index.ts"],
+      "@indivproj-p2/shared/api": ["libs/shared/api/src/index.ts"],
+      "@indivproj-p2/songlist/common": ["libs/songlist/common/src/index.ts"],
+      "@indivproj-p2/songlist/features": [
+        "libs/songlist/features/src/index.ts"
+      ],
+      "@indivproj-p2/ui": ["libs/songlist/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
