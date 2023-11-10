@@ -1,6 +1,6 @@
-/* import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { SongController } from './song/song.controller';
-import { SongService } from './song/song.service';
+import {SongService} from './song.service';
 
 @Module({
   controllers: [SongController],
@@ -8,4 +8,4 @@ import { SongService } from './song/song.service';
   exports: [SongService],
 })
 export class SongModule {}
- */
+ 

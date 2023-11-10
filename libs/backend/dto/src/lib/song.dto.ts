@@ -1,80 +1,109 @@
 import {
     IsNotEmpty,
     IsString,
-    IsBoolean,
-    IsOptional,
-    IsDate
+    IsNumber
 } from 'class-validator';
 import {
-/*     ICreateMeal,
-    IUpdateMeal,
-    IUpsertMeal,
-    MealSort */
+    ICreateSong,
+    IUpdateSong,
+    IUpsertSong,
+    IDeleteSong, 
 } from '@indivproj-p2/shared/api';
 
 /**
  * Use the `Pick` utility type to extract only the properties we want for
  * new to-do items
  */
-/* export class CreateMealDto implements ICreateMeal {
+ export class CreateSongDto implements ICreateSong {
     @IsString()
     @IsNotEmpty()
-    title!: string;
+    name!: string;
 
     @IsString()
     @IsNotEmpty()
-    description!: string;
+    artist!: string;
 
     @IsString()
     @IsNotEmpty()
-    sort!: MealSort;
+    album!: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    year!: number;
 
     @IsString()
     @IsNotEmpty()
-    cook!: string;
+    genre!: string;
+    
+    @IsNumber()
+    @IsNotEmpty()
+    duration!: number;
+    
+    @IsString()
+    @IsNotEmpty()
+    url!: string;
 }
 
-export class UpsertMealDto implements IUpsertMeal {
-    @IsString()
-    @IsNotEmpty()
-    title!: string;
-
-    @IsString()
-    @IsNotEmpty()
-    description!: string;
-
+export class UpsertSongDto implements IUpsertSong {
     @IsString()
     @IsNotEmpty()
     id!: string;
-
-    @IsBoolean()
+    
+    @IsString()
     @IsNotEmpty()
-    isVega!: boolean;
-
-    @IsDate()
-    @IsNotEmpty()
-    dateServed!: Date;
+    name!: string;
 
     @IsString()
     @IsNotEmpty()
-    sort!: MealSort;
+    artist!: string;
 
     @IsString()
     @IsNotEmpty()
-    cook!: string;
+    album!: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    year!: number;
+
+    @IsString()
+    @IsNotEmpty()
+    genre!: string;
+    
+    @IsNumber()
+    @IsNotEmpty()
+    duration!: number;
+    
+    @IsString()
+    @IsNotEmpty()
+    url!: string;
 }
 
-export class UpdateMealDto implements IUpdateMeal {
+export class UpdateSongDto implements IUpdateSong {
     @IsString()
-    @IsOptional()
-    title!: string;
+    @IsNotEmpty()
+    name!: string;
 
     @IsString()
-    @IsOptional()
-    description!: string;
+    @IsNotEmpty()
+    artist!: string;
 
-    @IsBoolean()
-    @IsOptional()
-    completed!: boolean;
+    @IsString()
+    @IsNotEmpty()
+    album!: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    year!: number;
+
+    @IsString()
+    @IsNotEmpty()
+    genre!: string;
+    
+    @IsNumber()
+    @IsNotEmpty()
+    duration!: number;
+    
+    @IsString()
+    @IsNotEmpty()
+    url!: string;
 }
- */

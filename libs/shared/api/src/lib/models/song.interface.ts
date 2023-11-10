@@ -1,6 +1,8 @@
 import { id }  from './id.type';
 
-export interface Song {
+type Song = string;
+
+export interface ISong {
   id: id;
   name: string;
   artist: string;
@@ -10,4 +12,7 @@ export interface Song {
   duration: number;
   url: string;
 }
-export type ICreateSong = Pick<Song, 'name' | 'artist' | 'album' | 'year' | 'genre' | 'duration' | 'url'>;
+export type ICreateSong = Pick<ISong, 'name' | 'artist' | 'album' | 'year' | 'genre' | 'duration' | 'url'>;
+export type IUpdateSong = Partial<Omit<ISong,id>>;
+export type IUpsertSong = ISong;
+export type IDeleteSong = ISong;

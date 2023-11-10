@@ -1,27 +1,27 @@
-/* import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SongService } from '../song.service';
-import { IMeal } from '@indivproj-p2/shared/api';
+import { ISong } from '@indivproj-p2/shared/api';
 import { Subscription } from 'rxjs';
 
 @Component({
-    selector: 'avans-nx-workshop-meal-list',
-    templateUrl: './meal-list.component.html',
-    styleUrls: ['./meal-list.component.css'],
+    selector: 'indivproj-p2-song-list',
+    templateUrl: './song-list.component.html',
+    styleUrls: ['./song-list.component.css'],
 })
-export class MealListComponent implements OnInit, OnDestroy {
-    meals: IMeal[] | null = null;
+export class SongListComponent implements OnInit, OnDestroy {
+    songs: ISong[] | null = null;
     subscription: Subscription | undefined = undefined;
 
-    constructor(private mealService: MealService) {}
+    constructor(private songService: SongService) {}
 
     ngOnInit(): void {
-        this.subscription = this.mealService.list().subscribe((results) => {
+        this.subscription = this.songService.list().subscribe((results) => {
             console.log(`results: ${results}`);
-            this.meals = results;
+            this.songs = results;
         });
     }
 
     ngOnDestroy(): void {
         if (this.subscription) this.subscription.unsubscribe();
     }
-} */
+} 

@@ -1,11 +1,8 @@
-/* import { Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, IMeal } from '@indivproj-p2/shared/api';
+import { ApiResponse, ISong } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
-
-/**
- * See https://angular.io/guide/http#requesting-data-from-a-server
 
 export const httpOptions = {
     observe: 'body',
@@ -13,57 +10,44 @@ export const httpOptions = {
 };
 
 @Injectable()
-export class MealService {
-    endpoint = 'http://localhost:3000/api/meal';
+export class SongService {
+    endpoint = 'http://localhost:3000/api/song';
 
     constructor(private readonly http: HttpClient) {}
 
-    /**
-     * Get all items.
-     *
-     * @options options - optional URL queryparam options
-     
-    public list(options?: any): Observable<IMeal[] | null> {
+    public list(options?: any): Observable<ISong[] | null> {
         console.log(`list ${this.endpoint}`);
 
         return this.http
-            .get<ApiResponse<IMeal[]>>(this.endpoint, {
+            .get<ApiResponse<ISong[]>>(this.endpoint, {
                 ...options,
                 ...httpOptions,
             })
             .pipe(
-                map((response: any) => response.results as IMeal[]),
+                map((response: any) => response.results as ISong[]),
                 tap(console.log),
                 catchError(this.handleError)
             );
     }
 
-    /**
-     * Get a single item from the service.
-     *
-     
-    public read(id: string | null, options?: any): Observable<IMeal> {
+    public read(id: string | null, options?: any): Observable<ISong> {
         console.log(`read ${this.endpoint}`);
         return this.http
-            .get<ApiResponse<IMeal>>(this.endpoint, {
+            .get<ApiResponse<ISong>>(this.endpoint, {
                 ...options,
                 ...httpOptions,
             })
             .pipe(
                 tap(console.log),
-                map((response: any) => response.results as IMeal),
+                map((response: any) => response.results as ISong),
                 catchError(this.handleError)
             );
     }
 
-    /**
-     * Handle errors.
-     
-
     public handleError(error: HttpErrorResponse): Observable<any> {
-        console.log('handleError in MealService', error);
+        console.log('handleError in SongService', error);
 
         return throwError(() => new Error(error.message));
     }
 }
- */
+ 
