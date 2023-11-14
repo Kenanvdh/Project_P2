@@ -14,7 +14,7 @@ export class SongController {
     }
 
     @Get(':id')
-    getOne(@Param('id') id: string): ISong {
+    getOne(@Param('id') id: number): ISong {
         return this.songService.getOne(id);
     }
 

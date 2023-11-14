@@ -6,11 +6,25 @@ import { SongService } from './song/song.service';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { UserDetail } from './user/user-detail/user-detail.component'
+import { UserListComponent } from './user/user-list/user-list.component'
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, RouterModule],
-  declarations: [SongListComponent, SongDetailComponent, AboutComponent],
+  declarations: [
+    SongListComponent,
+    SongDetailComponent,
+    AboutComponent,
+    UserDetail,
+    UserListComponent,
+  ],
   providers: [SongService],
-  exports: [SongListComponent, SongDetailComponent, AboutComponent],
+  exports: [
+    SongListComponent,
+    SongDetailComponent,
+    UserDetail,
+    UserListComponent,
+    AboutComponent,
+  ],
 })
 export class FeaturesModule {}
