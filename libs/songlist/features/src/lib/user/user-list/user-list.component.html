@@ -1,1 +1,23 @@
-<p>user-list works!</p>
+<h2>Hieronder is de lijst van users te zien!</h2>
+<h4>Klik op de Firstname om de details van desbetreffende user te zien</h4>
+
+<table>
+        <thead>
+            <tr>
+                <td>Firstname</td>
+                <td>Lastname</td>
+                <td>Email</td>
+                <td>Role</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.firstName}}
+                    <a routerLink="{{user.id}}"></a>
+                </td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+            </tr>
+        </tbody>
+    </table>

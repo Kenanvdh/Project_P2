@@ -6,16 +6,7 @@ import { UserService } from '../user.service';
 
 @Component({
   selector: 'indivproj-p2-user-detail',
-  template: `
-    <div class="component B">
-      <p>B works!</p>
-      <table>
-        <tr *ngFor="let user of users$ | async">
-          <td>{{ user.firstName }} {{ user.lastName }}</td>
-        </tr>
-      </table>
-    </div>
-  `,
+  template: './user-detail.component.html',
   styles: [],
 })
 export class UserDetail implements OnInit {

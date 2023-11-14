@@ -3,8 +3,8 @@ import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { appRoutes } from './app.routes';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(appRoutes, withEnabledBlockingInitialNavigation())],
+  providers: [provideRouter(routes, withEnabledBlockingInitialNavigation())],
 };

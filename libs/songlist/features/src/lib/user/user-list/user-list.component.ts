@@ -15,14 +15,14 @@ export class UserListComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    console.log('AComponent.ngOnInit()');
+    console.log('UserList.ngOnInit()');
     this.subscription = this.userService
       .getUsersAsObservable()
       .subscribe((users) => (this.users = users));
   }
 
   ngOnDestroy() {
-    console.log('AComponent.ngOnDestroy()');
+    console.log('UserList.ngOnDestroy()');
     this.subscription?.unsubscribe();
   }
 }
