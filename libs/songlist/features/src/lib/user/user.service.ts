@@ -1,53 +1,53 @@
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
+import { ApiResponse, IUser } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { User, UserRole } from '../user/user.model';
-import { IUser } from '../../../../../shared/api/src/lib/models/user.interface';
 
+export const httpOptions = {
+    observe: 'body',
+    responseType: 'json',
+};
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UserService {
-  readonly users: IUser[] = [
-    {
-      id: 0,
-      firstName: 'Eerste',
-      lastName: 'User',
-      email: 'usereen@host.com',
-      role: UserRole.admin,
-    },
-    {
-      id: 1,
-      firstName: 'Tweede',
-      lastName: 'User',
-      email: 'usertwee@host.com',
-      role: UserRole.guest,
-    },
-    {
-      id: 2,
-      firstName: 'Derde',
-      lastName: 'User',
-      email: 'userdrie@host.com',
-      role: UserRole.editor,
-    },
-  ];
+    endpoint = 'http://localhost:3000/api/user';
 
-  constructor() {
-    console.log('Service constructor aangeroepen');
-  }
+    constructor(private readonly http: HttpClient) {}
 
-  getUsers(): IUser[] {
-    console.log('getUsers aangeroepen');
-    return this.users;
-  }
+    public list(options?: any): Observable<IUser[] | null> {
+        console.log(`list ${this.endpoint}`);
 
-  getUsersAsObservable(): Observable<IUser[]> {
-    console.log('getUsersAsObservable aangeroepen');
-    return of(this.users);
-  }
+        return this.http
+            .get<ApiResponse<IUser[]>>(this.endpoint, {
+                ...options,
+                ...httpOptions,
+            })
+            .pipe(
+                map((response: any) => response.results as IUser[]),
+                tap(console.log),
+                catchError(this.handleError)
+            );
+    }
 
-  getUserById(id: number): IUser {
-    console.log('getUserById aangeroepen');
-    return this.users.filter((user) => user.id === id)[0];
-  }
+    public read(id: string | null, options?: any): Observable<IUser> {
+        console.log(`read ${this.endpoint}/${id}`);
+        return this.http
+            .get<ApiResponse<IUser>>(`${this.endpoint}/${id}`, {
+                ...options,
+                ...httpOptions,
+            })
+            .pipe(
+                tap(console.log),
+                map((response: any) => response.results as IUser),
+                catchError(this.handleError)
+            );
+    }
+
+    public handleError(error: HttpErrorResponse): Observable<any> {
+        console.log('handleError in UserService', error);
+
+        return throwError(() => new Error(error.message));
+    }
 }
+ 

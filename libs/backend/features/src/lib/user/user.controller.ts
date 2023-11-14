@@ -1,19 +1,19 @@
 import { Controller } from '@nestjs/common';
-import { UserService } from '../../../../../songlist/features/src/lib/user/user.service';
+import { UserService } from '../user.service';
 import { Get, Param, Post, Body } from '@nestjs/common';
-import { IUser } from '../../../../../shared/api/src/lib/models/user.interface';
+import { IUser } from '@indivproj-p2/shared/api';
 
 @Controller('user')
 export class UserController {
-    constructor(private userService: UserService) {}
+  constructor(private userService: UserService) {}
 
-    @Get('')
-    getAll(): IUser[] {
-        return this.userService.getUsers();
-    }
+  @Get('')
+  getAll(): IUser[] {
+    return this.userService.getUsers();
+  }
 
-    @Get(':id')
-    getOne(@Param('id') id: number): IUser {
-        return this.userService.getUserById(id);
-    }
+  @Get(':id')
+  getOne(@Param('id') id: number): IUser {
+    return this.userService.getUserById(id);
+  }
 }

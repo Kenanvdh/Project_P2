@@ -3,20 +3,16 @@ import {
   IsString,
   IsBoolean,
   IsOptional,
-  IsDate,
+  IsDate, 
 } from 'class-validator';
 import {
   ICreateUser,
   IUpsertUser,
   IUpdateUser,
-  UserSort,
 } from '../../../../shared/api/src/lib/models/user.interface';
 import { UserRole } from 'libs/songlist/features/src/lib/user/user.model';
 
-/**
- * Use the Pick utility type to extract only the properties we want for
- * new to-do items
- */
+
 export class CreateUserDto implements ICreateUser {
   @IsString()
   @IsNotEmpty()

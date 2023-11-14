@@ -7,7 +7,8 @@ import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDetail } from './user/user-detail/user-detail.component'
-import { UserListComponent } from './user/user-list/user-list.component'
+import { ListComponent } from './user/user-list/user-list.component'
+import { UserService } from '@indivproj-p2/backend/features';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, RouterModule],
@@ -16,14 +17,14 @@ import { UserListComponent } from './user/user-list/user-list.component'
     SongDetailComponent,
     AboutComponent,
     UserDetail,
-    UserListComponent,
+    ListComponent,
   ],
-  providers: [SongService],
+  providers: [SongService, UserService],
   exports: [
     SongListComponent,
     SongDetailComponent,
     UserDetail,
-    UserListComponent,
+    ListComponent,
     AboutComponent,
   ],
 })

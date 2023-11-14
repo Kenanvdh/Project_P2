@@ -1,23 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { IUser } from '@indivproj-p2/shared/api';
 import { UserService } from '../user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'indivproj-p2-user-detail',
-  template: './user-detail.component.html',
+  templateUrl: './user-detail.component.html',
   styles: [],
 })
-export class UserDetail implements OnInit {
-  users$?: Observable<IUser[]>;
+export class UserDetail {
+  userId: string | null = null;
+  users: IUser | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     console.log('UserDetail.ngOnInit()');
-    this.users$ = this.userService
-      .getUsersAsObservable()
-      .pipe(tap(console.log));
+
+    this.route.paramMap.subscribe((params) => {
+      this.userId = params.get('id');
+
+      this.userService.read(this.userId).subscribe((observable) => this.users = observable);
+    });
   }
 }

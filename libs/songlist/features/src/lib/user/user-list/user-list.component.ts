@@ -4,25 +4,24 @@ import { IUser } from '@indivproj-p2/shared/api';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'indivproj-p2-user-list',
+  selector: '@indivproj-p2/user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: [],
+  styles: [],
 })
-export class UserListComponent implements OnInit, OnDestroy {
-  users: IUser[] = [];
-  subscription?: Subscription;
+
+export class ListComponent implements OnInit, OnDestroy {
+  users: IUser[] | null = null;
+  subscription: Subscription | undefined = undefined;
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    console.log('UserList.ngOnInit()');
-    this.subscription = this.userService
-      .getUsersAsObservable()
-      .subscribe((users) => (this.users = users));
+    this.subscription = this.userService.list().subscribe((results) => this.users = results);
   }
 
-  ngOnDestroy() {
-    console.log('UserList.ngOnDestroy()');
-    this.subscription?.unsubscribe();
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

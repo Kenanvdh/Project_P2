@@ -7,17 +7,15 @@
                 <td>Firstname</td>
                 <td>Lastname</td>
                 <td>Email</td>
-                <td>Role</td>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-                <td>{{user.firstName}}
-                    <a routerLink="{{user.id}}"></a>
-                </td>
+                <td>
+                    <a routerLink="{{user.id}}">{{user.firstName}}</a>    
+                </td>   
                 <td>{{user.lastName}}</td>
                 <td>{{user.email}}</td>
-                <td>{{user.role}}</td>
             </tr>
         </tbody>
     </table>
