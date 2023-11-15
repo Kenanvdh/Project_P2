@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { ISong } from '@indivproj-p2/shared/api';
 import { Logger } from '@nestjs/common';
 
-@Injectable({})
+@Injectable()
 export class SongService {
   TAG = 'SongService';
 

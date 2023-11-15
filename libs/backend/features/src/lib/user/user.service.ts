@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { BehaviorSubject } from 'rxjs';
-import { UserRole } from '../../../../songlist/features/src/lib/user/user.model';
+import { UserRole } from '../../../../../songlist/features/src/lib/user/user.model';
 import { IUser } from '@indivproj-p2/shared/api';
 
-@Injectable({
-})
+@Injectable()
+
 export class UserService {
   private users$ = new BehaviorSubject<IUser[]>([
     {

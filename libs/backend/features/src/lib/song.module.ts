@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SongController } from './song/song.controller';
-import { SongService } from './song.service';
+import { SongService } from './song/song.service';
 
 @Module({
   controllers: [SongController],

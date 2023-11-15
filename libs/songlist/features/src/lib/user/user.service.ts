@@ -9,7 +9,9 @@ export const httpOptions = {
     responseType: 'json',
 };
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class UserService {
     endpoint = 'http://localhost:3000/api/user';
 

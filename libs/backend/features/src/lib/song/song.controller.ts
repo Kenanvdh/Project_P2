@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { SongService } from '../song.service';
+import { SongService } from './song.service';
 import { Get, Param, Post, Body } from '@nestjs/common';
 import { ISong } from '@indivproj-p2/shared/api';
 import { CreateSongDto } from '@indivproj-p2/backend/dto';
