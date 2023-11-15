@@ -5,7 +5,7 @@ export enum UserRole {
   }
   
   export class User {
-    id: number = 0;
+    id: string = '';
     firstName: string = '';
     lastName: string = '';
     email: string = '';

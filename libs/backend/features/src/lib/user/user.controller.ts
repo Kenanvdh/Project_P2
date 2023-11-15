@@ -8,12 +8,12 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @Get('')
-  getAll(): IUser[] {
+  getUsers(): IUser[] {
     return this.userService.getUsers();
   }
 
   @Get(':id')
-  getOne(@Param('id') id: number): IUser {
+  getUserById(@Param('id') id: string): IUser {
     return this.userService.getUserById(id);
   }
 }

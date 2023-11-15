@@ -47,7 +47,7 @@ import {
 export class UpsertSongDto implements IUpsertSong {
     @IsString()
     @IsNotEmpty()
-    id!: number;
+    id!: string;
     
     @IsString()
     @IsNotEmpty()
