@@ -1,19 +1,37 @@
 <div class="text-center">
-  <h2>Pas hier uw user aan</h2>
-  <form name="Form" #userEditForm="ngForm" (ngSubmit)="editUser()">
-    <label for="firstName">First Name:</label><br>
-    <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required>
-  <br>
-    <label for="lastName">Last Name:</label><br>
-    <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
-  <br>
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
-  <br>
-  <br>
-  <button (click)="goBack()">Back</button>
-  <button (click)="editUser()" type="button">Edit User</button>
-  </form>
-</div>
+  <ng-container *ngIf="!id; else editMode">
+    <h2>Maak hier uw user aan</h2>
+    <form name="Form" #userEditForm="ngForm" (ngSubmit)="createUser()">
+      <label for="firstName">First Name:</label><br>
+      <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required>
+      <br>
+      <label for="lastName">Last Name:</label><br>
+      <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
+      <br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+      <br>
+      <br>
+      <button (click)="goBack()">Back</button>
+      <button (click)="createUser()" type="button">Create User</button>
+    </form>
+  </ng-container>
 
-  
+  <ng-template #editMode>
+    <h2>Pas hier uw user aan</h2>
+    <form name="Form" #userEditForm="ngForm" (ngSubmit)="editUser()">
+      <label for="firstName">First Name:</label><br>
+      <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required>
+      <br>
+      <label for="lastName">Last Name:</label><br>
+      <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
+      <br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+      <br>
+      <br>
+      <button (click)="goBack()">Back</button>
+      <button (click)="editUser()" type="button">Edit User</button>
+    </form>
+  </ng-template>
+</div>
