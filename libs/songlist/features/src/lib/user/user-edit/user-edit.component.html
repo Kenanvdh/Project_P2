@@ -1,5 +1,5 @@
 <div class="text-center">
-  <ng-container *ngIf="!id; else editMode; else deleteMode">
+  <ng-container *ngIf="!id; else editMode">
     <h2>Maak hier uw user aan</h2>
     <form name="Form" #userEditForm="ngForm" (ngSubmit)="createUser()">
       <label for="firstName">First Name:</label><br>
@@ -35,10 +35,5 @@
     </form>
   </ng-template>
 
-  <ng-template #deleteMode>
-    <h2>Weet u zeker dat u deze gebruiker wilt verwijderen?</h2>
-    <button (click)="deleteUser()">Ja, verwijder</button>
-    <button (click)="goBack()">Nee, annuleer</button>
-  </ng-template>
 
 </div>

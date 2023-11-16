@@ -67,5 +67,15 @@ export class UserService {
     return this.users$.value[index];
   }
 
-  deleteUser(id: string): void {}
+  deleteUser(id: string): void {
+    const index = this.users$.value.findIndex((td) => td.id == id);
+    if (index == -1) {
+      throw new Error(`User with id ${id} not found`);
+    }
+
+    this.users$.next([
+      ...this.users$.value.slice(0, index),
+      ...this.users$.value.slice(index + 1),
+    ]);
+  }
 }

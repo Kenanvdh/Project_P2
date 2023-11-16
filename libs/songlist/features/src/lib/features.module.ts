@@ -8,10 +8,17 @@ import { ListComponent } from './user/user-list/user-list.component';
 import { UserService } from './user/user.service';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { FormsModule } from '@angular/forms';
+import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
-  declarations: [AboutComponent, UserDetail, ListComponent, UserEditComponent],
+  declarations: [
+    AboutComponent,
+    UserDetail,
+    ListComponent,
+    UserEditComponent,
+    UserDeleteComponent,
+  ],
   providers: [UserService],
   exports: [UserDetail, ListComponent, AboutComponent],
 })
