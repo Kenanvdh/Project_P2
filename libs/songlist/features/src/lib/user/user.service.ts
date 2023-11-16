@@ -70,6 +70,12 @@ export class UserService {
       .pipe(tap(console.log), catchError(this.handleError));
   }
 
+  public delete(user: IUser): Observable<IUser> {
+    return this.http
+      .delete<ApiResponse<IUser>>(`${this.endpoint}/${user.id}`)
+      .pipe(tap(console.log), catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): Observable<any> {
     console.log('handleError in UserService', error);
     return throwError(() => new Error(error.message));

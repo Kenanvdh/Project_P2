@@ -12,4 +12,8 @@ import { UiModule } from '@indivproj-p2/ui';
 })
 export class AppComponent {
   title = 'song-list-web';
+  imagePath?: string;
+  constructor() {
+    this.imagePath = 'assets/Erd.png';
+  }
 }

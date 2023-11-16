@@ -15,6 +15,7 @@ export const routes: Routes = [
     { path: "user/create", pathMatch: "full", component: UserEditComponent },
     { path: "users/:id", pathMatch: "full", component: UserDetail },
     { path: "users/:id/edit", pathMatch: "full", component: UserEditComponent },
+    { path: "users/:id/delete", pathMatch: "full", component: UserEditComponent },
     { path: "**", redirectTo: "users" },
 ];
 

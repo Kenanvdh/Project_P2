@@ -48,8 +48,12 @@ export class UserService {
   }
 
   createUser(user: IUser): IUser {
-    this.users$.next([...this.users$.value, user]);
-    return user;
+    const nextId = String(this.users$.value.length);
+    const newUser = { ...user, id: nextId };
+
+    this.users$.next([...this.users$.value, newUser]);
+
+    return newUser;
   }
 
   editUser(user: IUser): IUser {
@@ -57,7 +61,11 @@ export class UserService {
     if (index == -1) {
       throw new Error(`User with id ${user.id} not found`);
     }
-    this.users$.value[index] = user;
+
+    this.users$.value[index] = { ...this.users$.value[index], ...user };
+
     return this.users$.value[index];
   }
+
+  deleteUser(id: string): void {}
 }

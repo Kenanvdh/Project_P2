@@ -51,6 +51,23 @@ export class UserEditComponent {
       }
     );
   } 
+
+  deleteUser(): void {
+    if (this.user.id) {
+      this.userService.delete(this.user).subscribe(
+        () => {
+          console.log('User deleted successfully');
+          this.router.navigate(['/user-list']);
+        },
+        (error) => {
+          console.error('Error deleting user:', error);
+        }
+      );
+    } else {
+      console.error('User id is missing for deletion.');
+    }
+  }
+  
   
   goBack(): void {
     this.router.navigate(['/user-list']);
