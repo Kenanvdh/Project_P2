@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import { UserService } from '../user.service';
 import { IUser } from '@indivproj-p2/shared/api';
-import { UserRole } from '../user.model';
+import { UserRole, Gender } from '../user.model';
 
 @Component({
   selector: 'app-user-create',
@@ -18,6 +18,8 @@ export class UserEditComponent {
     firstName: '',
     lastName: '',
     email: '',
+    age: 0,
+    gender: Gender.male,
     role: UserRole.guest,
   };
   id: string | null = null;

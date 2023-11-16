@@ -11,9 +11,18 @@
       <label for="email">Email:</label><br>
       <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
       <br>
+      <label for="age">Age:</label><br>
+      <input type="number" id="age" [(ngModel)]="user.age" name="age" required>
+      <br>
+      <label for="gender">Gender:</label><br>
+      <input type="radio" id="male" [(ngModel)]="user.gender" name="gender" value="male" required>Male<br>
+      <input type="radio" id="female" [(ngModel)]="user.gender" name="gender" value="female" required>Female<br>    
+      <input type="radio" id="other" [(ngModel)]="user.gender" name="gender" value="other" required>Other
+      
+      <br>
       <br>
       <button (click)="goBack()">Back</button>
-      <button (click)="createUser()" type="button">Create User</button>
+      <button (click)="createUser()" type="button">Create User</button> 
     </form>
   </ng-container>
 
@@ -28,6 +37,13 @@
       <br>
       <label for="email">Email:</label><br>
       <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+      <br>
+      <label for="age">Age:</label><br>
+      <input type="number" id="age" [(ngModel)]="user.age" name="age" required>
+      <br><label for="gender">Gender:</label><br>
+      <input type="radio" id="male" [(ngModel)]="user.gender" name="gender" value="Male" required checked="user.gender === 'male' ? true : null">Male<br>
+      <input type="radio" id="female" [(ngModel)]="user.gender" name="gender" value="Female" required checked="user.gender === 'female' ? true : null">Female<br>    
+      <input type="radio" id="other" [(ngModel)]="user.gender" name="gender" value="Other" required checked="user.gender === 'other' ? true : null">Other
       <br>
       <br>
       <button (click)="goBack()">Back</button>

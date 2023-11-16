@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { BehaviorSubject } from 'rxjs';
-import { UserRole } from '../../../../../songlist/features/src/lib/user/user.model';
+import { UserRole, Gender } from '../../../../../songlist/features/src/lib/user/user.model';
 import { IUser } from '@indivproj-p2/shared/api';
 
 @Injectable()
@@ -11,6 +11,8 @@ export class UserService {
       firstName: 'Kenan',
       lastName: 'van der Heijden',
       email: 'kenanvdh@host.com',
+      age: 18,
+      gender: Gender.male,
       role: UserRole.admin,
     },
     {
@@ -18,6 +20,8 @@ export class UserService {
       firstName: 'Piet',
       lastName: 'Jansen',
       email: 'pj123@host.com',
+      age: 40,
+      gender: Gender.other,
       role: UserRole.guest,
     },
     {
@@ -25,6 +29,8 @@ export class UserService {
       firstName: 'Riet',
       lastName: 'van den Bomen',
       email: 'rvdb@host.com',
+      age: 55,
+      gender: Gender.female,
       role: UserRole.editor,
     },
   ]);

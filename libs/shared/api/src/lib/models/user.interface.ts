@@ -1,4 +1,4 @@
-import { UserRole } from 'libs/songlist/features/src/lib/user/user.model';
+import { UserRole, Gender} from 'libs/songlist/features/src/lib/user/user.model';
 import { id } from './id.type';
 
 type User = string;
@@ -8,6 +8,8 @@ export interface IUser {
     firstName: string;
     lastName: string;
     email: string;
+    age: number;
+    gender: Gender;
     role: UserRole;
 }
 
