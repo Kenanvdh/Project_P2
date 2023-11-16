@@ -1,17 +1,6 @@
-import {
-  IsNotEmpty,
-  IsString,
-  IsBoolean,
-  IsOptional,
-  IsDate, 
-} from 'class-validator';
-import {
-  ICreateUser,
-  IUpsertUser,
-  IUpdateUser,
-} from '../../../../shared/api/src/lib/models/user.interface';
+import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
+import { ICreateUser, IUpsertUser, IUpdateUser } from '@indivproj-p2/shared/api';
 import { UserRole } from 'libs/songlist/features/src/lib/user/user.model';
-
 
 export class CreateUserDto implements ICreateUser {
   @IsString()
@@ -22,7 +11,7 @@ export class CreateUserDto implements ICreateUser {
   @IsNotEmpty()
   lastName!: string;
 
-  @IsString()
+  @IsEmail()
   @IsNotEmpty()
   email!: string;
 
@@ -35,7 +24,7 @@ export class UpsertUserDto implements IUpsertUser {
   @IsString()
   @IsNotEmpty()
   id!: string;
-  
+
   @IsString()
   @IsNotEmpty()
   firstName!: string;
@@ -44,27 +33,25 @@ export class UpsertUserDto implements IUpsertUser {
   @IsNotEmpty()
   lastName!: string;
 
-
-  @IsBoolean()
+  @IsEmail()
   @IsNotEmpty()
   email!: string;
 
-  @IsDate()
+  @IsString()
   @IsNotEmpty()
   role!: UserRole;
-
 }
 
 export class UpdateUserDto implements IUpdateUser {
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   firstName!: string;
 
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   lastName!: string;
 
-  @IsBoolean()
-  @IsOptional()
+  @IsEmail()
+  @IsNotEmpty()
   email!: string;
 }

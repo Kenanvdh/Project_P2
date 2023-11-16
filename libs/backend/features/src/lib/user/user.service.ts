@@ -30,20 +30,25 @@ export class UserService {
   ]);
 
   constructor() {
-    console.log('Service constructor aangeroepen');
+    console.log('Service constructor called');
   }
 
   getUsers(): IUser[] {
-    console.log('getUsers aangeroepen');
+    console.log('getUsers called');
     return this.users$.value;
   }
 
   getUserById(id: string): IUser {
-    console.log('getUserById aangeroepen');
+    console.log('getUserById called');
     const user = this.users$.value.find((td) => td.id == id);
     if (!user) {
       throw new Error(`User with id ${id} not found`);
     }
+    return user;
+  }
+
+  createUser(user: IUser): IUser {
+    this.users$.next([...this.users$.value, user]);
     return user;
   }
 }

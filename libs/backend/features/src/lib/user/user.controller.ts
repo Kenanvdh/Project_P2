@@ -16,4 +16,9 @@ export class UserController {
   getUserById(@Param('id') id: string): IUser {
     return this.userService.getUserById(id);
   }
+
+  @Post('')
+  createUser(@Body() user: IUser): IUser {
+    return this.userService.createUser(user);
+  }
 }
