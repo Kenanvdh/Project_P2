@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'indivproj-p2-about',
   templateUrl: './about.component.html',
-  styles: [],
+  styleUrls: ['../user/user-list/user-list.component.css'],
 })
 export class AboutComponent {}

@@ -33,6 +33,24 @@ export class UserService {
       gender: Gender.female,
       role: UserRole.editor,
     },
+    {
+      id: '3',
+      firstName: 'Bart',
+      lastName: 'van Graaf',
+      email: 'bvg@hotmail.com',
+      age: 33,
+      gender: Gender.other,
+      role: UserRole.guest,
+    },
+    {
+      id: '4',
+      firstName: 'Beau',
+      lastName: 'van Overste',
+      email: 'bvo@ziggo.nl',
+      age: 19,
+      gender: Gender.female,
+      role: UserRole.admin,
+    },
   ]);
 
   constructor() {

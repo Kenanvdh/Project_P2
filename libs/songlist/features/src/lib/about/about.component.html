@@ -1,13 +1,13 @@
 <h1>About the case</h1>
-<p>Mijn naam is Kenan van der Heijden (21972808)</p>
+<p>Mijn naam is Kenan van der Heijden (21972808).</p>
 <br>
 <h2>Functionele requirements</h2>
 <table>
     <thead>
-            <td>Nr</td>
-            <td>Requirement</td>
-            <td>Toelichting</td>
-            <td>MoSCoW</td>
+        <td>Nr</td>
+        <td>Requirement</td>
+        <td>Toelichting</td>
+        <td>MoSCoW</td>
     </thead>
     <tbody>
         <tr>
@@ -30,14 +30,73 @@
         </tr>
         <tr>
             <td>4</td>
-            <td>Toevoegen nummer</td>
-            <td>Een gebruiker kan een rating aanmaken</td>
+            <td>Toevoegen rating</td>
+            <td>Een gebruiker kan een rating aan een lijst geven</td>
+            <td>M</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Toevoegen nummer aan lijst</td>
+            <td>Een gebruiker kan een nummer toevoegen aan een lijst</td>
+            <td>C</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Bekijken lijst, nummer, artiest en rating</td>
+            <td>Een gebruiker moet een lijst, nummers, artiesten en ratings kunnen bekijken</td>
+            <td>M</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Aanbevelingen</td>
+            <td>Een gebruiker kan een lijst aanbevelen aan medegebruikers</td>
             <td>C</td>
         </tr>
     </tbody>
 </table>
 <br>
+<br>
+
+<h2>ERD</h2>
+<h4>Onderstaand is het erd te zien, passend bij de database die gebouwd gaat word</h4>
+<br>
 <img class="img-fluid" src="/assets/Erd.png" alt="requirements">
 <br>
+<br>
+
 <h2>Niet-functionele requirements</h2>
-<p>under the construction</p>
+<table>
+    <thead>
+        <td>Nr</td>
+        <td>Requirement</td>
+        <td>Toelichting</td>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>CI/CD</td>
+            <td>Je project is gerealiseerd binnen een CI/CD ontwikkelstraat. Een push naar je online respository
+                triggert het uitvoeren van geautomatiseerde testen, en het slagen van de testen zorgt voor deployment
+                van je project naar een online cloudprovider.</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>UX</td>
+            <td>Je past de principes toe voor het ontwerpen en bouwen van een gebruiksvriendelijke user-interface, zoals
+                je die bij de module UX-design hebt geleerd.</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Testdata</td>
+            <td>Vul je systeem met voldoende data, zodat je de werking van je systeem kunt aantonen. Zorg dus voor
+                verschillende gebruikersaccounts, waarmee je kunt laten zien dat gebruikers elkaars data niet kunnen
+                wijzigen. Zorg ook voor ten minste 5 verschillende records van iedere entiteit.</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Applicatie</td>
+            <td>De backend maakt gebruik van het NestJs framework. Je ontwikkelt je gehele applicatie binnen een Nx
+                monorepo structuur.</td>
+        </tr>
+    </tbody>
+</table>
