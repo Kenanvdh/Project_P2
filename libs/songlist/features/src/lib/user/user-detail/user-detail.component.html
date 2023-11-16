@@ -1,17 +1,10 @@
-<table>
-    <thead>
-        <tr>
-            <td>Firstname</td>
-            <td>Lastname</td>
-            <td>Email</td>
-            <td>Role</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{users?.firstName}}</td>
-            <td>{{users?.lastName}}</td>
-            <td>{{users?.email}}</td>
-            <td>{{users?.role}}</td>
-        </tr>
-</table>
+<div class="text-center">
+    <h2>Dit zijn de user details van {{users?.firstName}} {{users?.lastName}}</h2>
+    <button routerLink="/users/{{users?.id}}/edit">Edit User</button>
+    <br>
+<p>Id: {{users?.id}}</p>
+<p>Firstname: {{users?.firstName}}</p>
+<p>Lastname: {{users?.lastName}}</p>
+<p>Email: {{users?.email}}</p>
+<p>Role: {{users?.role}}</p>
+</div>

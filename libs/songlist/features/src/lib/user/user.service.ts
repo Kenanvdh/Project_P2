@@ -1,5 +1,9 @@
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IUser } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
@@ -8,7 +12,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  
   private endpoint = 'http://localhost:3000/api/user';
 
   constructor(private readonly http: HttpClient) {}
@@ -45,7 +48,7 @@ export class UserService {
 
   public create(user: IUser): Observable<IUser> {
     console.log(`create ${this.endpoint}`);
-    
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -59,6 +62,12 @@ export class UserService {
         map((response: any) => response.results as IUser),
         catchError(this.handleError)
       );
+  }
+
+  public update(user: IUser): Observable<IUser> {
+    return this.http
+      .put<ApiResponse<IUser>>(`${this.endpoint}/${user.id}`, user)
+      .pipe(tap(console.log), catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse): Observable<any> {

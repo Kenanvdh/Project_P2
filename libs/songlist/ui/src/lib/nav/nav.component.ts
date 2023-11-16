@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'indivproj-p2-nav',
   templateUrl: './nav.component.html',
-  styles: [
-  ]
+  styles: []
 })
 export class NavComponent implements OnInit {
 

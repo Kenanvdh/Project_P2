@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'indivproj-p2-user-detail',
   templateUrl: './user-detail.component.html',
-  styles: [],
+  styleUrls: ['../user-list/user-list.component.css'],
 })
 export class UserDetail {
   userId: string | null = null;

@@ -9,7 +9,7 @@ import { UserRole } from '../user.model';
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-edit.component.html',
-  styleUrls: [],
+  styleUrls: ['./user-edit.component.css', './../user-list/user-list.component.css'],
 })
 
 export class UserEditComponent {
@@ -24,7 +24,7 @@ export class UserEditComponent {
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private location: Location) {}
 
-  ngONInit(): void {
+  ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
       if(this.id) {
@@ -34,14 +34,16 @@ export class UserEditComponent {
   }
 
   editUser(): void {
-  
+    this.userService.update(this.user).subscribe(() => {
+      this.router.navigate(['/user-list']);
+    });
   }
 
   createUser(): void {
     this.userService.create(this.user).subscribe(
       (createdUser) => {
         console.log('User created successfully:', createdUser);
-        this.router.navigate(['/user-list']);
+        this.router.navigate(['../..'], {relativeTo: this.route});
 
       },
       (error) => {
@@ -51,6 +53,6 @@ export class UserEditComponent {
   } 
   
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/user-list']);
   }
 }
