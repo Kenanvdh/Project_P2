@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, RouterLink, Routes } from '@angular/router';
 import { SongListComponent } from './song/song-list/song-list.component';
 import { SongDetailComponent } from './song/song-detail/song-detail.component';
 import { UserDetail } from './user/user-detail/user-detail.component';
@@ -13,7 +13,7 @@ import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
+  imports: [CommonModule, HttpClientModule, RouterModule, RouterLink, FormsModule],
   declarations: [
     AboutComponent,
     SongListComponent,
