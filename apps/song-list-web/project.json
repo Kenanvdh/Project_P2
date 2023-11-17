@@ -40,7 +40,7 @@
           "fileReplacements": [
             {
               "replace": "libs/shared/util-env/src/lib/environment.ts",
-              "with": "libs/shared/util-env/src/lib/environment.render.ts"
+              "with": "libs/shared/util-env/src/lib/environment.production.ts"
             }
           ]
         },
@@ -60,7 +60,6 @@
       "configurations": {
         "production": {
           "browserTarget": "song-list-web:build:production"
-          ]
         },
         "development": {
           "browserTarget": "song-list-web:build:development"
