@@ -1,6 +1,6 @@
 <div class="text-center">
     <ng-container *ngIf="!id; else editMode">
-      <h2>Maak hier uw user aan</h2>
+      <h2>Maak hier uw song aan</h2>
       <form name="Form" #userEditForm="ngForm" (ngSubmit)="createSong()">
         <label for="name">Title:</label><br>
         <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
@@ -27,7 +27,7 @@
     </ng-container>
   
     <ng-template #editMode>
-      <h2>Pas hier uw user aan</h2>
+      <h2>Pas hier uw song aan</h2>
       <form name="Form" #userEditForm="ngForm" (ngSubmit)="editSong()">
         <label for="name">Title:</label><br>
         <input type="text" id="name" [(ngModel)]="song.name" name="name" required>

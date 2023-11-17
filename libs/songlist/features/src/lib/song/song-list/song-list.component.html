@@ -2,20 +2,19 @@
 <h4>Klik op de title om de details van desbetreffend nummer te zien</h4>
 
 <button routerLink="/song/create">New Song</button>
-
 <table>
-        <thead>
-                <td>Title</td>
-                <td>Album</td>
-                <td>Artist</td>
-        </thead>
-        <tbody>
-            <tr *ngFor="let song of songs">
-                <td>
-                    <a routerLink="{{song.id}}">{{song.name}}</a>
-                </td>   
-                <td>{{song.album}}</td>
-                <td>{{song.artist}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <thead>
+        <td>Title</td>
+        <td>Album</td>
+        <td>Artist</td>
+    </thead>
+    <tbody>
+        <tr *ngFor="let song of songs">
+            <td>
+                <a routerLink="{{song.id}}">{{song.name}}</a>
+            </td>
+            <td>{{song.album}}</td>
+            <td>{{song.artist}}</td>
+        </tr>
+    </tbody>
+</table>

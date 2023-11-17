@@ -3,19 +3,18 @@
 
 <button routerLink="/user/create">New User</button>
 <table>
-
-        <thead>
-                <td>Firstname</td>
-                <td>Lastname</td>
-                <td>Email</td>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <td>
-                    <a routerLink="{{user.id}}">{{user.firstName}}</a>    
-                </td>   
-                <td>{{user.lastName}}</td>
-                <td>{{user.email}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <thead>
+        <td>Firstname</td>
+        <td>Lastname</td>
+        <td>Email</td>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>
+                <a routerLink="{{user.id}}">{{user.firstName}}</a>
+            </td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+        </tr>
+    </tbody>
+</table>

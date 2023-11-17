@@ -7,7 +7,7 @@
     <p>Artist: {{songs?.artist}}</p>
     <p>Genre: {{songs?.genre}}</p>
     <p>Duration: {{songs?.duration}} minutes</p>
-    <p>Url: <a href="{{songs?.url}}">{{songs?.url}}</a></p>
+    <p>Url: {{songs?.url}}</p>
     <br>
     <button routerLink="/song/{{songs?.id}}/edit">Edit Song</button>
     <button routerLink="/songs/{{songs?.id}}/delete">Delete Song</button>
