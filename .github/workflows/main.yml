@@ -31,7 +31,7 @@ jobs:
       - name: Zip artifacts for deployment
         run: |
           echo ${GITHUB_WORKSPACE}
-          cd ${GITHUB_WORKSPACE}/dist/apps/backend-api/ && zip ${GITHUB_WORKSPACE}/backend-api-release.zip ./* -r
+          cd ${GITHUB_WORKSPACE}/dist/apps/data-api/ && zip ${GITHUB_WORKSPACE}/backend-api-release.zip ./* -r
           cd ${GITHUB_WORKSPACE}/dist/apps/song-list-web/ && zip ${GITHUB_WORKSPACE}/frontend-app-release.zip ./* -r
 
       - name: Upload frontend-app artifact for deployment job
