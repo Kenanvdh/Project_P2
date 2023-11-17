@@ -25,7 +25,8 @@
       "@indivproj-p2/songlist/features": [
         "libs/songlist/features/src/index.ts"
       ],
-      "@indivproj-p2/ui": ["libs/songlist/ui/src/index.ts"]
+      "@indivproj-p2/ui": ["libs/songlist/ui/src/index.ts"],
+      "@song-list-web/shared/util-env": ["libs/shared/util-env/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

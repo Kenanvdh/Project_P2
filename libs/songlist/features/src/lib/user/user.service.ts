@@ -8,6 +8,11 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IUser } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
 
+export const httpOptions = {
+  observe: 'body',
+  responseType: 'json',
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,6 +23,7 @@ export class UserService {
 
   public list(options?: any): Observable<IUser[] | null> {
     console.log(`list ${this.endpoint}`);
+
     return this.http
       .get<ApiResponse<IUser[]>>(this.endpoint, {
         ...options,
