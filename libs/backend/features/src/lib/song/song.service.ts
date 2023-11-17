@@ -93,4 +93,16 @@ export class SongService {
 
     return this.songs$.value[index];
   }
+
+  deleteSong(id: string): void {
+    const index = this.songs$.value.findIndex((td) => td.id == id);
+    if (index == -1) {
+      throw new Error(`User with id ${id} not found`);
+    }
+
+    this.songs$.next([
+      ...this.songs$.value.slice(0, index),
+      ...this.songs$.value.slice(index + 1),
+    ]);
+  }
 }

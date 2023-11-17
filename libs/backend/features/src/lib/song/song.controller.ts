@@ -1,8 +1,7 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Delete, Put} from '@nestjs/common';
 import { SongService } from './song.service';
 import { Get, Param, Post, Body } from '@nestjs/common';
 import { ISong } from '@indivproj-p2/shared/api';
-import { CreateSongDto } from '@indivproj-p2/backend/dto';
 
 @Controller('song')
 export class SongController {
@@ -19,7 +18,16 @@ export class SongController {
     }
 
     @Post('')
-    create(@Body() data: CreateSongDto): ISong {
-        return this.songService.create(data);
+    create(@Body() song: ISong): ISong {
+        return this.songService.create(song);
+    }
+    
+    @Put('/:id')
+    edit(@Param('id') id: string, @Body() song: ISong): ISong {
+        return this.songService.update(song);
+    }
+    @Delete('')
+    delete(@Param('id') id: string, @Body() song: ISong): void {
+        this.songService.deleteSong(id);
     }
 }
