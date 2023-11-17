@@ -7,6 +7,7 @@ import {
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IUser } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
+import { environment } from '@indivproj-p2/shared/util-env';
 
 export const httpOptions = {
   observe: 'body',
@@ -17,7 +18,8 @@ export const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-  private endpoint = 'http://localhost:3000/api/user';
+  // private endpoint = 'http://localhost:3000/api/user';
+  endpoint = `http://${environment.backendUrl}/api/songlist`;
 
   constructor(private readonly http: HttpClient) {}
 
