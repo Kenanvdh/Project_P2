@@ -19,7 +19,7 @@ export const httpOptions = {
 })
 export class UserService {
   // private endpoint = 'http://localhost:3000/api/user';
-  endpoint = `${environment.backendUrl}/users`;
+  endpoint = `${environment.backendUrl}/api/user`;
 
   constructor(private readonly http: HttpClient) {}
 
