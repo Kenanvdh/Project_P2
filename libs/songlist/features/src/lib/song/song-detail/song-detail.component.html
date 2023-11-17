@@ -7,8 +7,8 @@
     <p>Artist: {{songs?.artist}}</p>
     <p>Genre: {{songs?.genre}}</p>
     <p>Duration: {{songs?.duration}} minutes</p>
-    <p>Url: <a href="{{songs?.url}}"></a></p>
+    <p>Url: <a href="{{songs?.url}}">{{songs?.url}}</a></p>
     <br>
-   <!--  <button routerLink="/songs/{{songs?.id}}/edit">Edit Song</button>
-    <button routerLink="/songs/{{songs?.id}}/delete">Delete Song</button> -->
+    <button routerLink="/song/{{songs?.id}}/edit">Edit Song</button>
+    <!-- <button routerLink="/songs/{{songs?.id}}/delete">Delete Song</button> -->
 </div>

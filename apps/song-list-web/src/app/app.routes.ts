@@ -7,10 +7,15 @@ import { UserDetail } from "libs/songlist/features/src/lib/user/user-detail/user
 import { UserEditComponent } from "libs/songlist/features/src/lib/user/user-edit/user-edit.component";
 import { UserDeleteComponent } from "libs/songlist/features/src/lib/user/user-delete/user-delete.component";
 import { AboutComponent } from "libs/songlist/features/src/lib/about/about.component";
+import { SongEditComponent } from "libs/songlist/features/src/lib/song/song-edit/song-edit.component";
+import { SongDeleteComponent } from "libs/songlist/features/src/lib/song/song-delete/song-delete.component";
 
 export const routes: Routes = [
     { path: "songlist", component: SongListComponent },
-    { path: "songlist/:id", component: SongDetailComponent },
+    { path: "song/create", component: SongEditComponent },
+    { path: "songlist/:id", component: SongEditComponent },
+    { path: "song/:id/edit", component: SongDetailComponent },
+    { path: "song/:id/delete", component: SongDeleteComponent },
     { path: "about", pathMatch: "full", component: AboutComponent },
     { path: "users", pathMatch: "full", component: ListComponent },
     { path: "user/create", pathMatch: "full", component: UserEditComponent },

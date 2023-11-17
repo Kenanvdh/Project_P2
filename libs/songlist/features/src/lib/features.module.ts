@@ -12,9 +12,17 @@ import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 import { FormsModule } from '@angular/forms';
 import { SongService } from './song/song.service';
+import { SongEditComponent } from './song/song-edit/song-edit.component';
+import { SongDeleteComponent } from './song/song-delete/song-delete.component';
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, RouterModule, RouterLink, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
+    RouterLink,
+    FormsModule,
+  ],
   declarations: [
     AboutComponent,
     SongListComponent,
@@ -23,8 +31,18 @@ import { SongService } from './song/song.service';
     ListComponent,
     UserEditComponent,
     UserDeleteComponent,
+    SongEditComponent,
+    SongDeleteComponent,
   ],
   providers: [UserService, SongService],
-  exports: [UserDetail, ListComponent, AboutComponent, SongListComponent, SongDetailComponent, UserEditComponent, UserDeleteComponent],
+  exports: [
+    UserDetail,
+    ListComponent,
+    AboutComponent,
+    SongListComponent,
+    SongDetailComponent,
+    UserEditComponent,
+    UserDeleteComponent,
+  ],
 })
 export class FeaturesModule {}

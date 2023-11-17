@@ -53,6 +53,36 @@ export class SongService {
       );
   }
 
+  public create(song: ISong): Observable<ISong> {
+    console.log(`create ${this.endpoint}`);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http
+      .post<ApiResponse<ISong>>(this.endpoint, song, httpOptions)
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as ISong),
+        catchError(this.handleError)
+      );
+  }
+
+  public update(song: ISong): Observable<ISong> {
+    return this.http
+      .put<ApiResponse<ISong>>(`${this.endpoint}/${song.id}`, song)
+      .pipe(tap(console.log), catchError(this.handleError));
+  }
+
+  public delete(user: ISong): Observable<ISong> {
+    return this.http
+      .delete<ApiResponse<ISong>>(`${this.endpoint}/${user.id}`)
+      .pipe(tap(console.log), catchError(this.handleError));
+  }
+
   public handleError(error: HttpErrorResponse): Observable<any> {
     console.log('handleError in SongService', error);
 

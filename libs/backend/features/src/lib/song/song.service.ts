@@ -74,26 +74,23 @@ export class SongService {
     return song;
   }
 
-  create(
-    song: Pick<
-      ISong,
-      'name' | 'artist' | 'album' | 'year' | 'genre' | 'duration' | 'url'
-    >
-  ): ISong {
-    Logger.log('create', this.TAG);
-    const current = this.songs$.value;
-    const newSong: ISong = {
-      ...song,
-      id: `${current.length + 1}`,
-      name: 'Bohemian Rhapsody',
-      artist: 'Queen',
-      album: 'Bohemian Rhapsody',
-      year: 2004,
-      genre: 'Rock',
-      duration: 355,
-      url: 'https://www.youtube.com/watch?v=fJ9rUzIMcZQ',
-    };
-    this.songs$.next([...current, newSong]);
-    return newSong;
+  create(song: ISong): ISong {
+    const nextId = String(this.songs$.value.length);
+    const newUser = { ...song, id: nextId };
+
+    this.songs$.next([...this.songs$.value, newUser]);
+
+    return newUser;
+  }
+
+  update(user: ISong): ISong {
+    const index = this.songs$.value.findIndex((td) => td.id == user.id);
+    if (index == -1) {
+      throw new Error(`User with id ${user.id} not found`);
+    }
+
+    this.songs$.value[index] = { ...this.songs$.value[index], ...user };
+
+    return this.songs$.value[index];
   }
 }
