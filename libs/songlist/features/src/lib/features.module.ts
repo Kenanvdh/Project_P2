@@ -11,6 +11,7 @@ import { UserService } from './user/user.service';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserDeleteComponent } from './user/user-delete/user-delete.component';
 import { FormsModule } from '@angular/forms';
+import { SongService } from './song/song.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule, RouterModule, RouterLink, FormsModule],
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     UserEditComponent,
     UserDeleteComponent,
   ],
-  providers: [UserService],
+  providers: [UserService, SongService],
   exports: [UserDetail, ListComponent, AboutComponent, SongListComponent, SongDetailComponent, UserEditComponent, UserDeleteComponent],
 })
 export class FeaturesModule {}

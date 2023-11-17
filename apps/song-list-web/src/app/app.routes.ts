@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, RouterLink, Routes } from "@angular/router";
 import { SongListComponent } from "libs/songlist/features/src/lib/song/song-list/song-list.component";
 import { SongDetailComponent } from "libs/songlist/features/src/lib/song/song-detail/song-detail.component";
 import { ListComponent } from "libs/songlist/features/src/lib/user/user-list/user-list.component";
@@ -21,7 +21,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes), RouterLink],
     exports: [RouterModule],
 })
 export class appRoutes {}
