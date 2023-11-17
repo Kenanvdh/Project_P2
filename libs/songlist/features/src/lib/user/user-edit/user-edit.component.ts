@@ -37,7 +37,7 @@ export class UserEditComponent {
 
   editUser(): void {
     this.userService.update(this.user).subscribe(() => {
-      this.router.navigate(['/user-list']);
+      this.router.navigate(['/users']);
     });
   }
 
@@ -55,6 +55,6 @@ export class UserEditComponent {
   } 
   
   goBack(): void {
-    this.router.navigate(['/user-list']);
+    this.router.navigate(['/users']);
   }
 }
