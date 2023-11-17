@@ -8,7 +8,7 @@ import { ISong } from '@indivproj-p2/shared/api';
 @Component({
   selector: 'indivproj-p2-song-delete',
   templateUrl: './song-delete.component.html',
-  styleUrls: ['../../user//user-list/user-list.component.css'],
+  styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 
 export class SongDeleteComponent {

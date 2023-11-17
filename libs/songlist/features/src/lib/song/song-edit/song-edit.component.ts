@@ -8,7 +8,7 @@ import { ISong } from '@indivproj-p2/shared/api';
 @Component({
   selector: '@indivproj-p2-song-create',
   templateUrl: './song-edit.component.html',
-  styleUrls: ['./song-edit.component.css'],
+  styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 
 export class SongEditComponent {

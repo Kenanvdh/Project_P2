@@ -6,7 +6,7 @@ import { SongService } from '../song.service';
 @Component({
   selector: 'indivproj-p2-song-detail',
   templateUrl: './song-detail.component.html',
-  styleUrls: ['../song-list/song-list.component.css'],
+  styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class SongDetailComponent {
   songId: string | null = null;

@@ -9,7 +9,7 @@ import { UserRole, Gender } from '../user.model';
 @Component({
   selector: 'app-user-create',
   templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css', './../user-list/user-list.component.css'],
+  styleUrls: ['./../user-list/user-list.component.css'],
 })
 
 export class UserEditComponent {

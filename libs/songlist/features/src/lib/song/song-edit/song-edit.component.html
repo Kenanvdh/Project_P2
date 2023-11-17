@@ -12,13 +12,13 @@
         <input type="artist" id="artist" [(ngModel)]="song.artist" name="artist" required>
         <br>
         <label for="genre">Genre:</label><br>
-        <input type="number" id="genre" [(ngModel)]="song.genre" name="genre" required>
+        <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
         <br>
         <label for="duration">Duration:</label><br>
         <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
         <br>
         <label for="url">Url:</label><br>
-        <input type="number" id="url" [(ngModel)]="song.url" name="url" required>
+        <input type="text" id="url" [(ngModel)]="song.url" name="url" required>
         <br>
         <br>
         <button (click)="goBack()">Back</button>
