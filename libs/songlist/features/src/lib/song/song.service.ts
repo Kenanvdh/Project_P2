@@ -18,7 +18,7 @@ export const httpOptions = {
   providedIn: 'root',
 })
 export class SongService {
-  endpoint = `${environment.backendUrl}/api/song`;
+  endpoint = `${environment.backendUrl}/songlist`;
 
   constructor(private readonly http: HttpClient) {}
 
