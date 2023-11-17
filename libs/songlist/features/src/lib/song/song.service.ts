@@ -41,7 +41,7 @@ export class SongService {
   public read(id: string | null, options?: any): Observable<ISong> {
     console.log(`read ${this.endpoint}`);
     return this.http
-      .get<ApiResponse<ISong>>(this.endpoint, {
+      .get<ApiResponse<ISong>>(`${this.endpoint}/${id}`, {
         ...options,
         observe: 'body',
         responseType: 'json',
