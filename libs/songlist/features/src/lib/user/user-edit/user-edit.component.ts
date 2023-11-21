@@ -45,7 +45,7 @@ export class UserEditComponent {
     this.userService.create(this.user).subscribe(
       (createdUser) => {
         console.log('User created successfully:', createdUser);
-        this.router.navigate(['../..'], {relativeTo: this.route});
+        this.router.navigate(['/users'], {relativeTo: this.route});
 
       },
       (error) => {

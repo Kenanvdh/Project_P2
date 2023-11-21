@@ -47,7 +47,7 @@ export class UserDeleteComponent {
       this.userService.delete(this.user).subscribe(
         () => {
           console.log('User deleted successfully');
-          this.router.navigate(['/user-list']);
+          this.router.navigate(['/users']);
         },
         (error) => {
           console.error('Error deleting user:', error);
@@ -59,6 +59,6 @@ export class UserDeleteComponent {
   }
 
   goBack(): void {
-    this.router.navigate(['/user-list']);
+    this.router.navigate(['/users']);
   }
 }
