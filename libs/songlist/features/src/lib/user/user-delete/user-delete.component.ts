@@ -38,7 +38,7 @@ export class UserDeleteComponent {
         this.userService.read(this.id).subscribe((observable) => {
           this.user = observable;
         });
-      }
+      } 
     });
   }
 
