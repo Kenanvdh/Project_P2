@@ -10,7 +10,6 @@ import { ISong } from '@indivproj-p2/shared/api';
   templateUrl: './song-delete.component.html',
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
-
 export class SongDeleteComponent {
   song: ISong = {
     id: '',
@@ -47,7 +46,7 @@ export class SongDeleteComponent {
       this.songService.delete(this.song).subscribe(
         () => {
           console.log('Song deleted successfully');
-          this.router.navigate(['/songlist']);
+          this.router.navigate(['../..'], {relativeTo: this.route});
         },
         (error) => {
           console.error('Error deleting song:', error);
@@ -59,6 +58,6 @@ export class SongDeleteComponent {
   }
 
   goBack(): void {
-    this.router.navigate(['/songlist']);
+    this.router.navigate(['../..'], {relativeTo: this.route});
   }
 }

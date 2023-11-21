@@ -76,20 +76,20 @@ export class SongService {
 
   create(song: ISong): ISong {
     const nextId = String(this.songs$.value.length);
-    const newUser = { ...song, id: nextId };
+    const newSong = { ...song, id: nextId };
 
-    this.songs$.next([...this.songs$.value, newUser]);
+    this.songs$.next([...this.songs$.value, newSong]);
 
-    return newUser;
+    return newSong;
   }
 
-  update(user: ISong): ISong {
-    const index = this.songs$.value.findIndex((td) => td.id == user.id);
+  update(song: ISong): ISong {
+    const index = this.songs$.value.findIndex((td) => td.id == song.id);
     if (index == -1) {
-      throw new Error(`User with id ${user.id} not found`);
+      throw new Error(`Song with id ${song.id} not found`);
     }
 
-    this.songs$.value[index] = { ...this.songs$.value[index], ...user };
+    this.songs$.value[index] = { ...this.songs$.value[index], ...song };
 
     return this.songs$.value[index];
   }
@@ -97,7 +97,7 @@ export class SongService {
   deleteSong(id: string): void {
     const index = this.songs$.value.findIndex((td) => td.id == id);
     if (index == -1) {
-      throw new Error(`User with id ${id} not found`);
+      throw new Error(`Song with id ${id} not found`);
     }
 
     this.songs$.next([

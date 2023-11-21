@@ -15,4 +15,3 @@ export interface ISong {
 export type ICreateSong = Pick<ISong, 'name' | 'artist' | 'album' | 'year' | 'genre' | 'duration' | 'url'>;
 export type IUpdateSong = Partial<Omit<ISong,id>>;
 export type IUpsertSong = ISong;
-export type IDeleteSong = ISong;

@@ -7,13 +7,8 @@ import {
     ICreateSong,
     IUpdateSong,
     IUpsertSong,
-    IDeleteSong, 
 } from '@indivproj-p2/shared/api';
 
-/**
- * Use the `Pick` utility type to extract only the properties we want for
- * new to-do items
- */
  export class CreateSongDto implements ICreateSong {
     @IsString()
     @IsNotEmpty()

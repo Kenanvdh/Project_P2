@@ -18,7 +18,7 @@ export const httpOptions = {
   providedIn: 'root',
 })
 export class UserService {
-  endpoint = `${environment.backendUrl}/api/user`;
+  endpoint = `${environment.backendUrl}/user`;
 
   constructor(private readonly http: HttpClient) {}
 

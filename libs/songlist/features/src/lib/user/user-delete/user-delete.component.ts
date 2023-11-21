@@ -11,6 +11,7 @@ import { UserRole, Gender } from '../user.model';
   templateUrl: './user-delete.component.html',
   styleUrls: ['../user-list/user-list.component.css'],
 })
+
 export class UserDeleteComponent {
   user: IUser = {
     id: '',

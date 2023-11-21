@@ -17,8 +17,9 @@ export const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
+
 export class SongService {
-  endpoint = `${environment.backendUrl}/api/song`;
+  endpoint = `${environment.backendUrl}/song`;
 
   constructor(private readonly http: HttpClient) {}
 
@@ -77,9 +78,9 @@ export class SongService {
       .pipe(tap(console.log), catchError(this.handleError));
   }
 
-  public delete(user: ISong): Observable<ISong> {
+  public delete(song: ISong): Observable<ISong> {
     return this.http
-      .delete<ApiResponse<ISong>>(`${this.endpoint}/${user.id}`)
+      .delete<ApiResponse<ISong>>(`${this.endpoint}/${song.id}`)
       .pipe(tap(console.log), catchError(this.handleError));
   }
 
