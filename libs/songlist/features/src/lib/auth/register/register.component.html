@@ -22,14 +22,14 @@
                   id="inputFirstName"
                   [ngClass]="{
                     'is-invalid':
-                      registerForm.get('firstname').invalid &&
-                      registerForm.get('firstname').touched
+                      registerForm.get('firstname')?.invalid &&
+                      registerForm.get('firstname')?.touched
                   }"
                 />
                 <span
                   *ngIf="
-                    !registerForm.get('firstname').valid &&
-                    registerForm.get('firstname').touched
+                    !registerForm.get('firstname')?.valid &&
+                    registerForm.get('firstname')?.touched
                   "
                   class="invalid-feedback"
                 >
@@ -49,14 +49,14 @@
                   id="inputLastName"
                   [ngClass]="{
                     'is-invalid':
-                      registerForm.get('lastname').invalid &&
-                      registerForm.get('lastname').touched
+                      registerForm.get('lastname')?.invalid &&
+                      registerForm.get('lastname')?.touched
                   }"
                 />
                 <span
                   *ngIf="
-                    !registerForm.get('lastname').valid &&
-                    registerForm.get('lastname').touched
+                    !registerForm.get('lastname')?.valid &&
+                    registerForm.get('lastname')?.touched
                   "
                   class="invalid-feedback"
                 >
@@ -78,8 +78,8 @@
                 aria-describedby="emailHelp"
                 [ngClass]="{
                   'is-invalid':
-                    registerForm.get('email').invalid &&
-                    registerForm.get('email').touched
+                    registerForm.get('email')?.invalid &&
+                    registerForm.get('email')?.touched
                 }"
               />
               <small id="emailHelp" class="form-text text-muted"
@@ -87,8 +87,8 @@
               >
               <span
                 *ngIf="
-                  !registerForm.get('email').valid &&
-                  registerForm.get('email').touched
+                  !registerForm.get('email')?.valid &&
+                  registerForm.get('email')?.touched
                 "
                 class="invalid-feedback"
               >
@@ -107,14 +107,14 @@
                 id="inputPassword"
                 [ngClass]="{
                   'is-invalid':
-                    registerForm.get('password').invalid &&
-                    registerForm.get('password').touched
+                    registerForm.get('password')?.invalid &&
+                    registerForm.get('password')?.touched
                 }"
               />
               <span
                 *ngIf="
-                  !registerForm.get('password').valid &&
-                  registerForm.get('password').touched
+                  !registerForm.get('password')?.valid &&
+                  registerForm.get('password')?.touched
                 "
                 class="invalid-feedback"
               >
@@ -134,13 +134,9 @@
             </div>
   
             <p>
-              <a routerLink="/">Homepage</a> |
+              <a routerLink="/songlist">Homepage</a> |
               <a routerLink="/login">Login</a>
             </p>
-  
-            <div class="form-group">
-              <app-alert></app-alert>
-            </div>
           </form>
         </div>
       </div>

@@ -11,7 +11,7 @@ export interface IUser {
     age: number;
     gender: Gender;
     role: UserRole;
-    token: string | null;
+    token?: string | null;
 }
 
 export type ICreateUser = Pick<
