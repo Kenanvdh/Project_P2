@@ -1,6 +1,7 @@
 <div class="flex items-center justify-center v-screen">
   <div class="max-w-md mt-5">
     <h2>Register</h2>
+
     <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div class="col-5">
@@ -41,8 +42,7 @@
       <br>
       <div class="col">
         <label for="inputAge">Age</label><br>
-        <input type="number" class="form-control" placeholder="Age" formControlName="age" id="inputAge"
-          [ngClass]="{
+        <input type="number" class="form-control" placeholder="Age" formControlName="age" id="inputAge" [ngClass]="{
                   'is-invalid':
                     registerForm.get('age')?.invalid &&
                     registerForm.get('age')?.touched
@@ -55,25 +55,26 @@
         </span>
       </div>
 
-    <br>
+      <br>
 
-    <div class="form-group">
-      <label>Gender</label><br>
-      <label class="radio-inline">
-        <input type="radio" formControlName="gender" value="Male"> Male
-      </label><br>
-      <label class="radio-inline">
-        <input type="radio" formControlName="gender" value="Female"> Female
-      </label><Br>
-      <label class="radio-inline">
-        <input type="radio" formControlName="gender" value="Other"> Other
-      </label>
-      <span *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched" class="invalid-feedback">
-        <p id="gender-invalid">Please select your gender.</p>
-      </span>
-    </div>
+      <div class="form-group">
+        <label>Gender</label><br>
+        <label class="radio-inline">
+          <input type="radio" formControlName="gender" value="Male"> Male
+        </label><br>
+        <label class="radio-inline">
+          <input type="radio" formControlName="gender" value="Female"> Female
+        </label><Br>
+        <label class="radio-inline">
+          <input type="radio" formControlName="gender" value="Other"> Other
+        </label>
+        <span *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched"
+          class="invalid-feedback">
+          <p id="gender-invalid">Please select your gender.</p>
+        </span>
+      </div>
 
-    <br>
+      <br>
 
       <div class="form-group">
         <label for="inputEmail">Email address</label><br>
@@ -106,9 +107,8 @@
       <br>
 
       <div class="form-group">
-        <button id="submitbutton" class="btn btn-lg btn-primary btn-block" type="submit"
-          [disabled]="!registerForm.valid">
-          Sign in
+        <button>
+          Register
         </button>
       </div>
     </form>

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../user/user.service';
 import { UserRole } from '../../user/user.model';
@@ -26,6 +26,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
+    private route: ActivatedRoute,
     private router: Router,
     private userService: UserService
   ) {}
@@ -56,24 +57,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.registerForm?.valid) {
-      this.authService.register(this.registerForm.value).subscribe((user) => {
-        if (user) {
-          console.log('Registration succeeded');
-          this.userService.create(user).subscribe(
-            () => {
-              console.log('User added to the list');
-              this.router.navigate(['/users']);
-            },
-            (createError) => {
-              console.error('Error adding user to the list:', createError);
-            }
-          );
-        } else {
-          console.error('Registration returned null user');
-        }
+      this.userService.create(this.registerForm.value).subscribe((user) => {
+        console.log('Registration succeeded');
+        this.router.navigate(['/users'], { relativeTo: this.route });
       });
     } else {
-      console.error('registerForm invalid');
+      console.error('Registration returned null user');
     }
   }
 

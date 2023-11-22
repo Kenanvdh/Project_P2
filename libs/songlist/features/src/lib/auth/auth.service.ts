@@ -68,7 +68,7 @@ export class AuthService {
       );
   }
 
-  register(userData: IUser): Observable<IUser | null> {
+/*   register(userData: IUser): Observable<IUser | null> {
     console.log(`register at ${environment.backendUrl}/users`);
     console.log('User data:', userData);
 
@@ -91,7 +91,7 @@ export class AuthService {
           return of(null);
         })
       );
-  }
+  } */
 
   /**
    * Validate het token bij de backend API. Als er geen HTTP error
