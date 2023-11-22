@@ -5,15 +5,15 @@
       <div class="form-row">
         <div class="col-5">
           <label for="inputFirstName">Firstname</label><br>
-          <input type="text" class="form-control" formControlName="firstname" placeholder="Firstname"
+          <input type="text" class="form-control" formControlName="firstName" placeholder="Firstname"
             id="inputFirstName" [ngClass]="{
                     'is-invalid':
-                      registerForm.get('firstname')?.invalid &&
-                      registerForm.get('firstname')?.touched
+                      registerForm.get('firstName')?.invalid &&
+                      registerForm.get('firstName')?.touched
                   }" />
           <span *ngIf="
-                    !registerForm.get('firstname')?.valid &&
-                    registerForm.get('firstname')?.touched
+                    !registerForm.get('firstName')?.valid &&
+                    registerForm.get('firstName')?.touched
                   " class="invalid-feedback">
             <p id="firstName-invalid">Name is invalid.</p>
           </span>
@@ -23,15 +23,15 @@
 
         <div class="col">
           <label for="inputLastName">Lastname</label><br>
-          <input type="text" class="form-control" placeholder="Lastname" formControlName="lastname" id="inputLastName"
+          <input type="text" class="form-control" placeholder="Lastname" formControlName="lastName" id="inputLastName"
             [ngClass]="{
                     'is-invalid':
-                      registerForm.get('lastname')?.invalid &&
-                      registerForm.get('lastname')?.touched
+                      registerForm.get('lastName')?.invalid &&
+                      registerForm.get('lastName')?.touched
                   }" />
           <span *ngIf="
-                    !registerForm.get('lastname')?.valid &&
-                    registerForm.get('lastname')?.touched
+                    !registerForm.get('lastName')?.valid &&
+                    registerForm.get('lastName')?.touched
                   " class="invalid-feedback">
             <p id="lastName-invalid">Lastname is invalid.</p>
           </span>
@@ -39,6 +39,41 @@
       </div>
 
       <br>
+      <div class="col">
+        <label for="inputAge">Age</label><br>
+        <input type="number" class="form-control" placeholder="Age" formControlName="age" id="inputAge"
+          [ngClass]="{
+                  'is-invalid':
+                    registerForm.get('age')?.invalid &&
+                    registerForm.get('age')?.touched
+                }" />
+        <span *ngIf="
+                  !registerForm.get('age')?.valid &&
+                  registerForm.get('age')?.touched
+                " class="invalid-feedback">
+          <p id="age-invalid">Age is invalid.</p>
+        </span>
+      </div>
+
+    <br>
+
+    <div class="form-group">
+      <label>Gender</label><br>
+      <label class="radio-inline">
+        <input type="radio" formControlName="gender" value="Male"> Male
+      </label><br>
+      <label class="radio-inline">
+        <input type="radio" formControlName="gender" value="Female"> Female
+      </label><Br>
+      <label class="radio-inline">
+        <input type="radio" formControlName="gender" value="Other"> Other
+      </label>
+      <span *ngIf="registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched" class="invalid-feedback">
+        <p id="gender-invalid">Please select your gender.</p>
+      </span>
+    </div>
+
+    <br>
 
       <div class="form-group">
         <label for="inputEmail">Email address</label><br>

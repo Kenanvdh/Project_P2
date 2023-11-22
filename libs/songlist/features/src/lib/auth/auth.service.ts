@@ -70,24 +70,23 @@ export class AuthService {
 
   register(userData: IUser): Observable<IUser | null> {
     console.log(`register at ${environment.backendUrl}/users`);
-    console.log(userData);
+    console.log('User data:', userData);
+
     return this.http
-      .post<IUser>(`${environment.backendUrl}/users`, userData, {
+      .post<IUser>(`${environment.backendUrl}/user`, userData, {
         headers: this.headers,
       })
       .pipe(
+        tap((response) => console.log('Registration response:', response)),
         map((user) => {
-          // const user = new User(response);
-          console.dir(user);
+          console.log('User from registration:', user);
           this.saveUserToLocalStorage(user);
           this.currentUser$.next(user);
           //this.alertService.success('You have been registered');
           return user;
         }),
         catchError((error: any) => {
-          console.log('error:', error);
-          console.log('error.message:', error.message);
-          console.log('error.error.message:', error.error.message);
+          console.error('Registration error:', error);
           //this.alertService.error(error.error.message || error.message);
           return of(null);
         })
