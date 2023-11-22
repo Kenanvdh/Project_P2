@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { SongService } from './song/song.service';
 import { SongEditComponent } from './song/song-edit/song-edit.component';
 import { SongDeleteComponent } from './song/song-delete/song-delete.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   imports: [
@@ -33,6 +35,8 @@ import { SongDeleteComponent } from './song/song-delete/song-delete.component';
     UserDeleteComponent,
     SongEditComponent,
     SongDeleteComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   providers: [UserService, SongService],
   exports: [

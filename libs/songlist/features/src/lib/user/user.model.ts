@@ -18,6 +18,7 @@ export class User {
   age: number = 0;
   gender: Gender = Gender.male;
   role: UserRole = UserRole.guest;
+  token: string | null = null;
 
   constructor(firstName = '', lastName = '', email = '') {
     this.firstName = firstName;
