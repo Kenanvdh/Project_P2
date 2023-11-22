@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UserService } from '@indivproj-p2/backend/features';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   });;
   subs: Subscription | null = null;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -50,6 +51,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.authService.register(this.registerForm.value).subscribe(
         (user) => {
           console.log('user = ', user);
+          if (!user) {
+            console.error('Registration failed');
+            return;
+          }
+          this.userService.createUser(user);
           this.router.navigate(['/users']);
         },
         (error) => {
