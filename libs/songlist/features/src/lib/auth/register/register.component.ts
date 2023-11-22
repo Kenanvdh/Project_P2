@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['../auth.component.css'],
+  styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup = new FormGroup({
@@ -47,37 +47,31 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.registerForm?.valid) {
-      this.authService.register(this.registerForm.value).subscribe((user) => {
-        if (user) {
+      this.authService.register(this.registerForm.value).subscribe(
+        (user) => {
           console.log('user = ', user);
-          this.router.navigate(['/']);
+          this.router.navigate(['/users']);
+        },
+        (error) => {
+          console.error('Registration failed: ', error);
         }
-      });
+      );
     } else {
       console.error('registerForm invalid');
     }
   }
 
-  validEmail(control: FormControl): { [s: string]: boolean} {
+  validEmail(control: FormControl): { [key: string]: boolean } | null {
     const email = control.value;
-    const regexp = new RegExp(
-      '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
-    );
-    if (regexp.test(email) !== true) {
-      return { email: false };
-    } else {
-      return email;
-    }
+    const regexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    
+    return regexp.test(email) ? null : { 'email': true };
   }
-
-  validPassword(control: FormControl): { [s: string]: boolean } {
+  
+  validPassword(control: FormControl): { [key: string]: boolean } | null {
     const password = control.value;
-    const regexp = new RegExp('^[a-zA-Z]([a-zA-Z0-9]){2,14}');
-    const test = regexp.test(password);
-    if (regexp.test(password) !== true) {
-      return { password: false };
-    } else {
-      return password;
-    }
+    const regexp = /^[a-zA-Z]([a-zA-Z0-9]){2,14}$/;
+  
+    return regexp.test(password) ? null : { 'password': true };
   }
 }

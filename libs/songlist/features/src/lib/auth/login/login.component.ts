@@ -8,7 +8,7 @@ import { IUser } from '@indivproj-p2/shared/api';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../auth.component.css'],
+  styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup = new FormGroup({
@@ -27,23 +27,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      email: new FormControl(null, [
-        Validators.required,
-        this.validEmail.bind(this),
-      ]),
-      password: new FormControl(null, [
-        Validators.required,
-        this.validPassword.bind(this),
-      ]),
-    });
-
     this.subs = this.authService
       .getUserFromLocalStorage()
       .subscribe((user: IUser | null) => {
         if (user) {
           console.log('User already logged in > to dashboard');
-          this.router.navigate(['/']);
+          this.router.navigate(['/users']);
         }
       });
   }
@@ -61,11 +50,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       const password = this.loginForm.value.password;
       this.authService
         .login(email, password)
-        // .pipe(delay(1000))
         .subscribe((user: IUser | null) => {
           if (user) {
             console.log('Logged in');
-            this.router.navigate(['/']);
+            this.router.navigate(['/users']);
           }
           this.submitted = false;
         });
@@ -75,26 +63,17 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  validEmail(control: FormControl): { [s: string]: boolean } {
+  validEmail(control: FormControl): { [s: string]: boolean } | null {
     const email = control.value;
     const regexp = new RegExp(
       '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
     );
-    if (regexp.test(email) !== true) {
-      return { email: false };
-    } else {
-      return email;
-    }
+    return regexp.test(email) ? null : { email: false };
   }
 
-  validPassword(control: FormControl): { [s: string]: boolean } {
+  validPassword(control: FormControl): { [s: string]: boolean } | null {
     const password = control.value;
     const regexp = new RegExp('^[a-zA-Z]([a-zA-Z0-9]){2,14}');
-    const test = regexp.test(password);
-    if (regexp.test(password) !== true) {
-      return { password: false };
-    } else {
-      return password;
-    }
+    return regexp.test(password) ? null : { password: false };
   }
 }

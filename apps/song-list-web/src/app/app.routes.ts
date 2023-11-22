@@ -9,6 +9,8 @@ import { UserDeleteComponent } from "libs/songlist/features/src/lib/user/user-de
 import { AboutComponent } from "libs/songlist/features/src/lib/about/about.component";
 import { SongEditComponent } from "libs/songlist/features/src/lib/song/song-edit/song-edit.component";
 import { SongDeleteComponent } from "libs/songlist/features/src/lib/song/song-delete/song-delete.component";
+import { LoginComponent } from "libs/songlist/features/src/lib/auth/login/login.component";
+import { RegisterComponent } from "libs/songlist/features/src/lib/auth/register/register.component";
 
 export const routes: Routes = [
     { path: "songlist", pathMatch: "full", component: SongListComponent },
@@ -24,6 +26,9 @@ export const routes: Routes = [
     { path: "users/:id", pathMatch: "full", component: UserDetail },
     { path: "users/:id/edit", pathMatch: "full", component: UserEditComponent },
     { path: "users/:id/delete", pathMatch: "full", component: UserDeleteComponent },
+
+    { path: "login", pathMatch: "full", component: LoginComponent },
+    { path: "register", pathMatch: "full", component: RegisterComponent },
 
     { path: "**", redirectTo: "songlist" },
 ];

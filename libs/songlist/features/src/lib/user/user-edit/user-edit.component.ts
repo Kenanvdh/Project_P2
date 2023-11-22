@@ -18,6 +18,7 @@ export class UserEditComponent {
     firstName: '',
     lastName: '',
     email: '',
+    password: '',
     age: 0,
     gender: Gender.male,
     role: UserRole.guest,

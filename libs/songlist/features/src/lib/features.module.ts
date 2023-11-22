@@ -10,12 +10,13 @@ import { ListComponent } from './user/user-list/user-list.component';
 import { UserService } from './user/user.service';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 import { UserDeleteComponent } from './user/user-delete/user-delete.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SongService } from './song/song.service';
 import { SongEditComponent } from './song/song-edit/song-edit.component';
 import { SongDeleteComponent } from './song/song-delete/song-delete.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { RegisterComponent } from './auth/register/register.component';
     RouterModule,
     RouterLink,
     FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AboutComponent,
@@ -38,7 +40,7 @@ import { RegisterComponent } from './auth/register/register.component';
     LoginComponent,
     RegisterComponent,
   ],
-  providers: [UserService, SongService],
+  providers: [UserService, SongService, AuthService],
   exports: [
     UserDetail,
     ListComponent,

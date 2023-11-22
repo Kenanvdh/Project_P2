@@ -15,6 +15,7 @@ export class User {
   firstName: string = '';
   lastName: string = '';
   email: string = '';
+  password: string = '';
   age: number = 0;
   gender: Gender = Gender.male;
   role: UserRole = UserRole.guest;
