@@ -15,7 +15,11 @@ export class SongDeleteComponent {
     id: '',
     name: '',
     album: '',
-    artist: '',
+    artist: {
+      name: '',
+      age: 0,
+      country: '',
+    },
     duration: 0,
     genre: '',
     year: 0,
@@ -46,7 +50,7 @@ export class SongDeleteComponent {
       this.songService.delete(this.song).subscribe(
         () => {
           console.log('Song deleted successfully');
-          this.router.navigate(['../..'], {relativeTo: this.route});
+          this.router.navigate(['../..'], { relativeTo: this.route });
         },
         (error) => {
           console.error('Error deleting song:', error);
@@ -58,6 +62,6 @@ export class SongDeleteComponent {
   }
 
   goBack(): void {
-    this.router.navigate(['../..'], {relativeTo: this.route});
+    this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }

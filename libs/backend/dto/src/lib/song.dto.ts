@@ -7,6 +7,7 @@ import {
     ICreateSong,
     IUpdateSong,
     IUpsertSong,
+    IArtist
 } from '@indivproj-p2/shared/api';
 
  export class CreateSongDto implements ICreateSong {
@@ -16,7 +17,7 @@ import {
 
     @IsString()
     @IsNotEmpty()
-    artist!: string;
+    artist!: IArtist;
 
     @IsString()
     @IsNotEmpty()
@@ -50,7 +51,7 @@ export class UpsertSongDto implements IUpsertSong {
 
     @IsString()
     @IsNotEmpty()
-    artist!: string;
+    artist!: IArtist;
 
     @IsString()
     @IsNotEmpty()
@@ -80,7 +81,7 @@ export class UpdateSongDto implements IUpdateSong {
 
     @IsString()
     @IsNotEmpty()
-    artist!: string;
+    artist!: IArtist;
 
     @IsString()
     @IsNotEmpty()

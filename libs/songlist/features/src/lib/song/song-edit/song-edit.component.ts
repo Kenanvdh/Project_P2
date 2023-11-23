@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-
 import { SongService } from '../song.service';
 import { ISong } from '@indivproj-p2/shared/api';
 
-@Component({
+@Component({ 
   selector: '@indivproj-p2-song-create',
   templateUrl: './song-edit.component.html',
   styleUrls: ['../../user/user-list/user-list.component.css'],
@@ -16,7 +15,11 @@ export class SongEditComponent {
     id: '',
     name: '',
     album: '',
-    artist: '',
+    artist: {
+      name: '',
+      age: 0,
+      country: ''
+    },
     duration: 0,
     genre: '',
     year: 0,

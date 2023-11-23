@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SongService } from '../song.service';
-import { ISong } from '@indivproj-p2/shared/api';
+import { ISong, IArtist } from '@indivproj-p2/shared/api';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class SongListComponent implements OnInit, OnDestroy {
   songId: string | null = null;
   songs: ISong[] | null = null;
+  artist: IArtist | null = null;
   subscription: Subscription | undefined = undefined;
 
   constructor(private songService: SongService) {}

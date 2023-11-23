@@ -17,6 +17,8 @@ import { SongDeleteComponent } from './song/song-delete/song-delete.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthService } from './auth/auth.service';
+import { ArtistInfoComponent } from './artist/artist-info/artist-info.component';
+import { ArtistService } from './artist/artist.service';
 
 @NgModule({
   imports: [
@@ -39,8 +41,9 @@ import { AuthService } from './auth/auth.service';
     SongDeleteComponent,
     LoginComponent,
     RegisterComponent,
+    ArtistInfoComponent,
   ],
-  providers: [UserService, SongService, AuthService],
+  providers: [UserService, SongService, AuthService, ArtistService],
   exports: [
     UserDetail,
     ListComponent,
@@ -49,6 +52,7 @@ import { AuthService } from './auth/auth.service';
     SongDetailComponent,
     UserEditComponent,
     UserDeleteComponent,
+    ArtistInfoComponent
   ],
 })
 export class FeaturesModule {}

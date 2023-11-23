@@ -14,7 +14,7 @@
                 <a routerLink="{{song.id}}">{{song.name}}</a>
             </td>
             <td>{{song.album}}</td>
-            <td>{{song.artist}}</td>
+            <td><a routerLink="/song/:id/artist">{{song.artist.name}}</a></td>
         </tr>
     </tbody>
 </table>

@@ -5,7 +5,11 @@ type Song = string;
 export interface ISong {
   id: id;
   name: string;
-  artist: string;
+  artist: {
+    name: string;
+    age: number;
+    country: string;
+  };
   album: string;
   year: number;
   genre: string;

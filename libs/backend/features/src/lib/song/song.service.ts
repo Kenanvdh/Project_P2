@@ -11,7 +11,11 @@ export class SongService {
     {
       id: '0',
       name: 'Bohemian Rhapsody',
-      artist: 'Queen',
+      artist: {
+        name: 'Queen',
+        age: 50,
+        country: 'England'
+      },
       album: 'Bohemian Rhapsody',
       year: 2004,
       genre: 'Rock',
@@ -21,7 +25,11 @@ export class SongService {
     {
       id: '1',
       name: 'Beat it',
-      artist: 'Micahel Jackson',
+      artist: {
+        name: 'Michael Jackson',
+        age: 50,
+        country: 'USA'
+      },
       album: 'Thriller',
       year: 1982,
       genre: 'Pop',
@@ -31,7 +39,11 @@ export class SongService {
     {
       id: '2',
       name: 'Missen zou',
-      artist: 'Thomas Acda',
+      artist: {
+        name: 'Davina Michelle',
+        age: 25,
+        country: 'Netherlands'
+      },
       album: '',
       year: 2022,
       genre: 'NederPop',
@@ -41,7 +53,11 @@ export class SongService {
     {
       id: '3',
       name: 'How you remind me',
-      artist: 'Nickelback',
+      artist: {
+        name: 'Nickelback',
+        age: 50,
+        country: 'Canada'
+      },
       album: 'Silver side up',
       year: 2001,
       genre: 'Rock',
@@ -51,7 +67,11 @@ export class SongService {
     {
       id: '4',
       name: 'Riptide',
-      artist: 'Vance Joy',
+      artist: {
+        name: 'Vance Joy',
+        age: 33,
+        country: 'Australia'
+      },
       album: 'Dream your life away',
       year: 2014,
       genre: 'Folk',
