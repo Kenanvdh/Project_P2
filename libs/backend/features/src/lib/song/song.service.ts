@@ -12,6 +12,7 @@ export class SongService {
       id: '0',
       name: 'Bohemian Rhapsody',
       artist: {
+        id: '0',
         name: 'Queen',
         age: 50,
         country: 'England'
@@ -26,6 +27,7 @@ export class SongService {
       id: '1',
       name: 'Beat it',
       artist: {
+        id: '1',
         name: 'Michael Jackson',
         age: 50,
         country: 'USA'
@@ -40,6 +42,7 @@ export class SongService {
       id: '2',
       name: 'Missen zou',
       artist: {
+        id: '2',
         name: 'Davina Michelle',
         age: 25,
         country: 'Netherlands'
@@ -54,6 +57,7 @@ export class SongService {
       id: '3',
       name: 'How you remind me',
       artist: {
+        id: '3',
         name: 'Nickelback',
         age: 50,
         country: 'Canada'
@@ -68,6 +72,7 @@ export class SongService {
       id: '4',
       name: 'Riptide',
       artist: {
+        id: '4',
         name: 'Vance Joy',
         age: 33,
         country: 'Australia'

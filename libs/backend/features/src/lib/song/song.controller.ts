@@ -1,6 +1,5 @@
-import { Controller, Delete, Put } from '@nestjs/common';
+import { Controller, Delete, Put, Get, Param, Post, Body } from '@nestjs/common';
 import { SongService } from './song.service';
-import { Get, Param, Post, Body } from '@nestjs/common';
 import { ISong } from '@indivproj-p2/shared/api';
 
 @Controller('song')

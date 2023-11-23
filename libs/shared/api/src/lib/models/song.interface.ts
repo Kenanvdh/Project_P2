@@ -6,6 +6,7 @@ export interface ISong {
   id: id;
   name: string;
   artist: {
+    id: string;
     name: string;
     age: number;
     country: string;

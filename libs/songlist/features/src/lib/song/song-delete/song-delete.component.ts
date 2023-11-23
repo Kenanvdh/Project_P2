@@ -16,6 +16,7 @@ export class SongDeleteComponent {
     name: '',
     album: '',
     artist: {
+      id: '',
       name: '',
       age: 0,
       country: '',

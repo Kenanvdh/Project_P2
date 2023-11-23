@@ -5,14 +5,15 @@ import { UiModule } from '@indivproj-p2/ui';
 import { HttpClientModule } from '@angular/common/http'; 
 import { SongService } from 'libs/songlist/features/src/lib/song/song.service';
 import { UserService } from 'libs/songlist/features/src/lib/user/user.service';
+import { ArtistService } from 'libs/songlist/features/src/lib/artist/artist.service';
 
 @Component({
   standalone: true,
   imports: [RouterModule, RouterOutlet, RouterLink, FeaturesModule, UiModule, HttpClientModule ],
   selector: 'indivproj-p2-root',
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.html', 
   styleUrls: ['./app.component.css'],
-  providers: [SongService, UserService]
+  providers: [SongService, UserService, ArtistService]
 })
 export class AppComponent {
   title = 'song-list-web';

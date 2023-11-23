@@ -1,57 +1,61 @@
 <div class="text-center">
-    <ng-container *ngIf="!id; else editMode">
-      <h2>Maak hier uw song aan</h2>
-      <form name="Form" #userEditForm="ngForm" (ngSubmit)="createSong()">
-        <label for="name">Title:</label><br>
-        <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
-        <br>
-        <label for="album">Album:</label><br>
-        <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
-        <br>
-        <label for="artist">Artist:</label><br>
-        <input type="artist" id="artist" [(ngModel)]="song.artist" name="artist" required>
-        <br>
-        <label for="genre">Genre:</label><br>
-        <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
-        <br>
-        <label for="duration">Duration:</label><br>
-        <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
-        <br>
-        <label for="url">Url:</label><br>
-        <input type="text" id="url" [(ngModel)]="song.url" name="url" required>
-        <br>
-        <br>
-        <button (click)="goBack()">Back</button>
-        <button (click)="createSong()" type="button">Create Song</button> 
-      </form>
-    </ng-container>
-  
-    <ng-template #editMode>
-      <h2>Pas hier uw song aan</h2>
-      <form name="Form" #userEditForm="ngForm" (ngSubmit)="editSong()">
-        <label for="name">Title:</label><br>
-        <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
-        <br>
-        <label for="album">Album:</label><br>
-        <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
-        <br>
-        <label for="artist">Artist:</label><br>
-        <input type="artist" id="artist" [(ngModel)]="song.artist" name="artist" required>
-        <br>
-        <label for="genre">Genre:</label><br>
-        <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
-        <br>
-        <label for="duration">Duration:</label><br>
-        <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
-        <br>
-        <label for="url">Url:</label><br>
-        <input type="text" id="url" [(ngModel)]="song.url" name="url" required>
-        <br>
-        <br>
-        <button (click)="goBack()">Back</button>
-        <button (click)="editSong()" type="button">Edit User</button>
-      </form>
-    </ng-template>
-  
-  
-  </div>
+  <ng-container *ngIf="!id; else editMode">
+    <h2>Maak hier uw song aan</h2>
+    <form name="Form" #userEditForm="ngForm" (ngSubmit)="createSong()">
+      <label for="name">Title:</label><br>
+      <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
+      <br>
+      <label for="album">Album:</label><br>
+      <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
+      <br>
+      <label for="artist">Artist:</label><br>
+      <select id="artist" [(ngModel)]="song.artist.id" name="artist" required>
+        <option>Choose an artist</option>
+        <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
+      </select>
+      <br>
+      <label for="genre">Genre:</label><br>
+      <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
+      <br>
+      <label for="duration">Duration:</label><br>
+      <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
+      <br>
+      <label for="url">Url:</label><br>
+      <input type="text" id="url" [(ngModel)]="song.url" name="url" required>
+      <br>
+      <br>
+      <button (click)="goBack()">Back</button>
+      <button (click)="createSong()" type="button">Create Song</button>
+    </form>
+  </ng-container>
+
+  <ng-template #editMode>
+    <h2>Pas hier uw song aan</h2>
+    <form name="Form" #userEditForm="ngForm" (ngSubmit)="editSong()">
+      <label for="name">Title:</label><br>
+      <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
+      <br>
+      <label for="album">Album:</label><br>
+      <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
+      <br>
+      <label for="artist">Artist:</label><br>
+      <select id="artist" [(ngModel)]="song.artist.id" name="artist" required>
+        <option>Choose an artist</option>
+        <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
+      </select>
+      <br>
+      <label for="genre">Genre:</label><br>
+      <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
+      <br>
+      <label for="duration">Duration:</label><br>
+      <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
+      <br>
+      <label for="url">Url:</label><br>
+      <input type="text" id="url" [(ngModel)]="song.url" name="url" required>
+      <br>
+      <br>
+      <button (click)="goBack()">Back</button>
+      <button (click)="editSong()" type="button">Edit User</button>
+    </form>
+  </ng-template>
+</div>

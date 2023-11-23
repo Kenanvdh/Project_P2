@@ -17,17 +17,15 @@ export const routes: Routes = [
   { path: 'songlist', pathMatch: 'full', component: SongListComponent },
   { path: 'song/create', pathMatch: 'full', component: SongEditComponent },
   { path: 'songlist/:id', pathMatch: 'full', component: SongDetailComponent },
-  {
-    path: 'song/:id/artist',
-    pathMatch: 'full',
-    component: ArtistInfoComponent,
-  },
   { path: 'song/:id/edit', pathMatch: 'full', component: SongEditComponent },
   {
     path: 'song/:id/delete',
     pathMatch: 'full',
     component: SongDeleteComponent,
   },
+
+  { path: 'artists', pathMatch: 'full', component: ArtistInfoComponent},
+  { path: 'artists/:id', pathMatch: 'full', component: ArtistInfoComponent },
 
   { path: 'about', pathMatch: 'full', component: AboutComponent },
 

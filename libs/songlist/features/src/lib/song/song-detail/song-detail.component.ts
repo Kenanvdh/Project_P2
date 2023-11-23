@@ -23,7 +23,9 @@ export class SongDetailComponent {
     this.route.paramMap.subscribe((params) => {
       this.songId = params.get('id');
 
-      this.songService.read(this.songId).subscribe((observable) => this.songs = observable);
+      this.songService
+        .read(this.songId)
+        .subscribe((observable) => (this.songs = observable));
     });
   }
 }

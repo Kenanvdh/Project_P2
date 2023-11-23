@@ -5,7 +5,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
-import { ApiResponse, ISong } from '@indivproj-p2/shared/api';
+import { ApiResponse, IArtist, ISong } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '@indivproj-p2/shared/util-env';
  
@@ -52,6 +52,11 @@ export class SongService {
         map((response: any) => response.results as ISong),
         catchError(this.handleError)
       );
+  }
+
+  getArtists(id: string): Observable<IArtist[]> {
+    const url = `${this.endpoint}/artist/${id}`; // Replace with your actual endpoint for fetching artists
+    return this.http.get<IArtist[]>(url);
   }
 
   public create(song: ISong): Observable<ISong> {

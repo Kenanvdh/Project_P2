@@ -1,32 +1,31 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ArtistService } from '../artist.service';
+import { Component,  } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IArtist } from '@indivproj-p2/shared/api';
-import { Subscription } from 'rxjs';
+import { ArtistService } from '../artist.service';
 
 @Component({
   selector: 'indivproj-p2-artist-info',
   templateUrl: './artist-info.component.html',
-  styleUrls: ['../../song/song-list/song-list.component.css'],
+  styleUrls: ['./artist-info.component.css'],
 })
-export class ArtistInfoComponent implements OnInit, OnDestroy {
+export class ArtistInfoComponent  {
+  artistId: string | null = null;
   artist: IArtist | null = null;
-  subscription: Subscription | undefined = undefined;
 
-  constructor(private artistService: ArtistService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private artistService: ArtistService
+  ) {}
 
   ngOnInit(): void {
-    this.subscription = this.artistService.read().subscribe(
-      (result) => {
-        console.log(`result: `, result);
-        this.artist = result; 
-      },
-      (error) => {
-        console.error('Error fetching artist:', error);
-      }
-    );
-  }
+    console.log('ArtistInfo.ngOnInit()');
 
-  ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
+    this.route.paramMap.subscribe((params) => {
+      this.artistId = params.get('id');
+
+      this.artistService
+        .read(this.artistId)
+        .subscribe((observable) => (this.artist = observable));
+    });
   }
 }
