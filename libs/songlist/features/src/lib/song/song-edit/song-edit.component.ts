@@ -54,6 +54,17 @@ export class SongEditComponent {
 
 
   editSong(): void {
+    const selectedArtistId = this.song.artist.id;
+    const selectedArtist = this.artists?.find(
+      (artist) => artist.id === selectedArtistId
+    );
+
+    if (selectedArtist) {
+      this.song.artist = selectedArtist;
+    } else {
+      console.error('Selected artist not found.');
+      return;
+    }
     this.songService.update(this.song).subscribe(() => {
       this.router.navigate(['/songs']);
     });
