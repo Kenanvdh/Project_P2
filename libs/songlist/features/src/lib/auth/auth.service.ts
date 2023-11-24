@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
+import { Injectable, InjectionToken } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '@indivproj-p2/shared/util-env';
-import { map, tap, catchError, switchMap } from 'rxjs/operators';
-//import { AlertService } from '../shared/alert/alert.service';
+import { map, catchError, switchMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUser } from '@indivproj-p2/shared/api';
+//import { AlertService } from '../../../../../shared/alert/alert.service';
+
+export const AUTH_SERVICE_TOKEN = new InjectionToken<AuthService>('AuthService');
 
 @Injectable({
   providedIn: 'root',
@@ -18,14 +20,11 @@ export class AuthService {
   });
 
   constructor(
-    // private alertService: AlertService,
+    //private alertService: AlertService,
     private http: HttpClient,
     private router: Router
   ) {
-    // Check of we al een ingelogde user hebben
-    // Zo ja, check dan op de backend of het token nog valid is.
-    // Het token kan namelijk verlopen zijn. Indien verlopen
-    // retourneren we meteen een nieuw token.
+
     this.getUserFromLocalStorage()
       .pipe(
         switchMap((user: IUser | null) => {
@@ -43,11 +42,11 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<IUser | null> {
-    console.log(`login at ${environment.backendUrl}/auth/login`);
+    console.log(`login at ${environment.backendUrl}/login`);
 
     return this.http
       .post<IUser>(
-        `${environment.backendUrl}/auth/login`,
+        `${environment.backendUrl}/login`,
         { email: email, password: password },
         { headers: this.headers }
       )
@@ -68,36 +67,6 @@ export class AuthService {
       );
   }
 
-/*   register(userData: IUser): Observable<IUser | null> {
-    console.log(`register at ${environment.backendUrl}/users`);
-    console.log('User data:', userData);
-
-    return this.http
-      .post<IUser>(`${environment.backendUrl}/user`, userData, {
-        headers: this.headers,
-      })
-      .pipe(
-        tap((response) => console.log('Registration response:', response)),
-        map((user) => {
-          console.log('User from registration:', user);
-          this.saveUserToLocalStorage(user);
-          this.currentUser$.next(user);
-          //this.alertService.success('You have been registered');
-          return user;
-        }),
-        catchError((error: any) => {
-          console.error('Registration error:', error);
-          //this.alertService.error(error.error.message || error.message);
-          return of(null);
-        })
-      );
-  } */
-
-  /**
-   * Validate het token bij de backend API. Als er geen HTTP error
-   * als response komt is het token nog valid. We doen dan verder niets.
-   * Als het token niet valid is loggen we de user uit.
-   */
   validateToken(userData: IUser): Observable<IUser | null> {
     const url = `${environment.backendUrl}/auth/profile`;
     const httpOptions = {
@@ -115,29 +84,28 @@ export class AuthService {
       }),
       catchError((error: any) => {
         console.log('Validate token Failed');
-        this.logout();
+        //this.logout();
         this.currentUser$.next(null);
         return of(null);
       })
     );
   }
 
-  logout(): void {
+/*   logout(): void {
     this.router
       .navigate(['/'])
       .then((success) => {
-        // true when canDeactivate allows us to leave the page.
         if (success) {
           console.log('logout - removing local user info');
           localStorage.removeItem(this.CURRENT_USER);
           this.currentUser$.next(null);
-          //this.alertService.success('You have been logged out.');
+          this.alertService.success('You have been logged out.');
         } else {
           console.log('navigate result:', success);
         }
       })
       .catch((error) => console.log('not logged out!'));
-  }
+  } */
 
   getUserFromLocalStorage(): Observable<IUser | null> {
     const itemFromStorage = localStorage.getItem(this.CURRENT_USER);

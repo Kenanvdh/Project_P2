@@ -62,6 +62,11 @@ export class UserService {
     console.log('Service constructor called');
   }
 
+  login(user: IUser): IUser {
+    console.log('login called');
+    return this.users$.value[0];
+  }
+
   getUsers(): IUser[] {
     console.log('getUsers called');
     return this.users$.value;

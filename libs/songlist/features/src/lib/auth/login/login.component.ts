@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subs = this.authService
       .getUserFromLocalStorage()
       .subscribe((user: IUser | null) => {
-        if (user) {
+        if (!user) {
           console.log('User already logged in > to dashboard');
-          this.router.navigate(['/users']);
+          this.router.navigate(['/login']);
         }
       });
   }

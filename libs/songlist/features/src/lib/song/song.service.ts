@@ -55,7 +55,7 @@ export class SongService {
   }
 
   getArtists(id: string): Observable<IArtist[]> {
-    const url = `${this.endpoint}/artist/${id}`; // Replace with your actual endpoint for fetching artists
+    const url = `${this.endpoint}/artist/${id}`;
     return this.http.get<IArtist[]>(url);
   }
 
