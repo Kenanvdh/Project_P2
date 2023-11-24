@@ -62,9 +62,15 @@ export class UserService {
     console.log('Service constructor called');
   }
 
-  login(user: IUser): IUser {
+  login(email: string, password: string): IUser {
     console.log('login called');
-    return this.users$.value[0];
+    const user = this.users$.value.find(
+      (td) => td.email == email && td.password == password
+    );
+    if (!user) {
+      throw new Error(`User with email ${email} not found`);
+    }
+    return user;
   }
 
   getUsers(): IUser[] {
