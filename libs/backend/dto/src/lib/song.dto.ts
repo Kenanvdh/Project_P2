@@ -17,6 +17,10 @@ import {
 
     @IsString()
     @IsNotEmpty()
+    artistId!: string;
+
+    @IsString()
+    @IsNotEmpty()
     artist!: IArtist;
 
     @IsString()
@@ -51,6 +55,10 @@ export class UpsertSongDto implements IUpsertSong {
 
     @IsString()
     @IsNotEmpty()
+    artistId!: string;
+    
+    @IsString()
+    @IsNotEmpty()
     artist!: IArtist;
 
     @IsString()
@@ -78,6 +86,10 @@ export class UpdateSongDto implements IUpdateSong {
     @IsString()
     @IsNotEmpty()
     name!: string;
+
+    @IsString()
+    @IsNotEmpty()
+    artistId!: string;
 
     @IsString()
     @IsNotEmpty()

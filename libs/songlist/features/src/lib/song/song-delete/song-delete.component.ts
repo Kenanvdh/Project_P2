@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { SongService } from '../song.service';
-import { ISong } from '@indivproj-p2/shared/api';
+import { ISong, IArtist } from '@indivproj-p2/shared/api';
 
 @Component({
   selector: 'indivproj-p2-song-delete',
@@ -15,12 +15,7 @@ export class SongDeleteComponent {
     id: '',
     name: '',
     album: '',
-    artist: {
-      id: '',
-      name: '',
-      age: 0,
-      country: '',
-    },
+    artist: {} as IArtist,
     duration: 0,
     genre: '',
     year: 0,

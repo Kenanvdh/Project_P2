@@ -15,12 +15,7 @@ export class SongEditComponent {
     id: '',
     name: '',
     album: '',
-    artist: {
-      id: '',
-      name: '',
-      age: 0,
-      country: '',
-    },
+    artist: {} as IArtist,
     duration: 0,
     genre: '',
     year: 0,
@@ -51,7 +46,6 @@ export class SongEditComponent {
       this.artists = artists?.sort((a, b) => a.name.localeCompare(b.name)) ?? [];
     });
   }
-
 
   editSong(): void {
     const selectedArtistId = this.song.artist.id;

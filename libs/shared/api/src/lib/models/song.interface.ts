@@ -1,16 +1,12 @@
 import { id }  from './id.type';
+import { IArtist } from './artist.interface';
 
 type Song = string;
 
 export interface ISong {
   id: id;
   name: string;
-  artist: {
-    id: string;
-    name: string;
-    age: number;
-    country: string;
-  };
+  artist: IArtist;
   album: string;
   year: number;
   genre: string;
