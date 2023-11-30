@@ -4,7 +4,7 @@ import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../user/user.service';
-import { UserRole } from '../../user/user.model';
+import { UserRole } from '../../../../../../shared/api/src/lib/models/user.model';
 
 @Component({
   selector: 'app-register',

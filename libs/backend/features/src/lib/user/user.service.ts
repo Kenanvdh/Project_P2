@@ -1,121 +1,56 @@
-import { Injectable } from '@nestjs/common';
-import { BehaviorSubject } from 'rxjs';
-import { UserRole, Gender } from '../../../../../songlist/features/src/lib/user/user.model';
+import { Injectable, Logger } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { User as UserModel, UserDocument } from './user.schema';
 import { IUser } from '@indivproj-p2/shared/api';
+import { CreateUserDto, UpdateUserDto } from '@indivproj-p2/backend/dto';
 
 @Injectable()
 export class UserService {
-  private users$ = new BehaviorSubject<IUser[]>([
-    {
-      id: '0',
-      firstName: 'Kenan',
-      lastName: 'van der Heijden',
-      email: 'kenanvdh@host.com',
-      password: 'Welkom01!',
-      age: 18,
-      gender: Gender.male,
-      role: UserRole.admin,
-    },
-    {
-      id: '1',
-      firstName: 'Piet',
-      lastName: 'Jansen',
-      email: 'pj123@host.com',
-      password: 'Welkom02!',
-      age: 40,
-      gender: Gender.other,
-      role: UserRole.guest,
-    },
-    {
-      id: '2',
-      firstName: 'Riet',
-      lastName: 'van den Bomen',
-      email: 'rvdb@host.com',
-      password: 'Welkom03!',
-      age: 55,
-      gender: Gender.female,
-      role: UserRole.editor,
-    },
-    {
-      id: '3',
-      firstName: 'Bart',
-      lastName: 'van Graaf',
-      email: 'bvg@hotmail.com',
-      password: 'Welkom04!',
-      age: 33,
-      gender: Gender.other,
-      role: UserRole.guest,
-    },
-    {
-      id: '4',
-      firstName: 'Beau',
-      lastName: 'van Overste',
-      email: 'bvo@ziggo.nl',
-      password: 'Welkom05!',
-      age: 19,
-      gender: Gender.female,
-      role: UserRole.admin,
-    },
-  ]);
+  private readonly logger: Logger = new Logger(UserService.name);
 
-  constructor() {
-    console.log('Service constructor called');
-  }
+  constructor(
+    @InjectModel(UserModel.name) private userModel: Model<UserDocument> 
+  ) {}
 
-  login(email: string, password: string): IUser {
-    console.log('login called');
-    const user = this.users$.value.find(
-      (td) => td.email == email && td.password == password
-    );
-    if (!user) {
-      throw new Error(`User with email ${email} not found`);
-    }
-    return user;
-  }
-
-  getUsers(): IUser[] {
+  async getUsers(): Promise<IUser[]> {
     console.log('getUsers called');
-    return this.users$.value;
+    const items = await this.userModel.find().exec();
+    return items;
   }
 
-  getUserById(id: string): IUser {
+  async getUserById(id: string): Promise<IUser | null> {
     console.log('getUserById called');
-    const user = this.users$.value.find((td) => td.id == id);
+    const user = await this.userModel.findOne({ id }).exec();
     if (!user) {
       throw new Error(`User with id ${id} not found`);
     }
     return user;
   }
 
-  createUser(user: IUser): IUser {
-    const nextId = String(this.users$.value.length);
-    const newUser = { ...user, id: nextId };
-
-    this.users$.next([...this.users$.value, newUser]);
-
-    return newUser;
+  async createUser(user: CreateUserDto): Promise<IUser> {
+    this.logger.log(`Create user ${user.firstName}`);
+    const createdItem = this.userModel.create(user);
+    return createdItem;
   }
 
-  editUser(user: IUser): IUser {
-    const index = this.users$.value.findIndex((td) => td.id == user.id);
-    if (index == -1) {
-      throw new Error(`User with id ${user.id} not found`);
-    }
-
-    this.users$.value[index] = { ...this.users$.value[index], ...user };
-
-    return this.users$.value[index];
+  async editUser( id: string, user: UpdateUserDto): Promise<IUser | null> {
+    const updated = this.userModel.findByIdAndUpdate({ id }, user);
+    return updated;
   }
 
-  deleteUser(id: string): void {
-    const index = this.users$.value.findIndex((td) => td.id == id);
-    if (index == -1) {
-      throw new Error(`User with id ${id} not found`);
-    }
-
-    this.users$.next([
-      ...this.users$.value.slice(0, index),
-      ...this.users$.value.slice(index + 1),
-    ]);
+  async deleteUser(id: string, user: IUser): Promise<void> {
+    this.userModel.findByIdAndDelete({ id }, user);
   }
+
+  // async login(email: string, password: string): IUser {
+  //   console.log('login called');
+  //   const user = this.userModel.find(
+  //     (td) => td.email == email && td.password == password
+  //   );
+  //   if (!user) {
+  //     throw new Error(`User with email ${email} not found`);
+  //   }
+  //   return user;
+  // }
 }

@@ -1,6 +1,17 @@
-import { IsNotEmpty, IsString, IsEmail, IsNumber, IsStrongPassword } from 'class-validator';
-import { ICreateUser, IUpsertUser, IUpdateUser } from '@indivproj-p2/shared/api';
-import { UserRole, Gender} from 'libs/songlist/features/src/lib/user/user.model';
+import {
+  IsNotEmpty,
+  IsString,
+  IsEmail,
+  IsNumber,
+  IsStrongPassword,
+} from 'class-validator';
+import {
+  ICreateUser,
+  IUpsertUser,
+  IUpdateUser,
+  UserRole,
+  Gender,
+} from '@indivproj-p2/shared/api';
 
 export class CreateUserDto implements ICreateUser {
   @IsString()
@@ -78,11 +89,11 @@ export class UpdateUserDto implements IUpdateUser {
   @IsEmail()
   @IsNotEmpty()
   email!: string;
-  
+
   @IsStrongPassword()
   @IsNotEmpty()
   password!: string;
-  
+
   @IsNumber()
   @IsNotEmpty()
   age!: number;
@@ -90,7 +101,7 @@ export class UpdateUserDto implements IUpdateUser {
   @IsString()
   @IsNotEmpty()
   gender!: Gender;
-  
+
   @IsString()
   @IsNotEmpty()
   role!: UserRole;

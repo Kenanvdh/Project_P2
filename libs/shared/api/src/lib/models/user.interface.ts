@@ -1,4 +1,4 @@
-import { UserRole, Gender} from 'libs/songlist/features/src/lib/user/user.model';
+import { UserRole, Gender} from './user.model';
 import { id } from './id.type';
 
 type User = string;

@@ -4,7 +4,7 @@ import { IUser } from '@indivproj-p2/shared/api';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: '@indivproj-p2/user-list',
+  selector: 'indivproj-p2-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
 })

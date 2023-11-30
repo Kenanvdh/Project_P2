@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import { UserService } from '../user.service';
 import { IUser } from '@indivproj-p2/shared/api';
-import { UserRole, Gender } from '../user.model';
+import { UserRole, Gender } from '../../../../../../shared/api/src/lib/models/user.model';
 
 @Component({
   selector: 'indivproj-p2-user-delete',

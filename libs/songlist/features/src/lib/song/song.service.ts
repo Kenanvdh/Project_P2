@@ -8,7 +8,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IArtist, ISong } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '@indivproj-p2/shared/util-env';
- 
+
 export const httpOptions = {
   observe: 'body',
   responseType: 'json',
@@ -17,7 +17,6 @@ export const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-
 export class SongService {
   endpoint = `${environment.backendUrl}/song`;
 
