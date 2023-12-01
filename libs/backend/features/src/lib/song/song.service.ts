@@ -52,6 +52,6 @@ export class SongService {
   }
 
   async deleteSong(id: string): Promise<void> {
-    this.songModel.findOneAndDelete({ id });
+    this.songModel.findOneAndDelete({ id }).exec();
   }
 }

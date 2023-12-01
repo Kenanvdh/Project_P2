@@ -49,8 +49,8 @@ export class UserService {
     return updated;
   }
 
-  async deleteUser(id: string, user: IUser): Promise<void> {
-    this.userModel.findOneAndDelete({ id }, user);
+  async deleteUser(id: string): Promise<void> {
+    this.userModel.findOneAndDelete({ id }).exec();
   }
 
   // async login(email: string, password: string): IUser {
