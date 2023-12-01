@@ -10,7 +10,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
 
   const corsOptions: CorsOptions = {};
-  app.enableCors(corsOptions);
+  app.enableCors({origin: '*',});
 
   app.useGlobalInterceptors(new ApiResponseInterceptor());
 

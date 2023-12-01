@@ -4,7 +4,6 @@ import { SongController } from './song/song.controller';
 import { SongService } from './song/song.service';
 import { Song, SongSchema } from './song/song.schema';
 
-
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Song.name, schema: SongSchema }])
