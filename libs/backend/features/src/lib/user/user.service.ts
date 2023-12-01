@@ -10,7 +10,7 @@ export class UserService {
   private readonly logger: Logger = new Logger(UserService.name);
 
   constructor(
-    @InjectModel(UserModel.name) private userModel: Model<UserDocument> 
+    @InjectModel(UserModel.name) private userModel: Model<UserDocument>
   ) {}
 
   async getUsers(): Promise<IUser[]> {
@@ -30,17 +30,27 @@ export class UserService {
 
   async createUser(user: CreateUserDto): Promise<IUser> {
     this.logger.log(`Create user ${user.firstName}`);
-    const createdItem = this.userModel.create(user);
+
+    const lastUser = await this.userModel.findOne().sort({ id: -1 }).exec();
+
+    // Calculate the new numeric part of the id
+    const newNumericId = lastUser
+      ? parseInt(lastUser.id.match(/\d+/)[0], 10) + 1 : 1;
+
+    // Set the new id in the song data
+    user.id = `${newNumericId}`;
+
+    const createdItem = await this.userModel.create(user);
     return createdItem;
   }
 
-  async editUser( id: string, user: UpdateUserDto): Promise<IUser | null> {
-    const updated = this.userModel.findByIdAndUpdate({ id }, user);
+  async editUser(id: string, user: UpdateUserDto): Promise<IUser | null> {
+    const updated = await this.userModel.findOneAndUpdate( {id}, user);
     return updated;
   }
 
   async deleteUser(id: string, user: IUser): Promise<void> {
-    this.userModel.findByIdAndDelete({ id }, user);
+    this.userModel.findOneAndDelete({ id }, user);
   }
 
   // async login(email: string, password: string): IUser {

@@ -13,6 +13,10 @@ import {
  export class CreateSongDto implements ICreateSong {
     @IsString()
     @IsNotEmpty()
+    id!: string;
+
+    @IsString()
+    @IsNotEmpty()
     name!: string;
 
     @IsString()

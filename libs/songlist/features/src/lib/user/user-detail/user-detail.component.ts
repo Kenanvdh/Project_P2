@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './user-detail.component.html',
   styleUrls: ['../user-list/user-list.component.css'],
 })
+
 export class UserDetail {
   userId: string | null = null;
   users: IUser | null = null;

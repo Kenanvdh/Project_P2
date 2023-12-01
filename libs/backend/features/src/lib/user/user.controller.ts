@@ -1,6 +1,5 @@
-import { Controller, Delete, Put } from '@nestjs/common';
+import { Controller, Delete, Put, Get, Param, Post, Body} from '@nestjs/common';
 import { UserService } from './user.service';
-import { Get, Param, Post, Body } from '@nestjs/common';
 import { IUser } from '@indivproj-p2/shared/api';
 import { CreateUserDto, UpdateUserDto } from '@indivproj-p2/backend/dto';
 
@@ -23,11 +22,6 @@ export class UserController {
     return this.userService.createUser(user);
   }
 
-  // @Post('login')
-  // login(@Body() user: IUser): IUser {
-  //   return this.userService.login(user.email, user.password);
-  // }
-
   @Put('/:id')
   editUser(@Param('id') id: string, @Body() user: UpdateUserDto): Promise<IUser | null> {
     return this.userService.editUser(id, user);
@@ -37,4 +31,9 @@ export class UserController {
   deleteUSer(@Param('id') id: string, user: IUser): Promise<void> {
     return this.userService.deleteUser(id, user);
   }
+
+  // @Post('login')
+  // login(@Body() user: IUser): IUser {
+  //   return this.userService.login(user.email, user.password);
+  // }
 }

@@ -9,12 +9,12 @@
         <td>Artist</td>
     </thead>
     <tbody>
-        <tr *ngFor="let song of songs">
+        <tr *ngFor="let song of songs || []">
             <td>
-                <a routerLink="{{song.id}}">{{song.name}}</a>
+                <a *ngIf="song" routerLink="{{song.id}}">{{song?.name}}</a>
             </td>
-            <td>{{song.album}}</td>
-            <td><a [routerLink]="['/artists', song.artist.id]">{{song.artist.name}}</a></td>
+            <td>{{song?.album}}</td>
+            <td><a *ngIf="song?.artist" [routerLink]="['/artists', song.artist.id]">{{song.artist.name}}</a></td>
         </tr>
     </tbody>
 </table>

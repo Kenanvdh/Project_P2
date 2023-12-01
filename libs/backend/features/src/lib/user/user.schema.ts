@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import { ISong, IUser } from '@indivproj-p2/shared/api';
+import { IUser } from '@indivproj-p2/shared/api';
 import { UserRole, Gender } from '@indivproj-p2/shared/api';
 import { IsMongoId } from 'class-validator';
 
@@ -12,7 +12,6 @@ export class User implements IUser {
   _id!: string;
 
   @Prop({
-    required: true,
     unique: true,
   })
   id!: string;
