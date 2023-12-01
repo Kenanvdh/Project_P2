@@ -9,7 +9,6 @@ async function bootstrap() {
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 
-  const corsOptions: CorsOptions = {};
   app.enableCors({origin: '*',});
 
   app.useGlobalInterceptors(new ApiResponseInterceptor());
