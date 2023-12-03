@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SongService } from 'libs/songlist/features/src/lib/song/song.service';
 import { UserService } from 'libs/songlist/features/src/lib/user/user.service';
 import { ArtistService } from 'libs/songlist/features/src/lib/artist/artist.service';
+import { ListService } from 'libs/songlist/features/src/lib/list/list.service';
 
 @Component({
   standalone: true,
@@ -13,7 +14,7 @@ import { ArtistService } from 'libs/songlist/features/src/lib/artist/artist.serv
   selector: 'indivproj-p2-root',
   templateUrl: './app.component.html', 
   styleUrls: ['./app.component.css'],
-  providers: [SongService, UserService, ArtistService]
+  providers: [SongService, UserService, ArtistService, ListService]
 })
 export class AppComponent {
   title = 'song-list-web';

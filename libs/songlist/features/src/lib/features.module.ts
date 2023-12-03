@@ -19,6 +19,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthService } from './auth/auth.service';
 import { ArtistInfoComponent } from './artist/artist-info/artist-info.component';
 import { ArtistService } from './artist/artist.service';
+import { ListEditComponent } from './list/list-edit/list-edit.component';
+import { ListDetailComponent } from './list/list-detail/list-detail.component';
+import { ListDeleteComponent } from './list/list-delete/list-delete.component';
+import { ListService } from './list/list.service';
 
 @NgModule({
   imports: [
@@ -42,8 +46,12 @@ import { ArtistService } from './artist/artist.service';
     LoginComponent,
     RegisterComponent,
     ArtistInfoComponent,
+    ListComponent,
+    ListEditComponent,
+    ListDetailComponent,
+    ListDeleteComponent,
   ],
-  providers: [UserService, SongService, AuthService, ArtistService],
+  providers: [UserService, SongService, AuthService, ArtistService, ListService],
   exports: [
     UserDetail,
     ListComponent,
@@ -52,7 +60,11 @@ import { ArtistService } from './artist/artist.service';
     SongDetailComponent,
     UserEditComponent,
     UserDeleteComponent,
-    ArtistInfoComponent
+    ArtistInfoComponent,
+    ListComponent,
+    ListEditComponent,
+    ListDetailComponent,
+    ListDeleteComponent,
   ],
 })
 export class FeaturesModule {}

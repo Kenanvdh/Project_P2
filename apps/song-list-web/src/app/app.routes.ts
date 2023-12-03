@@ -12,8 +12,12 @@ import { SongDeleteComponent } from 'libs/songlist/features/src/lib/song/song-de
 import { LoginComponent } from 'libs/songlist/features/src/lib/auth/login/login.component';
 import { RegisterComponent } from 'libs/songlist/features/src/lib/auth/register/register.component';
 import { ArtistInfoComponent } from 'libs/songlist/features/src/lib/artist/artist-info/artist-info.component';
+import { ListOfSongsComponent } from '@indivproj-p2/songlist/features';
 
 export const routes: Routes = [
+  { path: 'list', pathMatch: 'full', component: ListOfSongsComponent },
+  { path: 'list/:id', pathMatch: 'full', component: ListOfSongsComponent },
+
   { path: 'songlist', pathMatch: 'full', component: SongListComponent },
   { path: 'song/create', pathMatch: 'full', component: SongEditComponent },
   { path: 'songlist/:id', pathMatch: 'full', component: SongDetailComponent },
@@ -24,7 +28,7 @@ export const routes: Routes = [
     component: SongDeleteComponent,
   },
 
-  { path: 'artists', pathMatch: 'full', component: ArtistInfoComponent},
+  { path: 'artists', pathMatch: 'full', component: ArtistInfoComponent },
   { path: 'artists/:id', pathMatch: 'full', component: ArtistInfoComponent },
 
   { path: 'about', pathMatch: 'full', component: AboutComponent },
@@ -42,7 +46,7 @@ export const routes: Routes = [
   { path: 'login', pathMatch: 'full', component: LoginComponent },
   { path: 'register', pathMatch: 'full', component: RegisterComponent },
 
-  { path: '**', redirectTo: 'songlist' },
+  { path: '**', redirectTo: 'list' },
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import {
   BackendFeaturesSongModule,
   SongModule,
   ArtistModule,
+  ListModule,
 } from '@indivproj-p2/backend/features';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -14,6 +15,7 @@ import { environment } from '@indivproj-p2/shared/util-env';
     BackendFeaturesSongModule,
     SongModule,
     ArtistModule,
+    ListModule,
     MongooseModule.forRoot(environment.mongoUrl, {
       dbName: 'Songlist',
       connectionFactory: (connection) => {

@@ -7,3 +7,4 @@ export * from './lib/song/song.service';
 export * from './lib/artist.module';
 export * from './lib/artist/artist.schema';	
 export * from './lib/artist/artist.service';
+export * from './lib/list.module';
