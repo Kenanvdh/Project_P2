@@ -1,11 +1,17 @@
 <h1> Welkom bij de songlist app! </h1>
 <h3> Hieronder zijn alle lijsten te zien</h3>
 
-<div *ngFor="let list of songLists">
+<div *ngIf="songLists.length > 0; else noLists">
+  <div *ngFor="let list of songLists">
     <div *ngIf="list.songs.length > 0" class="card">
-        <h2>{{ list.title }}</h2>
-        <p>{{ list.description }}</p>
-        <p>Created by: {{ list.user }}</p>
-        <button routerLink="{{list.id}}">Details</button>
+      <h2>{{ list.title }}</h2>
+      <p>{{ list.description }}</p>
+      <p>Created by: {{ list.user }}</p>
+      <button routerLink="/list/:id">Details</button>
     </div>
+  </div>
 </div>
+
+<ng-template #noLists>
+  <p>No lists available yet.</p>
+</ng-template>
