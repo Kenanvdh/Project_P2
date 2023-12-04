@@ -18,13 +18,13 @@ export class ListService {
 
   async getAll(): Promise<IList[]> {
     Logger.log('getAll', this.TAG);
-    const items = await this.listModel.find().populate('artist.name').exec();
+    const items = await this.listModel.find().populate('creator.name').exec();
     return items;
   }
 
   async getOne(id: string): Promise<IList | null> {
     Logger.log(`getOne(${id})`, this.TAG);
-    const list = await this.listModel.findOne({ id }).populate('artist').exec();
+    const list = await this.listModel.findOne({ id }).populate('user').exec();
     if (!list) {
       throw new NotFoundException(`List with id ${id} not found`);
     }

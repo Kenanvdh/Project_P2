@@ -23,6 +23,7 @@ import { ListEditComponent } from './list/list-edit/list-edit.component';
 import { ListDetailComponent } from './list/list-detail/list-detail.component';
 import { ListDeleteComponent } from './list/list-delete/list-delete.component';
 import { ListService } from './list/list.service';
+import { ListOfSongsComponent } from './list/list/list.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { ListService } from './list/list.service';
     RegisterComponent,
     ArtistInfoComponent,
     ListComponent,
+    ListOfSongsComponent,
     ListEditComponent,
     ListDetailComponent,
     ListDeleteComponent,
@@ -61,7 +63,7 @@ import { ListService } from './list/list.service';
     UserEditComponent,
     UserDeleteComponent,
     ArtistInfoComponent,
-    ListComponent,
+    ListOfSongsComponent,
     ListEditComponent,
     ListDetailComponent,
     ListDeleteComponent,

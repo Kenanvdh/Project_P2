@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'indivproj-p2-song-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css'],
+  styleUrls: ['../../user/user-list/user-list.component.css', './list.component.css'],
 })
 export class ListOfSongsComponent implements OnInit, OnDestroy {
   listId: string | null = null;
