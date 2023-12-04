@@ -15,6 +15,7 @@ import { ArtistInfoComponent } from 'libs/songlist/features/src/lib/artist/artis
 import { ListOfSongsComponent } from '@indivproj-p2/songlist/features';
 import { ListDetailComponent } from 'libs/songlist/features/src/lib/list/list-detail/list-detail.component';
 import { ListEditComponent } from 'libs/songlist/features/src/lib/list/list-edit/list-edit.component';
+import { ListDeleteComponent } from 'libs/songlist/features/src/lib/list/list-delete/list-delete.component';
 
 export const routes: Routes = [
   { path: 'list', pathMatch: 'full', component: ListOfSongsComponent },
@@ -25,7 +26,7 @@ export const routes: Routes = [
   {
     path: 'list/:id/delete',
     pathMatch: 'full',
-    component: ListEditComponent,
+    component: ListDeleteComponent,
   },
 
   { path: 'songlist', pathMatch: 'full', component: SongListComponent },

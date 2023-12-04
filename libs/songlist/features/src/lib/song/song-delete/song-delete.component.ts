@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
-
 import { SongService } from '../song.service';
 import { ISong, IArtist } from '@indivproj-p2/shared/api';
 
@@ -27,7 +25,6 @@ export class SongDeleteComponent {
     private songService: SongService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
   ) {}
 
   ngOnInit(): void {
