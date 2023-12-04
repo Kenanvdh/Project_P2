@@ -1,1 +1,51 @@
-<p>list-edit works!</p>
+<div class="text-center">
+  <ng-container *ngIf="!list.id; else editMode">
+    <h2>Maak hier uw lijst aan</h2>
+    <form name="Form" #userEditForm="ngForm" (ngSubmit)="createList()">
+      <label for="name">Naam voor uw lijst:</label><br>
+      <input type="text" id="name" [(ngModel)]="list.name" name="name" required>
+      <br>
+      <label for="description">Omschrijving:</label><br>
+      <input type="text" id="description" [(ngModel)]="list.description" name="description" required>
+      <br>
+      <label for="numOfSongs">Hoeveel nummers staan er in uw lijst:</label><br>
+      <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
+      <br>
+      <label for="songs"> Welke nummers staan er in uw lijst (staat het gewenste nummer niet tussen de opties, zal u
+        deze eerst aan moeten maken op de homepagina):</label><br>
+        <div *ngFor="let song of songs">
+          <input type="checkbox" id="{{song.id}}" [checked]="isSelected(song.id)" (change)="toggleSelection(song.id)">
+          <label for="{{song.id}}">{{song.name}}</label><br>
+        </div>
+        
+
+      <br>
+      <br>
+      <button (click)="goBack()">Back</button>
+      <button (click)="createList()" type="button">Create Song</button>
+    </form>
+  </ng-container>
+
+  <ng-template #editMode>
+    <h2>Pas hier uw lijst aan</h2>
+    <form name="Form" #userEditForm="ngForm" (ngSubmit)="editList()">
+      <label for="name">Naam voor uw lijst:</label><br>
+      <input type="text" id="name" [(ngModel)]="list.name" name="name" required>
+      <br>
+      <label for="description">Omschrijving:</label><br>
+      <input type="text" id="description" [(ngModel)]="list.description" name="description" required>
+      <br>
+      <label for="numOfSongs">Hoeveel nummers staan er in uw lijst:</label><br>
+      <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
+      <br>
+      <div *ngFor="let song of songs">
+        <input type="checkbox" id="songs" [(ngModel)]="songs" name="songs" required>
+        <label for="songs">{{song.name}}</label><br>
+      </div>
+      <br>
+      <br>
+      <button (click)="goBack()">Back</button>
+      <button (click)="editList()" type="button">Edit User</button>
+    </form>
+  </ng-template>
+</div>

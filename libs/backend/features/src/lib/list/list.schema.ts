@@ -27,7 +27,6 @@ export class List implements IList {
   description!: string;
 
   @Prop({
-    required: true,
     type: Object
   })
   creator!: IUser;
@@ -43,7 +42,6 @@ export class List implements IList {
   numOfSongs!: number;
 
   @Prop({
-    required: true,
   })
   creationDate!: Date;
 }

@@ -1,4 +1,5 @@
 import { id }  from './id.type';
+import { ISong } from './song.interface';
 import { IUser } from './user.interface';
 
 type List = string;
@@ -9,6 +10,7 @@ export interface IList {
   creator: IUser;
   description: string;
   numOfSongs: number;
+  songs: ISong[];
   creationDate: Date;
 }
 export type ICreateList = Pick<IList, 'name'  | 'creator' | 'description' | 'numOfSongs' | 'creationDate'>;

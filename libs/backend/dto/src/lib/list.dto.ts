@@ -5,6 +5,7 @@ import {
 } from 'class-validator';
 import {
     ICreateList,
+    ISong,
     IUpdateList,
     IUpsertList,
     IUser,
@@ -30,6 +31,10 @@ import {
     @IsNumber()
     @IsNotEmpty()
     numOfSongs!: number;
+
+    @IsString()
+    @IsNotEmpty()
+    songs!: ISong[];
 
     @IsString()
     @IsNotEmpty()
@@ -59,6 +64,10 @@ export class UpsertListDto implements IUpsertList {
 
     @IsString()
     @IsNotEmpty()
+    songs!: ISong[];
+
+    @IsString()
+    @IsNotEmpty()
     creationDate!: Date;
 }
 
@@ -79,6 +88,10 @@ export class UpdateListDto implements IUpdateList {
     @IsNotEmpty()
     numOfSongs!: number;
 
+    @IsString()
+    @IsNotEmpty()
+    songs!: ISong[];
+    
     @IsString()
     @IsNotEmpty()
     creationDate!: Date;

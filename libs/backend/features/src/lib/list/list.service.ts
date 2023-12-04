@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { List as ListModel, ListDocument } from './list.schema';
-import { IList } from '@indivproj-p2/shared/api';
+import { Gender, IList, UserRole } from '@indivproj-p2/shared/api';
 import { Logger } from '@nestjs/common';
 import { CreateListDto, UpdateListDto } from '@indivproj-p2/backend/dto';
 
@@ -24,7 +24,7 @@ export class ListService {
 
   async getOne(id: string): Promise<IList | null> {
     Logger.log(`getOne(${id})`, this.TAG);
-    const list = await this.listModel.findOne({ id }).populate('user').exec();
+    const list = await this.listModel.findOne({ id }).exec();
     if (!list) {
       throw new NotFoundException(`List with id ${id} not found`);
     }
@@ -40,7 +40,18 @@ export class ListService {
       : 1;
 
     // Set the new id in the List data
-    list.id = `${newNumericId}`;
+    list.id = newNumericId.toString();
+    list.creationDate = new Date();
+    list.creator = { 
+      id: '0',
+      firstName: 'Kenan',
+      lastName: 'van der Heijden',
+      email: 'kenanvdh@ziggo.nl',
+      password: 'Welkom01!',
+      age: 18,
+      gender: Gender.male,
+      role: UserRole.guest,
+    };
     const createdList = new this.listModel(list);
 
     return createdList.save();

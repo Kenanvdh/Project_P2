@@ -13,10 +13,20 @@ import { LoginComponent } from 'libs/songlist/features/src/lib/auth/login/login.
 import { RegisterComponent } from 'libs/songlist/features/src/lib/auth/register/register.component';
 import { ArtistInfoComponent } from 'libs/songlist/features/src/lib/artist/artist-info/artist-info.component';
 import { ListOfSongsComponent } from '@indivproj-p2/songlist/features';
+import { ListDetailComponent } from 'libs/songlist/features/src/lib/list/list-detail/list-detail.component';
+import { ListEditComponent } from 'libs/songlist/features/src/lib/list/list-edit/list-edit.component';
 
 export const routes: Routes = [
   { path: 'list', pathMatch: 'full', component: ListOfSongsComponent },
-  { path: 'list/:id', pathMatch: 'full', component: ListOfSongsComponent },
+  { path: 'list/create', pathMatch: 'full', component: ListEditComponent },
+  { path: 'list/:id', pathMatch: 'full', component: ListDetailComponent },
+  { path: 'list/add', pathMatch: 'full', component: ListEditComponent },
+  { path: 'list/:id/edit', pathMatch: 'full', component: ListEditComponent },
+  {
+    path: 'list/:id/delete',
+    pathMatch: 'full',
+    component: ListEditComponent,
+  },
 
   { path: 'songlist', pathMatch: 'full', component: SongListComponent },
   { path: 'song/create', pathMatch: 'full', component: SongEditComponent },

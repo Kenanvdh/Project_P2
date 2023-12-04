@@ -20,7 +20,7 @@ export class ListController {
     return this.listService.getAll();
   }
 
-  @Get(':id')
+  @Get('/:id')
   getOne(@Param('id') id: string): Promise<IList | null> {
     return this.listService.getOne(id);
   }

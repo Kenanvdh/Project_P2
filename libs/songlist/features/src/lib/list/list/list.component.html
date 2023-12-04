@@ -1,6 +1,10 @@
 <h1> Welkom bij de songlist app! </h1>
 <h3> Hieronder zijn alle lijsten te zien</h3>
 
+<button routerLink="/list/create">Create new list</button>
+
+<button routerLink="/song/create">New Song</button>
+
 <div *ngFor="let list of lists" class="card">
   <h2>{{ list.name }}</h2>
   <p>{{ list.description }}</p>
@@ -8,6 +12,6 @@
   <p>Number of songs: {{ list.numOfSongs }}</p>
   <p>Created by: {{ list.creator.firstName }} on {{ list.creationDate | date: 'dd-MM-yyyy'}}</p>
   <div class="flex items-center justify-center">
-    <button style="margin: auto;" routerLink="/list/:id">Details</button>
+    <button style="margin: auto;" routerLink="/list/{{list.id}}">Details</button>
   </div>
 </div>
