@@ -3,8 +3,6 @@
 
 <button routerLink="/list/create">Create new list</button>
 
-<button routerLink="/song/create">New Song</button>
-
 <div *ngFor="let list of lists" class="card">
   <h2>{{ list.name }}</h2>
   <p>{{ list.description }}</p>

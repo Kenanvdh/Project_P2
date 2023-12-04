@@ -11,14 +11,13 @@
       <label for="numOfSongs">Hoeveel nummers staan er in uw lijst:</label><br>
       <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
       <br>
-      <label for="songs"> Welke nummers staan er in uw lijst (staat het gewenste nummer niet tussen de opties, zal u
-        deze eerst aan moeten maken op de homepagina):</label><br>
-        <div *ngFor="let song of songs">
-          <input type="checkbox" id="{{song.id}}" [checked]="isSelected(song.id)" (change)="toggleSelection(song.id)">
-          <label for="{{song.id}}">{{song.name}}</label><br>
-        </div>
-        
-
+      <label for="songs"> Welke nummers staan er in uw lijst:</label><br>
+      <div *ngFor="let song of songs">
+        <input type="checkbox" id="{{song.id}}" [checked]="isSelected(song.id)" (change)="toggleSelection(song.id)">
+        <label for="{{song.id}}">{{song.name}}</label>
+        <br>
+      </div>
+        <button routerLink="/song/create">Other Song</button>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
@@ -39,13 +38,14 @@
       <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
       <br>
       <div *ngFor="let song of songs">
-        <input type="checkbox" id="songs" [(ngModel)]="songs" name="songs" required>
-        <label for="songs">{{song.name}}</label><br>
+        <input type="checkbox" id="{{song.id}}" [checked]="isSelected(song.id)" (change)="toggleSelection(song.id)">
+        <label for="{{song.id}}">{{song.name}}</label>
       </div>
+      <button routerLink="/song/create">Other Song</button>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
-      <button (click)="editList()" type="button">Edit User</button>
+      <button (click)="editList()" type="button">Edit List</button>
     </form>
   </ng-template>
 </div>

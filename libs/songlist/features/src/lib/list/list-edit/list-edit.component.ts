@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from '../list.service';
 import { SongService } from '../../song/song.service';
-import { IList, ISong } from '@indivproj-p2/shared/api';
+import { IList, ISong, IUser } from '@indivproj-p2/shared/api';
 
 @Component({
   selector: 'indivproj-p2-list-edit',
@@ -10,7 +10,15 @@ import { IList, ISong } from '@indivproj-p2/shared/api';
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class ListEditComponent implements OnInit {
-  list: IList = {} as IList;
+  list: IList = {
+    id: '',
+    name: '',
+    songs: [],
+    creator: {} as IUser,
+    description: '',
+    numOfSongs: 0,
+    creationDate: new Date(),
+  };
   songs: ISong[] = [];
   selectedSongIds: string[] = [];
 

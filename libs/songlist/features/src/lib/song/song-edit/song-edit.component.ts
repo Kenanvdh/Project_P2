@@ -60,7 +60,7 @@ export class SongEditComponent {
       return;
     }
     this.songService.update(this.song).subscribe(() => {
-      this.router.navigate(['/songs']);
+      this.router.navigate(['../..']);
     });
   }
   
@@ -81,7 +81,7 @@ export class SongEditComponent {
     this.songService.create(this.song).subscribe(
       (createdSong) => {
         console.log('Song created successfully:', createdSong);
-        this.router.navigate(['../..'], { relativeTo: this.route });
+        this.router.navigate(['list'], { relativeTo: this.route });
       },
       (error) => {
         console.error('Error creating song:', error);
@@ -90,6 +90,6 @@ export class SongEditComponent {
   }
 
   goBack(): void {
-    this.router.navigate(['/songs']);
+    this.router.navigate(['list']);
   }
 }
