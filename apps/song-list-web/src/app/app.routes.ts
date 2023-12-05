@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, RouterLink, Routes } from '@angular/router';
-import { SongListComponent } from 'libs/songlist/features/src/lib/song/song-list/song-list.component';
-import { SongDetailComponent } from 'libs/songlist/features/src/lib/song/song-detail/song-detail.component';
-import { ListComponent } from 'libs/songlist/features/src/lib/user/user-list/user-list.component';
-import { UserDetail } from 'libs/songlist/features/src/lib/user/user-detail/user-detail.component';
-import { UserEditComponent } from 'libs/songlist/features/src/lib/user/user-edit/user-edit.component';
-import { UserDeleteComponent } from 'libs/songlist/features/src/lib/user/user-delete/user-delete.component';
-import { AboutComponent } from 'libs/songlist/features/src/lib/about/about.component';
-import { SongEditComponent } from 'libs/songlist/features/src/lib/song/song-edit/song-edit.component';
-import { SongDeleteComponent } from 'libs/songlist/features/src/lib/song/song-delete/song-delete.component';
-import { LoginComponent } from 'libs/songlist/features/src/lib/auth/login/login.component';
-import { RegisterComponent } from 'libs/songlist/features/src/lib/auth/register/register.component';
-import { ArtistInfoComponent } from 'libs/songlist/features/src/lib/artist/artist-info/artist-info.component';
+import { SongListComponent } from '@indivproj-p2/songlist/features';
+import { SongDetailComponent } from '@indivproj-p2/songlist/features';
+import { ListComponent } from '@indivproj-p2/songlist/features';
+import { UserDetail } from '@indivproj-p2/songlist/features';
+import { UserEditComponent } from '@indivproj-p2/songlist/features';
+import { UserDeleteComponent } from '@indivproj-p2/songlist/features';
+import { AboutComponent } from '@indivproj-p2/songlist/features';
+import { SongEditComponent } from '@indivproj-p2/songlist/features';
+import { SongDeleteComponent } from '@indivproj-p2/songlist/features';
+import { LoginComponent } from '@indivproj-p2/songlist/features';
+import { RegisterComponent } from '@indivproj-p2/songlist/features';
+import { ArtistInfoComponent } from '@indivproj-p2/songlist/features';
 import { ListOfSongsComponent } from '@indivproj-p2/songlist/features';
-import { ListDetailComponent } from 'libs/songlist/features/src/lib/list/list-detail/list-detail.component';
-import { ListEditComponent } from 'libs/songlist/features/src/lib/list/list-edit/list-edit.component';
-import { ListDeleteComponent } from 'libs/songlist/features/src/lib/list/list-delete/list-delete.component';
+import { ListDetailComponent } from '@indivproj-p2/songlist/features';
+import { ListEditComponent } from '@indivproj-p2/songlist/features';
+import { ListDeleteComponent } from '@indivproj-p2/songlist/features';
 
 export const routes: Routes = [
   { path: 'list', pathMatch: 'full', component: ListOfSongsComponent },

@@ -12,7 +12,6 @@ export class Song implements ISong {
   _id!: string;
 
   @Prop({
-    unique: true,
   })
   id!: string;
 
@@ -39,7 +38,8 @@ export class Song implements ISong {
 
   @Prop({
     required: true,
-    type: Object
+    type: Artist,
+    ref: 'Artist'
   })
   artist!: Artist;
 

@@ -30,7 +30,7 @@ export class SongController {
     return this.songService.create(song);
   }
 
-  @Put('/:id')
+  @Put(':id')
   edit(
     @Param('id') id: string,
     @Body() song: UpdateSongDto
@@ -38,7 +38,7 @@ export class SongController {
     return this.songService.update(id, song);
   }
 
-  @Delete('/:id')
+  @Delete(':id')
   delete(@Param('id') id: string): Promise<void> {
     return this.songService.deleteSong(id);
   }

@@ -58,10 +58,11 @@ export class ListService {
   }
 
   async update(id: string, list: UpdateListDto): Promise<IList | null> {
-    const updatedList = await this.listModel.findOneAndUpdate({ id }, list);
+    const updatedList = await this.listModel.findOneAndUpdate({ id }, list).exec();
+
     return updatedList;
   }
-
+  
   async deleteList(id: string): Promise<void> {
     this.listModel.findOneAndDelete({ id }).exec();
   }

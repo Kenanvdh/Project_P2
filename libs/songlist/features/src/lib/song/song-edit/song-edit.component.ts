@@ -60,7 +60,7 @@ export class SongEditComponent {
       return;
     }
     this.songService.update(this.song).subscribe(() => {
-      this.router.navigate(['../..']);
+      this.router.navigate(['..']);
     });
   }
   
