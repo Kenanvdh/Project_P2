@@ -11,7 +11,6 @@ export class Artist implements IArtist {
   _id!: string;
 
   @Prop({
-    required: true,
   })
   id!: string;
 

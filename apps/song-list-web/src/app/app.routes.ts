@@ -45,7 +45,7 @@ export const routes: Routes = [
 
   { path: 'artists', pathMatch: 'full', component: ArtistInfoComponent },
   { path: 'artists/:id', pathMatch: 'full', component: ArtistInfoComponent },
-  { path: 'artists/create', pathMatch: 'full', component: ArtistEditComponent },
+  { path: 'artist/create', pathMatch: 'full', component: ArtistEditComponent },
   {
     path: 'artists/:id/edit',
     pathMatch: 'full',

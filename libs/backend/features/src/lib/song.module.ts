@@ -7,7 +7,10 @@ import { ListSchema, List } from './list/list.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: Song.name, schema: SongSchema },  {name: List.name, schema: ListSchema}])
+    MongooseModule.forFeature([
+      { name: Song.name, schema: SongSchema },
+      { name: List.name, schema: ListSchema },
+    ]),
   ],
   controllers: [SongController],
   providers: [SongService],

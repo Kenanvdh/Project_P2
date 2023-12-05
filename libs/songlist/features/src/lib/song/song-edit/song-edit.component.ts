@@ -11,16 +11,7 @@ import { IArtist, ISong } from '@indivproj-p2/shared/api';
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class SongEditComponent {
-  song: ISong = {
-    id: '',
-    name: '',
-    album: '',
-    artist: {} as IArtist,
-    duration: 0,
-    genre: '',
-    year: 0,
-    url: '',
-  };
+  song= {} as ISong;
   songs: ISong[] | null = null;
   id: string | null = null;
   artists: IArtist[] = [];
@@ -42,28 +33,19 @@ export class SongEditComponent {
         });
       }
     });
+
     this.artistService.list().subscribe((artists) => {
-      this.artists = artists?.sort((a, b) => a.name.localeCompare(b.name)) ?? [];
+      this.artists =
+        artists?.sort((a, b) => a.name.localeCompare(b.name)) ?? [];
     });
   }
 
   editSong(): void {
-    const selectedArtistId = this.song.artist.id;
-    const selectedArtist = this.artists?.find(
-      (artist) => artist.id === selectedArtistId
-    );
-
-    if (selectedArtist) {
-      this.song.artist = selectedArtist;
-    } else {
-      console.error('Selected artist not found.');
-      return;
-    }
     this.songService.update(this.song).subscribe(() => {
       this.router.navigate(['..']);
     });
   }
-  
+
   createSong(): void {
     const selectedArtistId = this.song.artist.id;
     const selectedArtist = this.artists?.find(

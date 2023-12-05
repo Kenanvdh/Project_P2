@@ -1,9 +1,8 @@
 <h2>Hieronder is de {{ lists?.name }}-lijst te zien!</h2>
-<h4>Klik op de title om de details van desbetreffend nummer te zien</h4>
+<h4>{{lists?.description}} <br><br>
+    Klik op de title om de details van desbetreffend nummer te zien</h4>
 
 <button routerLink="/list/{{lists?.id}}/edit">Edit list</button>
-<p>Name of list: {{lists?.name}} </p>
-<p>Description of list: {{lists?.description}} </p>
 <br>
 <table>
     <thead>

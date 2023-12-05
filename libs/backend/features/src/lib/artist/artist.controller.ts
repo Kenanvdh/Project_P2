@@ -14,7 +14,7 @@ import { IArtist } from '@indivproj-p2/shared/api';
 export class ArtistController {
   constructor(private artistService: ArtistService) {}
 
-  @Get()
+  @Get('')
   getAll(): Promise<IArtist[]> {
     return this.artistService.getAll();
   }
@@ -24,7 +24,7 @@ export class ArtistController {
     return this.artistService.getById(id);
   }
 
-  @Post()
+  @Post('')
   create(@Body() artist: IArtist): Promise<IArtist> {
     return this.artistService.create(artist);
   }

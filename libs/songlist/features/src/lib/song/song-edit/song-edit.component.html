@@ -11,11 +11,12 @@
       <label for="year">Year:</label><br>
       <input type="number" id="year" [(ngModel)]="song.year" name="year" required>
       <br>
-      <label for="artist">Artist:</label><br>
-      <select id="artist" [(ngModel)]="song.artist.id" name="artist" required>
-        <option>Choose an artist</option>
-        <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
-      </select>
+      <label for="artist">Choose an artist or create an artist (if your needed artist isn't in the list):<br></label>
+        <select id="artist" [(ngModel)]="song.artist.id" name="artist" required>
+          <option>Choose an artist</option>
+          <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
+        </select>
+        <button routerLink="/artists/create">Other artist</button>
       <br>
       <label for="genre">Genre:</label><br>
       <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
@@ -41,12 +42,12 @@
       <label for="album">Album:</label><br>
       <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
       <br>
-      <label for="artist">Artist:</label><br>
+      <label for="artist">Artist  or create an artist (if your needed artist isn't in the list):</label><br>
       <select id="artist" [(ngModel)]="song.artist.id" name="artist" required>
         <option>Choose an artist</option>
         <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
-        <button routerLink="/artists/create">Other artist</button>
       </select>
+      <button routerLink="/artist/create">Other artist</button>
       <br>
       <label for="genre">Genre:</label><br>
       <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>

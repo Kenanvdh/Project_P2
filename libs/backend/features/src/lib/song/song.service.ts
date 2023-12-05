@@ -26,7 +26,7 @@ export class SongService {
 
   async getOne(id: string): Promise<ISong | null> {
     Logger.log(`getOne(${id})`, this.TAG);
-    const song = await this.songModel.findOne({ id }).populate('artist').exec();
+    const song = await this.songModel.findOne({ id }).exec();
     if (!song) {
       throw new NotFoundException(`Song with id ${id} not found`);
     }

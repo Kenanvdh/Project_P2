@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ISong } from '@indivproj-p2/shared/api';
+import { IArtist, ISong } from '@indivproj-p2/shared/api';
 import { SongService } from '../song.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { SongService } from '../song.service';
 })
 export class SongDetailComponent {
   songId: string | null = null;
-  songs: ISong | null = null;
+  songs = {} as ISong;
+  artist = {} as IArtist | null;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,13 +22,15 @@ export class SongDetailComponent {
   ngOnInit(): void {
     console.log('UserDetail.ngOnInit()');
 
-    this.route.paramMap.subscribe((params) => {
-      this.songId = params.get('id');
+    if (this.route.snapshot.paramMap.get('id') != null) {
+      this.route.paramMap.subscribe((params) => {
+        this.songId = params.get('id');
 
-      this.songService
-        .read(this.songId)
-        .subscribe((observable) => (this.songs = observable));
-    });
+        this.songService
+          .read(this.songId)
+          .subscribe((observable) => (this.songs = observable));
+      });
+    }
   }
 
   goBack(): void {
