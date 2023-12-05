@@ -15,3 +15,7 @@ export * from './lib/user/user-edit/user-edit.component';
 export * from './lib/user/user-delete/user-delete.component';
 export * from './lib/auth/login/login.component';
 export * from './lib/auth/register/register.component';
+export * from './lib/artist/artist-delete/artist-delete.component';
+export * from './lib/artist/artist-edit/artist-edit.component';
+export * from './lib/user/user.service';
+

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, RouterLink, Routes } from '@angular/router';
-import { SongListComponent } from '@indivproj-p2/songlist/features';
+import {
+  ArtistDeleteComponent,
+  ArtistEditComponent,
+  SongListComponent,
+} from '@indivproj-p2/songlist/features';
 import { SongDetailComponent } from '@indivproj-p2/songlist/features';
 import { ListComponent } from '@indivproj-p2/songlist/features';
 import { UserDetail } from '@indivproj-p2/songlist/features';
@@ -41,6 +45,17 @@ export const routes: Routes = [
 
   { path: 'artists', pathMatch: 'full', component: ArtistInfoComponent },
   { path: 'artists/:id', pathMatch: 'full', component: ArtistInfoComponent },
+  { path: 'artists/create', pathMatch: 'full', component: ArtistEditComponent },
+  {
+    path: 'artists/:id/edit',
+    pathMatch: 'full',
+    component: ArtistEditComponent,
+  },
+  {
+    path: 'artists/:id/delete',
+    pathMatch: 'full',
+    component: ArtistDeleteComponent,
+  },
 
   { path: 'about', pathMatch: 'full', component: AboutComponent },
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ISong } from '@indivproj-p2/shared/api';
 import { SongService } from '../song.service';
 
@@ -14,6 +14,7 @@ export class SongDetailComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private songService: SongService
   ) {}
 
@@ -27,5 +28,9 @@ export class SongDetailComponent {
         .read(this.songId)
         .subscribe((observable) => (this.songs = observable));
     });
+  }
+
+  goBack(): void {
+    this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }

@@ -1,5 +1,5 @@
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ApiResponse, IArtist } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
@@ -48,6 +48,36 @@ export class ArtistService {
         map((response: any) => response.results as IArtist),
         catchError(this.handleError)
       );
+  }
+
+  public create(artist: IArtist): Observable<IArtist> {
+    console.log(`create ${this.endpoint}`);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http
+      .post<ApiResponse<IArtist>>(this.endpoint, artist, httpOptions)
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as IArtist),
+        catchError(this.handleError)
+      );
+  }
+
+  public update(artist: IArtist): Observable<IArtist> {
+    return this.http
+      .put<ApiResponse<IArtist>>(`${this.endpoint}/${artist.id}`, artist)
+      .pipe(tap(console.log), catchError(this.handleError));
+  }
+
+  public delete(artist: IArtist): Observable<IArtist> {
+    return this.http
+      .delete<ApiResponse<IArtist>>(`${this.endpoint}/${artist.id}`)
+      .pipe(tap(console.log), catchError(this.handleError));
   }
 
   public handleError(error: HttpErrorResponse): Observable<any> {

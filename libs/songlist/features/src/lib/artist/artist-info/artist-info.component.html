@@ -4,4 +4,9 @@
     <p>Name: {{artist?.name}}</p>
     <p>Age: {{artist?.age}}</p>
     <p>Country: {{artist?.country}}</p>
+
+    <br>
+    <button routerLink="/artists/{{artist?.id}}/edit">Edit artist</button>
+    <button routerLink="/artists/{{artist?.id}}/delete">Delete artist</button><br>
+    <button (click)="goBack()">Back</button>
 </div>

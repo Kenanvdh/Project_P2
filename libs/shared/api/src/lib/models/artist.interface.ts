@@ -8,3 +8,21 @@ export interface IArtist {
   age: number;
   country: string;
 }
+
+export interface ICreateArtist {
+  id: id;
+  name: string;
+  age: number;
+  country: string;
+}
+export interface IUpsertArtist {
+  id: id;
+  name: string;
+  age: number;
+  country: string;
+}
+export interface IUpdateArtist {
+  name: string;
+  age: number;
+  country: string;
+}

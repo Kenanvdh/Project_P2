@@ -24,6 +24,8 @@ import { ListDetailComponent } from './list/list-detail/list-detail.component';
 import { ListDeleteComponent } from './list/list-delete/list-delete.component';
 import { ListService } from './list/list.service';
 import { ListOfSongsComponent } from './list/list/list.component';
+import { ArtistDeleteComponent } from './artist/artist-delete/artist-delete.component';
+import { ArtistEditComponent } from './artist/artist-edit/artist-edit.component';
 
 @NgModule({
   imports: [
@@ -52,8 +54,17 @@ import { ListOfSongsComponent } from './list/list/list.component';
     ListEditComponent,
     ListDetailComponent,
     ListDeleteComponent,
+    ArtistDeleteComponent,
+    ArtistDeleteComponent,
+    ArtistEditComponent,
   ],
-  providers: [UserService, SongService, AuthService, ArtistService, ListService],
+  providers: [
+    UserService,
+    SongService,
+    AuthService,
+    ArtistService,
+    ListService,
+  ],
   exports: [
     UserDetail,
     ListComponent,

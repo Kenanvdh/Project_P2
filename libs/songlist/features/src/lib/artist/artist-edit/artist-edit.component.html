@@ -1,0 +1,37 @@
+<div class="text-center">
+    <ng-container *ngIf="!id; else editMode">
+        <h2>Maak hier uw song aan</h2>
+        <form name="Form" #userEditForm="ngForm" (ngSubmit)="createArtist()">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" [(ngModel)]="artist.name" name="name" required>
+            <br>
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" [(ngModel)]="artist.age" name="age" required>
+            <br>
+            <label for="country">Country:</label><br>
+            <input type="text" id="country" [(ngModel)]="artist.country" name="country" required>
+            <br>
+            <br>
+            <button (click)="goBack()">Back</button>
+            <button type="submit">Create Artist</button>
+        </form>
+    </ng-container>
+
+    <ng-template #editMode>
+        <h2>Pas hier uw artist aan</h2>
+        <form name="Form" #userEditForm="ngForm" (ngSubmit)="editArtist()">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" [(ngModel)]="artist.name" name="name" required>
+            <br>
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" [(ngModel)]="artist.age" name="age" required>
+            <br>
+            <label for="country">Country:</label><br>
+            <input type="text" id="country" [(ngModel)]="artist.country" name="country" required>
+            <br>
+            <br>
+            <button (click)="goBack()">Back</button>
+            <button type="submit">Edit Artist</button>
+        </form>
+    </ng-template>
+</div>
