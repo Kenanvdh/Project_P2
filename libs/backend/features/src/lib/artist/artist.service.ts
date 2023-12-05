@@ -35,6 +35,15 @@ export class ArtistService {
 
   async create(artist: IArtist): Promise<IArtist> {
     console.log(`Creating artist with data: ${artist}`);
+    const lastArtist = await this.artistModel.findOne().sort({ id: -1 }).exec();
+
+    // Calculate the new numeric part of the id
+    const newNumericId = lastArtist
+      ? parseInt(lastArtist.id.match(/\d+/)[0], 10) + 1
+      : 1;
+
+    // Set the new id in the song data
+    artist.id = `${newNumericId}`;
     const createdArtist = new this.artistModel(artist);
     return createdArtist.save();
   }
