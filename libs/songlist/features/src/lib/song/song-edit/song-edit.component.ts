@@ -11,10 +11,11 @@ import { IArtist, ISong } from '@indivproj-p2/shared/api';
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class SongEditComponent {
-  song= {} as ISong;
+  song = {} as ISong;
   songs: ISong[] | null = null;
   id: string | null = null;
   artists: IArtist[] = [];
+  selectedArtistId: string | null = null;
 
   constructor(
     private songService: SongService,
@@ -47,19 +48,25 @@ export class SongEditComponent {
   }
 
   createSong(): void {
-    const selectedArtistId = this.song.artist.id;
-    const selectedArtist = this.artists?.find(
-      (artist) => artist.id === selectedArtistId
-    );
+    const selectedArtistId = this.selectedArtistId;
 
-    if (selectedArtist) {
-      this.song.artist = selectedArtist;
+    if (selectedArtistId) {
+      const selectedArtist = this.artists.find(
+        (artist) => artist.id === selectedArtistId
+      );
+
+      if (selectedArtist) {
+        this.song.artist = selectedArtist;
+      } else {
+        console.error('Selected artist not found.');
+        return;
+      }
     } else {
-      console.error('Selected artist not found.');
+      console.error('Please choose an artist.');
       return;
     }
 
-    console.log('Song before creation:', this.song); // Log the song object just before the creation
+    console.log('Song before creation:', this.song);
     this.songService.create(this.song).subscribe(
       (createdSong) => {
         console.log('Song created successfully:', createdSong);

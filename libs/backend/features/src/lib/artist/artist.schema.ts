@@ -16,7 +16,6 @@ export class Artist implements IArtist {
 
   @Prop({
     required: true,
-    unique: true,
   })
   name!: string;
 

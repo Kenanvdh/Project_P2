@@ -3,14 +3,18 @@
 
 <button routerLink="/list/create">Create new list</button>
 
-<div *ngFor="let list of lists" class="card">
-  <h2>{{ list.name }}</h2>
-  <p>{{ list.description }}</p>
-  <br>
-  <p>Number of songs: {{ list.numOfSongs }}</p>
-  <p>Created by: {{ list.creator.firstName }} on {{ list.creationDate | date: 'dd-MM-yyyy'}}</p><br>
-  <div class="flex items-center justify-center">
-    <button style="margin: auto;" routerLink="/list/{{list.id}}">Details</button>
-    <button style="margin: auto;" routerLink="/list/{{list.id}}/delete">Delete</button>
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
+  <div class="card-container" *ngFor="let list of lists" class="card">
+    <h2>{{ list.name }}</h2>
+    <p>{{ list.description }}</p>
+    <br>
+    <p>Number of songs: {{ list.numOfSongs }}</p>
+    <p>Created by: {{ list.creator.firstName }} on {{ list.creationDate | date: 'dd-MM-yyyy'}}</p><br>
+    <div class="'button">
+      <div class="flex items-center justify-center">
+        <button style="margin: auto;" routerLink="/list/{{list.id}}">Details</button>
+        <button style="margin: auto;" routerLink="/list/{{list.id}}/delete">Delete</button>
+      </div>
+    </div>
   </div>
 </div>

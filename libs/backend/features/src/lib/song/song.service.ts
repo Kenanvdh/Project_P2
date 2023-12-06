@@ -20,7 +20,7 @@ export class SongService {
 
   async getAll(): Promise<ISong[]> {
     Logger.log('getAll', this.TAG);
-    const items = await this.songModel.find().populate('artist.name').exec();
+    const items = await this.songModel.find().exec();
     return items;
   }
 
@@ -43,8 +43,8 @@ export class SongService {
 
     // Set the new id in the song data
     song.id = `${newNumericId}`;
+    console.log(`Creating song with id ${song.id}`);
     const createdSong = new this.songModel(song);
-
     return createdSong.save();
   }
 

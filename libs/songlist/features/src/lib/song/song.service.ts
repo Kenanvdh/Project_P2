@@ -66,7 +66,7 @@ export class SongService {
         'Content-Type': 'application/json',
       }),
     };
-
+    console.log(`Creating song...`);
     return this.http
       .post<ApiResponse<ISong>>(this.endpoint, song, httpOptions)
       .pipe(

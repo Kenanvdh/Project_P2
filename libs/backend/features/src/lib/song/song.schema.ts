@@ -17,7 +17,6 @@ export class Song implements ISong {
 
   @Prop({
     required: true,
-    unique: true,
   })
   name!: string;
 
@@ -50,7 +49,6 @@ export class Song implements ISong {
 
   @Prop({
     required: true,
-    unique: true,
   })
   url!: string;
 }
