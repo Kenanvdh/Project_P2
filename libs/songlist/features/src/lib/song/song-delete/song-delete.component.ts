@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SongService } from '../song.service';
 import { ISong, IArtist } from '@indivproj-p2/shared/api';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'indivproj-p2-song-delete',
@@ -24,10 +25,14 @@ export class SongDeleteComponent {
   constructor(
     private songService: SongService,
     private route: ActivatedRoute,
+    private authService: AuthService,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
+    if(!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
       if (this.id) {

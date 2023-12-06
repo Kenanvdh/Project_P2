@@ -1,25 +1,29 @@
-<h2>Pas hier uw user aan</h2>
-<form name="Form" #userEditForm="ngForm" (ngSubmit)="editUser()">
-  <label for="firstName">First Name:</label><br>
-  <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required>
-  <br>
-  <label for="lastName">Last Name:</label><br>
-  <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
-  <br>
-  <label for="email">Email:</label><br>
-  <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
-  <br>
-  <label for="age">Age:</label><br>
-  <input type="number" id="age" [(ngModel)]="user.age" name="age" required>
-  <br><label for="gender">Gender:</label><br>
-  <input type="radio" id="male" [(ngModel)]="user.gender" name="gender" value="Male" required
-    checked="user.gender === 'male' ? true : null">Male<br>
-  <input type="radio" id="female" [(ngModel)]="user.gender" name="gender" value="Female" required
-    checked="user.gender === 'female' ? true : null">Female<br>
-  <input type="radio" id="other" [(ngModel)]="user.gender" name="gender" value="Other" required
-    checked="user.gender === 'other' ? true : null">Other
-  <br>
-  <br>
-  <button (click)="goBack()">Back</button>
-  <button (click)="editUser()" type="button">Edit User</button>
-</form>
+<div class="text-center">
+  <h2>Pas hier uw user aan</h2>
+  <div class="flex items-center justify-center ">
+    <form name="Form" #userEditForm="ngForm" (ngSubmit)="editUser()">
+      <label for="firstName">First Name:</label><br>
+      <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required>
+      <br>
+      <label for="lastName">Last Name:</label><br>
+      <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
+      <br>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+      <br>
+      <label for="age">Age:</label><br>
+      <input type="number" id="age" [(ngModel)]="user.age" name="age" required>
+      <br><label for="gender">Gender:</label><br>
+      <input type="radio" id="male" [(ngModel)]="user.gender" name="gender" value="Male" required
+        checked="user.gender === 'male' ? true : null">Male<br>
+      <input type="radio" id="female" [(ngModel)]="user.gender" name="gender" value="Female" required
+        checked="user.gender === 'female' ? true : null">Female<br>
+      <input type="radio" id="other" [(ngModel)]="user.gender" name="gender" value="Other" required
+        checked="user.gender === 'other' ? true : null">Other
+      <br>
+      <br>
+      <button (click)="goBack()">Back</button>
+      <button (click)="editUser()" type="button">Edit User</button>
+    </form>
+  </div>
+</div>

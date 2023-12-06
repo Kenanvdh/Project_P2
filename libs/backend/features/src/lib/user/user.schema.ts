@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory, getConnectionToken } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 import { IUser } from '@indivproj-p2/shared/api';
 import { UserRole, Gender } from '@indivproj-p2/shared/api';
@@ -63,12 +63,6 @@ export class User implements IUser {
   })
   email = '';
 
-//   @Prop({
-//     default: [],
-//     type: [MongooseSchema.Types.ObjectId],
-//     ref: 'Meal',
-//   })
-//   songs: ISong[] = [];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

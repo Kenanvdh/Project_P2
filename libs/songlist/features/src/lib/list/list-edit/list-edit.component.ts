@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from '../list.service';
 import { SongService } from '../../song/song.service';
 import { IList, ISong, IUser } from '@indivproj-p2/shared/api';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'indivproj-p2-list-edit',
@@ -25,11 +26,15 @@ export class ListEditComponent implements OnInit {
   constructor(
     private listService: ListService,
     private songService: SongService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    if(!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {

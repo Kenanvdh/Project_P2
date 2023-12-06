@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IList, IUser, ISong } from '@indivproj-p2/shared/api';
 import { ListService } from '../list.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'indivproj-p2-list-delete',
@@ -23,11 +24,15 @@ export class ListDeleteComponent {
 
   constructor(
     private listService: ListService,
+    private authService: AuthService, 
     private route: ActivatedRoute,
     private router: Router,
   ) {}
 
   ngOnInit(): void {
+    if(!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
       if (this.id) {

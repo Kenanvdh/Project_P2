@@ -4,6 +4,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User as UserModel, UserDocument } from './user.schema';
 import { IUser } from '@indivproj-p2/shared/api';
 import { CreateUserDto, UpdateUserDto } from '@indivproj-p2/backend/dto';
+import { sign } from 'jsonwebtoken';
+import { randomBytes } from 'crypto';
+
 
 @Injectable()
 export class UserService {
@@ -35,7 +38,8 @@ export class UserService {
 
     // Calculate the new numeric part of the id
     const newNumericId = lastUser
-      ? parseInt(lastUser.id.match(/\d+/)[0], 10) + 1 : 1;
+      ? parseInt(lastUser.id.match(/\d+/)[0], 10) + 1
+      : 1;
 
     // Set the new id in the song data
     user.id = `${newNumericId}`;
@@ -45,7 +49,7 @@ export class UserService {
   }
 
   async editUser(id: string, user: UpdateUserDto): Promise<IUser | null> {
-    const updated = await this.userModel.findOneAndUpdate( {id}, user);
+    const updated = await this.userModel.findOneAndUpdate({ id }, user);
     return updated;
   }
 
@@ -53,14 +57,25 @@ export class UserService {
     this.userModel.findOneAndDelete({ id }).exec();
   }
 
-  // async login(email: string, password: string): IUser {
-  //   console.log('login called');
-  //   const user = this.userModel.find(
-  //     (td) => td.email == email && td.password == password
-  //   );
-  //   if (!user) {
-  //     throw new Error(`User with email ${email} not found`);
-  //   }
-  //   return user;
-  // }
+  async login(email: string, password: string): Promise<IUser> {
+    console.log('login called');
+    const user = await this.userModel
+      .findOne({ email, password })
+      .lean()
+      .exec();
+    if (!user) {
+      throw new Error(`User with email ${email} not found`);
+    }
+  
+    const secretKey = randomBytes(32).toString('hex');
+    const userId = user._id.toString();
+    const token = sign({ userId }, secretKey, {
+      expiresIn: '1h',
+    });
+    
+    const response = { ...user, token };
+    console.log('First Backend Response:', response);
+    return response;
+  }
+  
 }

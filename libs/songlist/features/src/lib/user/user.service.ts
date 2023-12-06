@@ -8,7 +8,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IUser } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '@indivproj-p2/shared/util-env';
-
+import { AuthService } from '../auth/auth.service';
 export const httpOptions = {
   observe: 'body',
   responseType: 'json',

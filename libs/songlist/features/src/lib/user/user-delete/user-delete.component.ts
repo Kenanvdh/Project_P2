@@ -4,7 +4,8 @@ import { Location } from '@angular/common';
 
 import { UserService } from '../user.service';
 import { IUser } from '@indivproj-p2/shared/api';
-import { UserRole, Gender } from '../../../../../../shared/api/src/lib/models/user.model';
+import { UserRole, Gender } from '@indivproj-p2/shared/api';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'indivproj-p2-user-delete',
@@ -27,12 +28,16 @@ export class UserDeleteComponent {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
   ) {}
 
   ngOnInit(): void {
+    if(!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
       if (this.id) {

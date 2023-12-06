@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthService } from '../../auth/auth.service';
 
 import { UserService } from '../user.service';
 import { IUser } from '@indivproj-p2/shared/api';
-import { UserRole, Gender } from '../../../../../../shared/api/src/lib/models/user.model';
+import { UserRole, Gender } from '@indivproj-p2/shared/api';
 
 @Component({
   selector: 'app-user-create',
@@ -25,9 +26,12 @@ export class UserEditComponent {
   };
   id: string | null = null;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router, private location: Location) {}
+  constructor(private userService: UserService,  private authService: AuthService, private route: ActivatedRoute, private router: Router, private location: Location) {}
 
   ngOnInit(): void {
+    if(!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
       if(this.id) {

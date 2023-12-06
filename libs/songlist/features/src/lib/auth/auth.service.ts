@@ -2,12 +2,14 @@ import { Injectable, InjectionToken } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { environment } from '@indivproj-p2/shared/util-env';
-import { map, catchError, switchMap } from 'rxjs/operators';
+import { tap, map, catchError, switchMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IUser } from '@indivproj-p2/shared/api';
-//import { AlertService } from '../../../../../shared/alert/alert.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-export const AUTH_SERVICE_TOKEN = new InjectionToken<AuthService>('AuthService');
+export const AUTH_SERVICE_TOKEN = new InjectionToken<AuthService>(
+  'AuthService'
+);
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +20,10 @@ export class AuthService {
   private readonly headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
+  private readonly jwtHelper = new JwtHelperService();
+  private readonly tokenKey = 'auth_token';
 
-  constructor(
-    //private alertService: AlertService,
-    private http: HttpClient,
-    private router: Router
-  ) {
-
+  constructor(private http: HttpClient, private router: Router) {
     this.getUserFromLocalStorage()
       .pipe(
         switchMap((user: IUser | null) => {
@@ -43,25 +42,38 @@ export class AuthService {
 
   login(email: string, password: string): Observable<IUser | null> {
     console.log(`login at ${environment.backendUrl}/user/login`);
-
     return this.http
-      .post<IUser>(
+      .post<{ results: IUser } | null>( 
         `${environment.backendUrl}/user/login`,
         { email: email, password: password },
         { headers: this.headers }
       )
       .pipe(
-        map((user) => {
-          this.saveUserToLocalStorage(user);
-          this.currentUser$.next(user);
-          //this.alertService.success('You have been logged in');
-          return user;
+        map((response) => {
+          console.log('Raw Backend Response:', response);
+
+          if (
+            response &&
+            response.results &&
+            response.results.token &&
+            response.results.id
+          ) {
+            console.log('Token:', response.results.token);
+            console.log('User:', response.results.id);
+
+            localStorage.setItem(this.tokenKey, response.results.token);
+            this.saveUserToLocalStorage(response.results);
+            this.currentUser$.next(response.results);
+            return response.results;
+          } else {
+            console.log('Else statement response structure:', response);
+            return null;
+          }
         }),
         catchError((error: any) => {
           console.log('error:', error);
           console.log('error.message:', error.message);
           console.log('error.error.message:', error.error.message);
-          //this.alertService.error(error.error.message || error.message);
           return of(null);
         })
       );
@@ -91,7 +103,7 @@ export class AuthService {
     );
   }
 
-/*   logout(): void {
+  logout(): void {
     this.router
       .navigate(['/'])
       .then((success) => {
@@ -99,13 +111,12 @@ export class AuthService {
           console.log('logout - removing local user info');
           localStorage.removeItem(this.CURRENT_USER);
           this.currentUser$.next(null);
-          this.alertService.success('You have been logged out.');
         } else {
           console.log('navigate result:', success);
         }
       })
       .catch((error) => console.log('not logged out!'));
-  } */
+  }
 
   getUserFromLocalStorage(): Observable<IUser | null> {
     const itemFromStorage = localStorage.getItem(this.CURRENT_USER);
@@ -125,5 +136,14 @@ export class AuthService {
     return this.currentUser$.pipe(
       map((user: IUser | null) => (user ? user.id === itemUserId : false))
     );
+  }
+
+  public isAuthenticated(): boolean {
+    const token = this.getAuthToken();
+    return token ? !this.jwtHelper.isTokenExpired(token) : false;
+  }
+
+  private getAuthToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
   }
 }

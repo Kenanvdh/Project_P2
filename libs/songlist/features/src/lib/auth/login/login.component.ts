@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { IUser } from '@indivproj-p2/shared/api';
 
 @Component({
-  selector: 'app-login',
+  selector: 'indivproj-p2-login',
   templateUrl: './login.component.html',
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })

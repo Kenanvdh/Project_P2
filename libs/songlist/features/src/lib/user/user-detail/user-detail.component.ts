@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from '@indivproj-p2/shared/api';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'indivproj-p2-user-detail',
@@ -15,10 +16,15 @@ export class UserDetail {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
+    if(!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     console.log('UserDetail.ngOnInit()');
 
     this.route.paramMap.subscribe((params) => {

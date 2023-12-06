@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SongService } from '../song.service';
 import { ArtistService } from '../../artist/artist.service';
+import { AuthService } from '../../auth/auth.service';
 import { IArtist, ISong } from '@indivproj-p2/shared/api';
 
 @Component({
@@ -20,12 +21,16 @@ export class SongEditComponent {
   constructor(
     private songService: SongService,
     private artistService: ArtistService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location
   ) {}
 
   ngOnInit(): void {
+    if(!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
       if (this.id) {

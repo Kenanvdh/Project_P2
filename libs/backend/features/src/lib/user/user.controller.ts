@@ -32,8 +32,8 @@ export class UserController {
     return this.userService.deleteUser(id);
   }
 
-  // @Post('login')
-  // login(@Body() user: IUser): IUser {
-  //   return this.userService.login(user.email, user.password);
-  // }
+  @Post('login')
+  login(@Body() user: IUser): Promise<IUser> {
+    return this.userService.login(user.email, user.password);
+  }
 }
