@@ -88,6 +88,14 @@ export class SongEditComponent implements OnInit {
     );
   }
 
+  getCurrentYear(): number {
+    return new Date().getFullYear();
+  }
+
+  checkValidDuration(): boolean {
+    return this.song.duration > 0;
+  }
+
   goBack(): void {
     this.router.navigate(['list']);
   }

@@ -1,66 +1,181 @@
 <div class="text-center">
   <ng-container *ngIf="!song.id; else editMode">
     <h2>Maak hier uw song aan</h2>
-    <form name="Form" #userEditForm="ngForm" (ngSubmit)="createSong()">
-      <label for="name">Title:</label><br>
-      <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
+    <form name="Form" #songEditForm="ngForm" (ngSubmit)="createSong()">
+      <div class="form-group">
+        <label for="name">Title:</label><br>
+        <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
+        <div *ngIf="songEditForm.controls['name'].touched && songEditForm.controls['name'].hasError('required')"
+          class="text-danger">
+          Title is required.
+        </div>
+      </div>
       <br>
-      <label for="album">Album:</label><br>
-      <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
+      <div class="form-group">
+        <label for="album">Album:</label><br>
+        <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
+        <div *ngIf="songEditForm.controls['album'].touched && songEditForm.controls['album'].hasError('required')"
+          class="text-danger">
+          Album is required.
+        </div>
+      </div>
       <br>
-      <label for="year">Year:</label><br>
-      <input type="number" id="year" [(ngModel)]="song.year" name="year" required>
+      <div class="form-group">
+        <label for="year">Year:</label><br>
+        <input type="number" id="year" [(ngModel)]="song.year" name="year" required max="{{ getCurrentYear() }}">
+        <div *ngIf="songEditForm.controls['year'].touched && songEditForm.controls['year'].hasError('required')"
+          class="text-danger">
+          Year is required.
+        </div>
+        <div *ngIf="songEditForm.controls['year'].touched && songEditForm.controls['year'].hasError('max')"
+          class="text-danger">
+          Year must be equal to or less than the current year.
+        </div>
+        <br>
+      </div>
       <br>
-      <label for="artist">Choose an artist or create an artist (if your needed artist isn't in the list):<br></label>
+      <div class="form-group">
+        <label for="artist">Choose an artist or create an artist (if your needed artist isn't in the list):<br></label>
         <select id="artist" [(ngModel)]="selectedArtistId" name="artist" required>
           <option>Choose an artist</option>
           <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
         </select>
         <button routerLink="/artist/create">Other artist</button>
+        <div *ngIf="songEditForm.controls['artist'].touched && songEditForm.controls['artist'].hasError('required')"
+          class="text-danger">
+          Artist is required.
+        </div>
+      </div>
       <br>
-      <label for="genre">Genre:</label><br>
-      <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
+      <div class="form-group">
+        <label for="genre">Genre:</label><br>
+        <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
+        <div *ngIf="songEditForm.controls['genre'].touched && songEditForm.controls['genre'].hasError('required')"
+          class="text-danger">
+          Genre is required.
+        </div>
+      </div>
       <br>
-      <label for="duration">Duration:</label><br>
-      <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
+      <div class="form-group">
+        <label for="duration">Duration:</label><br>
+        <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required minlength="1">
+        <div *ngIf="songEditForm.controls['duration'].touched && songEditForm.controls['duration'].hasError('required')"
+          class="text-danger">
+          Duration is required.
+        </div>
+        <div
+          *ngIf="songEditForm.controls['duration'].touched && songEditForm.controls['duration'].hasError('minlength')"
+          class="text-danger">
+          Duration must be at least 1.
+        </div>
+      </div>
       <br>
-      <label for="url">Url:</label><br>
-      <input type="text" id="url" [(ngModel)]="song.url" name="url" required>
+      <div class="form-group">
+        <label for="url">Url:</label><br>
+        <input type="url" id="url" [(ngModel)]="song.url" name="url" required
+          pattern="^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$">
+        <div *ngIf="songEditForm.controls['url'].touched && songEditForm.controls['url'].hasError('required')"
+          class="text-danger">
+          URL is required.
+        </div>
+        <div *ngIf="songEditForm.controls['url'].touched && songEditForm.controls['url'].hasError('pattern')"
+          class="text-danger">
+          Please enter a valid URL.
+        </div>
+      </div>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
-      <button type="submit">Create Song</button>
+      <button type="submit" [disabled]="!songEditForm.valid">Create Song</button>
     </form>
   </ng-container>
 
   <ng-template #editMode>
     <h2>Pas hier uw song aan</h2>
-    <form name="Form" #userEditForm="ngForm" (ngSubmit)="editSong()">
-      <label for="name">Title:</label><br>
-      <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
+    <form name="Form" #songEditForm="ngForm" (ngSubmit)="createSong()">
+      <div class="form-group">
+        <label for="name">Title:</label><br>
+        <input type="text" id="name" [(ngModel)]="song.name" name="name" required>
+        <div *ngIf="songEditForm.controls['name'].touched && songEditForm.controls['name'].hasError('required')"
+          class="text-danger">
+          Title is required.
+        </div>
+      </div>
       <br>
-      <label for="album">Album:</label><br>
-      <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
+      <div class="form-group">
+        <label for="album">Album:</label><br>
+        <input type="text" id="album" [(ngModel)]="song.album" name="album" required>
+        <div *ngIf="songEditForm.controls['album'].touched && songEditForm.controls['album'].hasError('required')"
+          class="text-danger">
+          Album is required.
+        </div>
+      </div>
       <br>
-      <label for="artist">Artist  or create an artist (if your needed artist isn't in the list):</label><br>
-      <select id="artist" [(ngModel)]="song.artist.id" name="artist" required>
-        <option>Choose an artist</option>
-        <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
-      </select>
-      <button routerLink="/artist/create">Other artist</button>
+      <div class="form-group">
+        <label for="year">Year:</label><br>
+        <input type="number" id="year" [(ngModel)]="song.year" name="year" required max="{{ getCurrentYear() }}">
+        <div *ngIf="songEditForm.controls['year'].touched && songEditForm.controls['year'].hasError('required')"
+          class="text-danger">
+          Year is required.
+        </div>
+        <div *ngIf="songEditForm.controls['year'].touched && songEditForm.controls['year'].hasError('max')"
+          class="text-danger">
+          Year must be equal to or less than the current year.
+        </div>
+        <br>
+      </div>
       <br>
-      <label for="genre">Genre:</label><br>
-      <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
+      <div class="form-group">
+        <label for="artist">Choose an artist or create an artist (if your needed artist isn't in the list):<br></label>
+        <select id="artist" [(ngModel)]="selectedArtistId" name="artist" required>
+          <option>Choose an artist</option>
+          <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
+        </select>
+        <button routerLink="/artist/create">Other artist</button>
+        <div *ngIf="songEditForm.controls['artist'].touched && songEditForm.controls['artist'].hasError('required')"
+          class="text-danger">
+          Artist is required.
+        </div>
+      </div>
       <br>
-      <label for="duration">Duration:</label><br>
-      <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
+      <div class="form-group">
+        <label for="genre">Genre:</label><br>
+        <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>
+        <div *ngIf="songEditForm.controls['genre'].touched && songEditForm.controls['genre'].hasError('required')"
+          class="text-danger">
+          Genre is required.
+        </div>
+      </div>
       <br>
-      <label for="url">Url:</label><br>
-      <input type="text" id="url" [(ngModel)]="song.url" name="url" required>
+      <div class="form-group">
+        <label for="duration">Duration:</label><br>
+        <input type="number" id="duration" [(ngModel)]="song.duration" name="duration" required>
+        <div *ngIf="songEditForm.controls['duration'].touched && songEditForm.controls['duration'].hasError('required')"
+          class="text-danger">
+          Duration is required.
+        </div>
+        <div *ngIf="!checkValidDuration()" class="text-danger">
+          Duration must be higher than 0.
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="url">Url:</label><br>
+        <input type="url" id="url" [(ngModel)]="song.url" name="url" required
+          pattern="^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$">
+        <div *ngIf="songEditForm.controls['url'].touched && songEditForm.controls['url'].hasError('required')"
+          class="text-danger">
+          URL is required.
+        </div>
+        <div *ngIf="songEditForm.controls['url'].touched && songEditForm.controls['url'].hasError('pattern')"
+          class="text-danger">
+          Please enter a valid URL.
+        </div>
+      </div>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
-      <button type="submit">Edit Song</button>
+      <button type="submit" [disabled]="!songEditForm.valid">Create Song</button>
     </form>
   </ng-template>
 </div>
