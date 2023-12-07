@@ -64,7 +64,7 @@ export class ArtistEditComponent implements OnInit {
   }
 
   checkValidAge(): boolean {
-    return this.artist.age >= 0;
+    return this.artist.age >= 1;
   }
 
   goBack(): void {

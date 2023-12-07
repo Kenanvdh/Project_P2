@@ -74,6 +74,7 @@
         </span>
       </div>
 
+
       <br>
 
       <div class="form-group">
@@ -98,8 +99,8 @@
                   'is-invalid':
                     registerForm.get('password')?.invalid &&
                     registerForm.get('password')?.touched
-                }" />
-        <span *ngIf="registerForm.get('password')?.errors?.['password']" class="invalid-feedback">
+                }" required />
+        <span *ngIf="registerForm.get('password')?.errors?.['password'] " class="invalid-feedback">
           <p id="password-invalid">Password is invalid.</p>
         </span>
       </div>
@@ -107,7 +108,7 @@
       <br>
 
       <div class="form-group">
-        <button>
+        <button [disabled]="!registerForm.valid">
           Register
         </button>
       </div>

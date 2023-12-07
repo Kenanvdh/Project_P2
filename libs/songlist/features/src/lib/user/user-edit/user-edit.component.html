@@ -2,28 +2,79 @@
   <h2>Pas hier uw user aan</h2>
   <div class="flex items-center justify-center ">
     <form name="Form" #userEditForm="ngForm" (ngSubmit)="editUser()">
-      <label for="firstName">First Name:</label><br>
-      <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required>
+      <div class="form-group">
+        <label for="firstName">First Name:</label><br>
+        <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required minlength="2">
+        <div
+          *ngIf="userEditForm.controls['firstName'].touched && userEditForm.controls['firstName'].hasError('required') "
+          class="text-danger">
+          Firstname is required.
+        </div>
+        <div
+          *ngIf="userEditForm.controls['firstName'].touched && userEditForm.controls['firstName'].hasError('minlength') "
+          class="text-danger">
+          Firstame must be at least 2 characters.
+        </div>
+      </div>
       <br>
-      <label for="lastName">Last Name:</label><br>
-      <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label><br>
+        <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
+        <div
+          *ngIf="userEditForm.controls['lastName'].touched && userEditForm.controls['lastName'].hasError('required') "
+          class="text-danger">
+          Lastname is required.
+        </div>
+        <div
+          *ngIf="userEditForm.controls['lastName'].touched && userEditForm.controls['lastName'].hasError('minlength') "
+          class="text-danger">
+          Lastname must be at least 2 characters.
+        </div>
+      </div>
       <br>
-      <label for="email">Email:</label><br>
-      <input type="email" id="email" [(ngModel)]="user.email" name="email" required>
+      <div class="form-group">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" [(ngModel)]="user.email" name="email" required
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+        <div *ngIf="userEditForm.controls['email'].touched && userEditForm.controls['email'].hasError('required')"
+          class="text-danger">
+          Email is required.
+        </div>
+        <div *ngIf="userEditForm.controls['email'].touched && userEditForm.controls['email'].hasError('pattern')"
+          class="text-danger">
+          Please enter a valid email address.
+        </div>
+      </div>
       <br>
-      <label for="age">Age:</label><br>
-      <input type="number" id="age" [(ngModel)]="user.age" name="age" required>
-      <br><label for="gender">Gender:</label><br>
-      <input type="radio" id="male" [(ngModel)]="user.gender" name="gender" value="Male" required
-        checked="user.gender === 'male' ? true : null">Male<br>
-      <input type="radio" id="female" [(ngModel)]="user.gender" name="gender" value="Female" required
-        checked="user.gender === 'female' ? true : null">Female<br>
-      <input type="radio" id="other" [(ngModel)]="user.gender" name="gender" value="Other" required
-        checked="user.gender === 'other' ? true : null">Other
+      <div class="form-group">
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" [(ngModel)]="user.age" name="age" required>
+        <div *ngIf="userEditForm.controls['age'].touched && userEditForm.controls['age'].hasError('required')"
+          class="text-danger">
+          Age is required.
+        </div>
+        <div *ngIf="!checkValidAge()" class="text-danger">
+          Age must be higher than 0.
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="gender">Gender:</label><br>
+        <input type="radio" id="male" [(ngModel)]="user.gender" name="gender" value="Male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" [(ngModel)]="user.gender" name="gender" value="Female" required>
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" [(ngModel)]="user.gender" name="gender" value="Other" required>
+        <label for="other">Other</label>
+        <div *ngIf="userEditForm.controls['gender'].touched && userEditForm.controls['gender'].hasError('required')"
+          class="text-danger">
+          Please select a gender.
+        </div>
+      </div>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
-      <button (click)="editUser()" type="button">Edit User</button>
+      <button (click)="editUser()" type="button" [disabled]="!userEditForm.valid">Edit User</button>
     </form>
   </div>
 </div>

@@ -58,7 +58,11 @@ export class UserEditComponent {
       }
     );
   } 
-  
+
+  checkValidAge(): boolean {
+    return this.user.age >= 1;
+  }
+
   goBack(): void {
     this.router.navigate(['/users']);
   }

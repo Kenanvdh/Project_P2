@@ -1,15 +1,50 @@
 <div class="text-center">
   <ng-container *ngIf="!list.id; else editMode">
     <h2>Maak hier uw lijst aan</h2>
-    <form name="Form" #userEditForm="ngForm" (ngSubmit)="createList()">
-      <label for="name">Naam voor uw lijst:</label><br>
-      <input type="text" id="name" [(ngModel)]="list.name" name="name" required>
+    <form name="Form" #listEditForm="ngForm" (ngSubmit)="createList()">
+      <div class="form-group">
+        <label for="name">Naam voor uw lijst:</label><br>
+        <input type="text" class="form-control" id="name" [(ngModel)]="list.name" name="name" required minlength="2">
+        <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('required') "
+          class="text-danger">
+          Name is required.
+        </div>
+        <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('minlength') "
+          class="text-danger">
+          Name must be at least 2 characters.
+        </div>
+      </div>
       <br>
-      <label for="description">Omschrijving:</label><br>
-      <input type="text" id="description" [(ngModel)]="list.description" name="description" required>
+      <div class="form-group">
+        <label for="description">Omschrijving:</label><br>
+        <input type="text" id="description" [(ngModel)]="list.description" name="description" required minlength="10">
+        <div
+          *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('required') "
+          class="text-danger">
+          Description is required.
+        </div>
+        <div
+          *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('minlength') "
+          class="text-danger">
+          Description must be at least 10 characters long.
+        </div>
+      </div>
       <br>
-      <label for="numOfSongs">Hoeveel nummers staan er in uw lijst:</label><br>
-      <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
+      <div class="form-group">
+        <label for="numOfSongs">Hoeveel nummers staan er in uw lijst:</label><br>
+        <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
+        <div
+          *ngIf="listEditForm.controls['numOfSongs'].touched && listEditForm.controls['numOfSongs'].hasError('required')"
+          class="text-danger">
+          Number of songs is required.
+        </div>
+        <div *ngIf="!checkValidNumOfSongs()" class="text-danger">
+          There must be minimal 1 song in the list.
+        </div>
+        <div *ngIf="!checkValidNumberOfSongs()" class="text-danger">
+          There must be exactly {{ list.numOfSongs }} songs selected.
+        </div>
+      </div>
       <br>
       <label for="songs"> Welke nummers staan er in uw lijst:</label><br>
       <div *ngFor="let song of songs">
@@ -17,35 +52,72 @@
         <label for="{{song.id}}">{{song.name}}</label>
         <br>
       </div>
-        <button routerLink="/song/create">Other Song</button>
+      <button routerLink="/song/create">Other Song</button>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
-      <button (click)="createList()" type="button">Create List</button>
+      <button (click)="createList()" type="button" [disabled]="!listEditForm.valid">Create List</button>
     </form>
   </ng-container>
 
   <ng-template #editMode>
     <h2>Pas hier uw lijst aan</h2>
-    <form name="Form" #userEditForm="ngForm" (ngSubmit)="editList()">
-      <label for="name">Naam voor uw lijst:</label><br>
-      <input type="text" id="name" [(ngModel)]="list.name" name="name" required>
+    <form name="Form" #listEditForm="ngForm" (ngSubmit)="createList()">
+      <div class="form-group">
+        <label for="name">Naam voor uw lijst:</label><br>
+        <input type="text" class="form-control" id="name" [(ngModel)]="list.name" name="name" required minlength="2">
+        <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('required') "
+          class="text-danger">
+          Name is required.
+        </div>
+        <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('minlength') "
+          class="text-danger">
+          Name must be at least 2 characters.
+        </div>
+      </div>
       <br>
-      <label for="description">Omschrijving:</label><br>
-      <input type="text" id="description" [(ngModel)]="list.description" name="description" required>
+      <div class="form-group">
+        <label for="description">Omschrijving:</label><br>
+        <input type="text" id="description" [(ngModel)]="list.description" name="description" required minlength="10">
+        <div
+          *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('required') "
+          class="text-danger">
+          Description is required.
+        </div>
+        <div
+          *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('minlength') "
+          class="text-danger">
+          Description must be at least 10 characters long.
+        </div>
+      </div>
       <br>
-      <label for="numOfSongs">Hoeveel nummers staan er in uw lijst:</label><br>
-      <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
+      <div class="form-group">
+        <label for="numOfSongs">Hoeveel nummers staan er in uw lijst:</label><br>
+        <input type="number" id="numOfSongs" [(ngModel)]="list.numOfSongs" name="numOfSongs" required>
+        <div
+          *ngIf="listEditForm.controls['numOfSongs'].touched && listEditForm.controls['numOfSongs'].hasError('required')"
+          class="text-danger">
+          Number of songs is required.
+        </div>
+        <div *ngIf="!checkValidNumOfSongs()" class="text-danger">
+          There must be minimal 1 song in the list.
+        </div>
+        <div *ngIf="!checkValidNumberOfSongs()" class="text-danger">
+          There must be exactly {{ list.numOfSongs }} songs selected.
+        </div>
+      </div>
       <br>
+      <label for="songs"> Welke nummers staan er in uw lijst:</label><br>
       <div *ngFor="let song of songs">
         <input type="checkbox" id="{{song.id}}" [checked]="isSelected(song.id)" (change)="toggleSelection(song.id)">
         <label for="{{song.id}}">{{song.name}}</label>
+        <br>
       </div>
       <button routerLink="/song/create">Other Song</button>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
-      <button (click)="editList()" type="button">Edit List</button>
+      <button (click)="createList()" type="button" [disabled]="!listEditForm.valid">Create List</button>
     </form>
   </ng-template>
 </div>

@@ -88,6 +88,14 @@ export class ListEditComponent implements OnInit {
     );
   }
 
+  checkValidNumOfSongs(): boolean {
+    return this.selectedSongIds.length > 0;
+  }
+  
+  checkValidNumberOfSongs(): boolean {
+    return this.selectedSongIds.length === this.list.numOfSongs;
+  }
+
   goBack(): void {
     this.router.navigate(['/lists']);
   }
