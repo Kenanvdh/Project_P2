@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistService } from '../artist.service';
 import { IArtist } from '@indivproj-p2/shared/api';
@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './artist-edit.component.html',
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
-export class ArtistEditComponent {
+export class ArtistEditComponent implements OnInit {
   artist = {} as IArtist;
   id: string | null = null;
 
@@ -61,6 +61,10 @@ export class ArtistEditComponent {
         console.error('Error creating artist:', error);
       }
     );
+  }
+
+  checkValidAge(): boolean {
+    return this.artist.age >= 0;
   }
 
   goBack(): void {

@@ -2,18 +2,53 @@
     <ng-container *ngIf="!id; else editMode">
         <h2>Maak hier uw artist aan</h2>
         <form name="Form" #userEditForm="ngForm" (ngSubmit)="createArtist()">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" [(ngModel)]="artist.name" name="name" required>
+            <div class="form-group">
+                <label for="name">Name:</label><br>
+                <input type="text" class="form-control" id="name" [(ngModel)]="artist.name" name="name" required
+                    minlength="2">
+                <div *ngIf="userEditForm.controls['name'].touched && userEditForm.controls['name'].hasError('required') "
+                    class="text-danger">
+                    Name is required.
+                </div>
+                <div *ngIf="userEditForm.controls['name'].touched && userEditForm.controls['name'].hasError('minlength') "
+                    class="text-danger">
+                    Name must be at least 2 characters.
+                </div>
+            </div>
             <br>
-            <label for="age">Age:</label><br>
-            <input type="number" id="age" [(ngModel)]="artist.age" name="age" required>
+            <div class="form-group">
+                <label for="age">Age:</label><br>
+                <input type="number" class="form-control" id="age" [(ngModel)]="artist.age" name="age" required>
+                <div *ngIf="userEditForm.controls['age'].touched && userEditForm.controls['age'].hasError('required')"
+                    class="text-danger">
+                    Age is required.
+                </div>
+                <div *ngIf="!checkValidAge()" class="text-danger">
+                    Age must be higher than 0.
+                </div>
+            </div>
             <br>
-            <label for="country">Country:</label><br>
-            <input type="text" id="country" [(ngModel)]="artist.country" name="country" required>
+            <div class="form-group">
+                <label for="country">Country:</label><br>
+                <input type="text" class="form-control" id="country" [(ngModel)]="artist.country" name="country"
+                    required minlength="4" maxlength="47">
+                <div *ngIf="userEditForm.controls['country'].touched && userEditForm.controls['country'].hasError('required')"
+                    class="text-danger">
+                    Country is required.
+                </div>
+                <div *ngIf="userEditForm.controls['country'].touched && userEditForm.controls['country'].hasError('minlength') "
+                    class="text-danger">
+                    Country must be at least 4 characters.
+                </div>
+                <div *ngIf="userEditForm.controls['country'].touched && userEditForm.controls['country'].hasError('maxlength') "
+                    class="text-danger">
+                    Country must be at least 47 characters.
+                </div>
+            </div>
             <br>
             <br>
             <button (click)="goBack()">Back</button>
-            <button type="submit">Create Artist</button>
+            <button type="submit" [disabled]="!userEditForm.valid">Create Artist</button>
         </form>
     </ng-container>
 
