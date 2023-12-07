@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import { IList, IUser } from '@indivproj-p2/shared/api';
+import { IList } from '@indivproj-p2/shared/api';
 import { IsMongoId } from 'class-validator';
 import { Song } from '../song/song.schema';
 
@@ -11,8 +11,7 @@ export class List implements IList {
   @IsMongoId()
   _id!: string;
 
-  @Prop({
-  })
+  @Prop({})
   id!: string;
 
   @Prop({
@@ -26,9 +25,9 @@ export class List implements IList {
   description!: string;
 
   @Prop({
-    type: Object,
+    required: true,
   })
-  creator!: IUser;
+  creatorId!: string;
 
   @Prop({
     required: true,

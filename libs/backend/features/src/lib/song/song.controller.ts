@@ -26,9 +26,9 @@ export class SongController {
   }
 
   @Post('')
-  create(@Body()song: CreateSongDto): Promise<ISong> {
+  create(@Body() userId: string, song: CreateSongDto): Promise<ISong> {
     console.log(`Creating song`);
-    return this.songService.create(song);
+    return this.songService.create(userId, song);
   }
 
   @Put(':id')

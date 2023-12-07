@@ -33,7 +33,7 @@ export class SongService {
     return song;
   }
 
-  async create(song: CreateSongDto): Promise<ISong> {
+  async create(userId: string, song: CreateSongDto): Promise<ISong> {
     const lastSong = await this.songModel.findOne().sort({ id: -1 }).exec();
 
     // Calculate the new numeric part of the id
@@ -43,6 +43,8 @@ export class SongService {
 
     // Set the new id in the song data
     song.id = `${newNumericId}`;
+    song.creator.id = userId;
+    console.log(`Creating song with creator ${song.creator.id}`);
     console.log(`Creating song with id ${song.id}`);
     const createdSong = new this.songModel(song);
     return createdSong.save();

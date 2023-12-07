@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from '../list.service';
 import { SongService } from '../../song/song.service';
-import { IList, ISong, IUser } from '@indivproj-p2/shared/api';
+import { IList, ISong, } from '@indivproj-p2/shared/api';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -11,15 +11,7 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class ListEditComponent implements OnInit {
-  list: IList = {
-    id: '',
-    name: '',
-    songs: [],
-    creator: {} as IUser,
-    description: '',
-    numOfSongs: 0,
-    creationDate: new Date(),
-  };
+  list = {} as IList;
   songs: ISong[] = [];
   selectedSongIds: string[] = [];
 
@@ -35,24 +27,16 @@ export class ListEditComponent implements OnInit {
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
-
-    this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      if (
-        this.list.creator.id === this.authService.currentUser$.value?.id ||
-        this.authService.currentUser$.value?.role === 'admin'
-      ) {
-        this.listService.read(id).subscribe((list) => {
-          this.list = { ...list, songs: list.songs || [] };
-          this.selectedSongIds = this.list.songs.map((song) => song.id);
-        });
-
-        this.songService.list().subscribe((songs) => {
-          this.songs = songs || [];
-        });
-      } else{
-        this.router.navigate(['/lists']);
-      }
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.listService.read(id).subscribe((list) => {
+        this.list = list;
+        this.selectedSongIds = list.songs.map((song) => song.id);
+      });
+    }
+    this.songService.list().subscribe((songs) => {
+      if(songs)
+      this.songs = songs;
     });
   }
 
@@ -88,9 +72,14 @@ export class ListEditComponent implements OnInit {
     this.list.songs = this.songs.filter((song) =>
       this.selectedSongIds.includes(song.id)
     );
+
+    if(this.authService.currentUser$.value?.id)
+    this.list.creatorId = this.authService.currentUser$.value?.id;
+    console.log("creator:",this.list.creatorId);
+
     this.listService.create(this.list).subscribe(
-      (createdList) => {
-        console.log('List created successfully:', createdList);
+      (newList) => {
+        console.log('List created successfully:', newList);
         this.router.navigate(['/lists']);
       },
       (error) => {

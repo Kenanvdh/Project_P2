@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IList, IUser, ISong } from '@indivproj-p2/shared/api';
+import { Component, OnInit } from '@angular/core';
+import { IList } from '@indivproj-p2/shared/api';
 import { ListService } from '../list.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
@@ -9,58 +9,67 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './list-delete.component.html',
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
-export class ListDeleteComponent {
-  list: IList = {
-    id: '',
-    name: '',
-    description: '',
-    creator: {} as IUser,
-    numOfSongs: 0,
-    songs: [] as ISong[],
-    creationDate: new Date(),
-  };
-  id: string | null = null;
+export class ListDeleteComponent implements OnInit {
+  list: IList | null = null;
 
   constructor(
     private listService: ListService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
+      return;
     }
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      if (
-        this.list.creator.id === this.authService.currentUser$.value?.id ||
-        this.authService.currentUser$.value?.role === 'admin'
-      ) {
-        this.listService.read(this.id).subscribe((observable) => {
-          this.list = observable;
-        });
-      }else{
-        this.router.navigate(['/lists']);
-      }
-    });
-  }
 
-  deleteList(): void {
-    if (this.id) {
-      this.listService.delete(this.list).subscribe(
-        () => {
-          console.log('List deleted successfully');
-          this.router.navigate(['../..'], { relativeTo: this.route });
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.listService.read(id).subscribe(
+        (list) => {
+          // Check if the user has the correct permissions
+          if (
+            list.creatorId !== this.authService.currentUser$.value?.id &&
+            this.authService.currentUser$.value?.role !== 'admin'
+          ) {
+            this.router.navigate(['/lists']);
+          } else {
+            this.list = list;
+          }
         },
         (error) => {
-          console.error('Error deleting list:', error);
+          console.error('Error retrieving list:', error);
+          this.router.navigate(['/lists']);
         }
       );
     } else {
-      console.error('List id is missing for deletion.');
+      console.error('List id is missing.');
+      this.router.navigate(['/lists']);
     }
+  }
+
+  deleteList(): void {
+    if (!this.list) {
+      console.error('List information is missing.');
+      return;
+    }
+
+    if (this.list.creatorId !== this.authService.currentUser$.value?.id) {
+      this.router.navigate(['/lists']);
+      return;
+    }
+
+    this.listService.delete(this.list).subscribe(
+      () => {
+        console.log('List deleted successfully');
+        this.router.navigate(['../..'], { relativeTo: this.route });
+      },
+      (error) => {
+        console.error('Error deleting list:', error);
+      }
+    );
   }
 
   goBack(): void {

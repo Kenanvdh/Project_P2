@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import { ISong } from '@indivproj-p2/shared/api';
+import { ISong, IUser } from '@indivproj-p2/shared/api';
 import { IsMongoId } from 'class-validator';
 import { Artist } from '../artist/artist.schema';
 
@@ -50,6 +50,11 @@ export class Song implements ISong {
     required: true,
   })
   url!: string;
+
+  @Prop({
+    type: Object,
+  })
+  creator!: IUser;
 
 }
 

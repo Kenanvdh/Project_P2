@@ -9,7 +9,7 @@
     <p>{{ list.description }}</p>
     <br>
     <p>Number of songs: {{ list.numOfSongs }}</p>
-    <p>Created by: {{ list.creator.firstName }} on {{ list.creationDate | date: 'dd-MM-yyyy'}}</p><br>
+    <p>Created on {{ list.creationDate | date: 'dd-MM-yyyy'}}</p><br>
     <div class="'button">
       <div class="flex items-center justify-center">
         <button style="margin: auto;" routerLink="/list/{{list.id}}">Details</button>

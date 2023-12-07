@@ -2,27 +2,34 @@ import { Component } from '@angular/core';
 import { IList } from '@indivproj-p2/shared/api';
 import { ListService } from '../list.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'indivproj-p2-list-detail',
   templateUrl: './list-detail.component.html',
   styleUrls: ['../../song/song-list/song-list.component.css'],
 })
-export class ListDetailComponent {  
+export class ListDetailComponent {
   listId: string | null = null;
-  lists: IList | null = null;
+  list = {} as IList;
+  showButton: boolean | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private listService: ListService
+    private listService: ListService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    console.log('ListDetail.ngOnInit()');
-
-    this.route.paramMap.subscribe((params) => {
-      this.listId = params.get('id');
-
-      this.listService.read(this.listId).subscribe((observable) => this.lists = observable);
+    this.listId = this.route.snapshot.paramMap.get('id');
+    this.listService.read(this.listId).subscribe((list) => {
+      this.list = list;
+      this.showButton = this.isCurrentCreator();
     });
-  }}
+  }
+  
+  isCurrentCreator(): boolean {
+    const creatorId = this.list?.creatorId;
+    return this.authService.currentUser$.value?.id === creatorId;
+  }
+}

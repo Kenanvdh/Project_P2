@@ -26,7 +26,7 @@ import {
 
     @IsString()
     @IsNotEmpty()
-    creator!: IUser;
+    creatorId!: string;
 
     @IsNumber()
     @IsNotEmpty()
@@ -56,7 +56,7 @@ export class UpsertListDto implements IUpsertList {
 
     @IsString()
     @IsNotEmpty()
-    creator!: IUser;
+    creatorId!: string;
 
     @IsNumber()
     @IsNotEmpty()

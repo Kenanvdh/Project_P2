@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { List as ListModel, ListDocument } from './list.schema';
-import { Gender, IList, UserRole } from '@indivproj-p2/shared/api';
+import { IList } from '@indivproj-p2/shared/api';
 import { Logger } from '@nestjs/common';
 import { CreateListDto, UpdateListDto } from '@indivproj-p2/backend/dto';
 
@@ -18,7 +18,7 @@ export class ListService {
 
   async getAll(): Promise<IList[]> {
     Logger.log('getAll', this.TAG);
-    const items = await this.listModel.find().populate('creator.name').exec();
+    const items = await this.listModel.find().exec();
     return items;
   }
 
@@ -31,7 +31,7 @@ export class ListService {
     return list;
   }
 
-  async create(userId: string, list: CreateListDto): Promise<IList> {
+  async create(list: CreateListDto): Promise<IList> {
     const lastList = await this.listModel.findOne().sort({ id: -1 }).exec();
 
     // Calculate the new numeric part of the id
@@ -42,18 +42,20 @@ export class ListService {
     // Set the new id in the List data
     list.id = newNumericId.toString();
     list.creationDate = new Date();
-    list.creator.id = userId;
+
     const createdList = new this.listModel(list);
 
     return createdList.save();
   }
 
   async update(id: string, list: UpdateListDto): Promise<IList | null> {
-    const updatedList = await this.listModel.findOneAndUpdate({ id }, list).exec();
+    const updatedList = await this.listModel
+      .findOneAndUpdate({ id }, list)
+      .exec();
 
     return updatedList;
   }
-  
+
   async deleteList(id: string): Promise<void> {
     this.listModel.findOneAndDelete({ id }).exec();
   }

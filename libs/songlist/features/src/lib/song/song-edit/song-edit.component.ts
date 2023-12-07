@@ -32,7 +32,7 @@ export class SongEditComponent {
     }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
-      if (this.authService.currentUser$.value?.role === 'admin') {
+      if (this.id) {
         this.songService.read(this.id).subscribe((observable) => {
           this.song = observable;
         });
@@ -46,9 +46,16 @@ export class SongEditComponent {
   }
 
   editSong(): void {
-    this.songService.update(this.song).subscribe(() => {
+    if (
+      this.song.creator.id === this.authService.currentUser$.value?.id ||
+      this.authService.currentUser$.value?.role === 'admin'
+    ) {
+      this.songService.update(this.song).subscribe(() => {
+        this.router.navigate(['..']);
+      });
+    } else {
       this.router.navigate(['..']);
-    });
+    }
   }
 
   createSong(): void {
