@@ -11,6 +11,7 @@ export class Artist implements IArtist {
   _id!: string;
 
   @Prop({
+    unique: true,
   })
   id!: string;
 
@@ -29,6 +30,10 @@ export class Artist implements IArtist {
   })
   country!: string;
   
+  @Prop({
+    required: true,
+  })
+  creatorId!: string;
 }
 
 export const ArtistSchema = SchemaFactory.createForClass(Artist);

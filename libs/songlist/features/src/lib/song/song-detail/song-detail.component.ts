@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IArtist, ISong } from '@indivproj-p2/shared/api';
 import { SongService } from '../song.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'indivproj-p2-song-detail',
@@ -10,27 +11,29 @@ import { SongService } from '../song.service';
 })
 export class SongDetailComponent {
   songId: string | null = null;
-  songs = {} as ISong;
+  song = {} as ISong;
   artist = {} as IArtist | null;
+  showButton: boolean | undefined;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private songService: SongService
+    private songService: SongService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     console.log('UserDetail.ngOnInit()');
+    this.songId = this.route.snapshot.paramMap.get('id');
 
-    if (this.route.snapshot.paramMap.get('id') != null) {
-      this.route.paramMap.subscribe((params) => {
-        this.songId = params.get('id');
+    this.songService.read(this.songId).subscribe((song) => {
+      (this.song = song), (this.showButton = this.isCurrentCreator());
+    });
+  }
 
-        this.songService
-          .read(this.songId)
-          .subscribe((observable) => (this.songs = observable));
-      });
-    }
+  isCurrentCreator(): boolean {
+    const creatorId = this.song?.creatorId;
+    return this.authService.currentUser$.value?.id === creatorId;
   }
 
   goBack(): void {

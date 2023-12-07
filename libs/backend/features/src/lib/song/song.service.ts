@@ -33,20 +33,18 @@ export class SongService {
     return song;
   }
 
-  async create(userId: string, song: CreateSongDto): Promise<ISong> {
-    const lastSong = await this.songModel.findOne().sort({ id: -1 }).exec();
+  async create(song: CreateSongDto): Promise<ISong> {
+    Logger.log(`Creating song with data: ${JSON.stringify(song)}`);
+    const lastSong = await this.songModel.findOne().sort({ _id: -1 }).exec();
 
-    // Calculate the new numeric part of the id
-    const newNumericId = lastSong
-      ? parseInt(lastSong.id.match(/\d+/)[0], 10) + 1
-      : 1;
-
-    // Set the new id in the song data
-    song.id = `${newNumericId}`;
-    song.creator.id = userId;
-    console.log(`Creating song with creator ${song.creator.id}`);
-    console.log(`Creating song with id ${song.id}`);
+    console.log(`Last song id: }`, lastSong?.id);
+    if (lastSong) {
+      song.id = String(Number(lastSong.id) + 1);
+    } else {
+      song.id = '1';
+    }
     const createdSong = new this.songModel(song);
+
     return createdSong.save();
   }
 

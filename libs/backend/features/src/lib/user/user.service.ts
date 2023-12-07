@@ -34,15 +34,15 @@ export class UserService {
   async createUser(user: CreateUserDto): Promise<IUser> {
     this.logger.log(`Create user ${user.firstName}`);
 
-    const lastUser = await this.userModel.findOne().sort({ id: -1 }).exec();
+    const lastUser = await this.userModel.findOne().sort({ _id: -1 }).exec();
 
-    // Calculate the new numeric part of the id
-    const newNumericId = lastUser
-      ? parseInt(lastUser.id.match(/\d+/)[0], 10) + 1
-      : 1;
+    if(lastUser){
+      user.id = String(Number(lastUser.id) + 1);
+    }
+    else{
+      user.id = '1';
+    }
 
-    // Set the new id in the song data
-    user.id = `${newNumericId}`;
 
     const createdItem = await this.userModel.create(user);
     return createdItem;

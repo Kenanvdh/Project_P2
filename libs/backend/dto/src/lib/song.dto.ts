@@ -50,7 +50,7 @@ import {
 
     @IsString()
     @IsNotEmpty()
-    creator!: IUser;
+    creatorId!: string;
 }
 
 export class UpsertSongDto implements IUpsertSong {
@@ -94,7 +94,7 @@ export class UpsertSongDto implements IUpsertSong {
     
     @IsString()
     @IsNotEmpty()
-    creator!: IUser;
+    creatorId!: string;
 }
 
 export class UpdateSongDto implements IUpdateSong {

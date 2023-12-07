@@ -1,5 +1,5 @@
 <div class="text-center">
-  <ng-container *ngIf="!id; else editMode">
+  <ng-container *ngIf="!song.id; else editMode">
     <h2>Maak hier uw song aan</h2>
     <form name="Form" #userEditForm="ngForm" (ngSubmit)="createSong()">
       <label for="name">Title:</label><br>
@@ -16,7 +16,7 @@
           <option>Choose an artist</option>
           <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
         </select>
-        <button routerLink="/artists/create">Other artist</button>
+        <button routerLink="/artist/create">Other artist</button>
       <br>
       <label for="genre">Genre:</label><br>
       <input type="text" id="genre" [(ngModel)]="song.genre" name="genre" required>

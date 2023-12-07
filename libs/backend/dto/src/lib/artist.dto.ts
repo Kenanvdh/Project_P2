@@ -22,6 +22,10 @@ export class CreateArtistDto implements ICreateArtist {
   @IsNotEmpty()
   country!: string;
 
+  @IsString()
+  @IsNotEmpty()
+  creatorId!: string;
+
 }
 
 export class UpsertArtistDto implements IUpsertArtist {
@@ -41,6 +45,9 @@ export class UpsertArtistDto implements IUpsertArtist {
   @IsNotEmpty()
   country!: string;
   
+  @IsString()
+  @IsNotEmpty()
+  creatorId!: string;
 }
 
 export class UpdateArtistDto implements IUpdateArtist {
@@ -55,4 +62,8 @@ export class UpdateArtistDto implements IUpdateArtist {
   @IsString()
   @IsNotEmpty()
   country!: string;
+  
+  @IsString()
+  @IsNotEmpty()
+  creatorId!: string;
 }

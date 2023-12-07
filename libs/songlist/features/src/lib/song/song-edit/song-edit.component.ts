@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { SongService } from '../song.service';
@@ -11,7 +11,7 @@ import { IArtist, ISong } from '@indivproj-p2/shared/api';
   templateUrl: './song-edit.component.html',
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
-export class SongEditComponent {
+export class SongEditComponent implements OnInit {
   song = {} as ISong;
   songs: ISong[] | null = null;
   id: string | null = null;
@@ -21,13 +21,14 @@ export class SongEditComponent {
   constructor(
     private songService: SongService,
     private artistService: ArtistService,
-    private authService: AuthService,
+    private authService: AuthService, 
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
-    if (!this.authService.isAuthenticated()) {
+    if(!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
     this.route.paramMap.subscribe((params) => {
@@ -46,16 +47,9 @@ export class SongEditComponent {
   }
 
   editSong(): void {
-    if (
-      this.song.creator.id === this.authService.currentUser$.value?.id ||
-      this.authService.currentUser$.value?.role === 'admin'
-    ) {
-      this.songService.update(this.song).subscribe(() => {
-        this.router.navigate(['..']);
-      });
-    } else {
+    this.songService.update(this.song).subscribe(() => {
       this.router.navigate(['..']);
-    }
+    });
   }
 
   createSong(): void {
@@ -76,6 +70,11 @@ export class SongEditComponent {
       console.error('Please choose an artist.');
       return;
     }
+
+    if (this.authService.currentUser$.value?.id) {
+      this.song.creatorId = this.authService.currentUser$.value?.id;
+    }
+    console.log('creator:', this.song.creatorId);
 
     console.log('Song before creation:', this.song);
     this.songService.create(this.song).subscribe(

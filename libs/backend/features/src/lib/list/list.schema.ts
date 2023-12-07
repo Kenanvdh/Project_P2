@@ -11,7 +11,9 @@ export class List implements IList {
   @IsMongoId()
   _id!: string;
 
-  @Prop({})
+  @Prop({
+    unique: true
+  })
   id!: string;
 
   @Prop({

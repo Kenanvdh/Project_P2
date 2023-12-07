@@ -6,7 +6,9 @@
     <p>Country: {{artist?.country}}</p>
 
     <br>
-    <button routerLink="/artists/{{artist?.id}}/edit">Edit artist</button>
-    <button routerLink="/artists/{{artist?.id}}/delete">Delete artist</button><br>
+    <div *ngIf="showButton">
+        <button routerLink="/artists/{{artist?.id}}/edit">Edit artist</button>
+        <button routerLink="/artists/{{artist?.id}}/delete">Delete artist</button><br>
+    </div>
     <button (click)="goBack()">Back</button>
 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from '../list.service';
 import { SongService } from '../../song/song.service';
-import { IList, ISong, } from '@indivproj-p2/shared/api';
+import { IList, ISong } from '@indivproj-p2/shared/api';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
@@ -35,8 +35,7 @@ export class ListEditComponent implements OnInit {
       });
     }
     this.songService.list().subscribe((songs) => {
-      if(songs)
-      this.songs = songs;
+      if (songs) this.songs = songs;
     });
   }
 
@@ -73,9 +72,10 @@ export class ListEditComponent implements OnInit {
       this.selectedSongIds.includes(song.id)
     );
 
-    if(this.authService.currentUser$.value?.id)
-    this.list.creatorId = this.authService.currentUser$.value?.id;
-    console.log("creator:",this.list.creatorId);
+    if (this.authService.currentUser$.value?.id) {
+      this.list.creatorId = this.authService.currentUser$.value?.id;
+    }
+    console.log('creator:', this.list.creatorId);
 
     this.listService.create(this.list).subscribe(
       (newList) => {

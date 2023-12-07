@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, tap, last } from 'rxjs/operators';
 import { ApiResponse, IArtist, ISong } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
 import { environment } from '@indivproj-p2/shared/util-env';
@@ -66,6 +66,7 @@ export class SongService {
         'Content-Type': 'application/json',
       }),
     };
+
 
     console.log(`Creating song...`);
     return this.http

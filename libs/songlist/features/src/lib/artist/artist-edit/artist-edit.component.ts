@@ -24,6 +24,11 @@ export class ArtistEditComponent {
     if(!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
+
+    if(this.authService.currentUser$.value?.id) {
+      this.artist.creatorId = this.authService.currentUser$.value.id;
+    }
+    
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
       if (this.id) {
@@ -38,7 +43,7 @@ export class ArtistEditComponent {
     this.artistService.update(this.artist).subscribe(
       (updatedArtist) => {
         console.log('Artist updated successfully:', updatedArtist);
-        this.router.navigate(['list'], { relativeTo: this.route });
+        this.router.navigate(['/list'], { relativeTo: this.route });
       },
       (error) => {
         console.error('Error updating artist:', error);
@@ -50,7 +55,7 @@ export class ArtistEditComponent {
     this.artistService.create(this.artist).subscribe(
       (createdArtist) => {
         console.log('Artist created successfully:', createdArtist);
-        this.router.navigate(['list'], { relativeTo: this.route });
+        this.router.navigate(['/list'], { relativeTo: this.route });
       },
       (error) => {
         console.error('Error creating artist:', error);

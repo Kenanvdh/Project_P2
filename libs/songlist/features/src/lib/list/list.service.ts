@@ -60,7 +60,7 @@ export class ListService {
         'Content-Type': 'application/json',
       }),
     };
-
+    
     return this.http
       .post<ApiResponse<IList>>(this.endpoint, list, httpOptions)
       .pipe(

@@ -7,6 +7,7 @@ export interface IArtist {
   name: string;
   age: number;
   country: string;
+  creatorId: string;
 }
 
 export interface ICreateArtist {
@@ -14,15 +15,18 @@ export interface ICreateArtist {
   name: string;
   age: number;
   country: string;
+  creatorId: string;
 }
 export interface IUpsertArtist {
   id: id;
   name: string;
   age: number;
   country: string;
+  creatorId: string;
 }
 export interface IUpdateArtist {
   name: string;
   age: number;
   country: string;
+  creatorId: string;
 }

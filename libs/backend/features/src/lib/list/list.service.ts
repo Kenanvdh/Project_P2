@@ -32,15 +32,15 @@ export class ListService {
   }
 
   async create(list: CreateListDto): Promise<IList> {
-    const lastList = await this.listModel.findOne().sort({ id: -1 }).exec();
+    const lastList = await this.listModel.findOne().sort({ _id: -1 }).exec();
 
-    // Calculate the new numeric part of the id
-    const newNumericId = lastList
-      ? parseInt(lastList.id.match(/\d+/)[0], 10) + 1
-      : 1;
+    if(lastList){
+      list.id = String(Number(lastList.id) + 1);
+    }
+    else{
+      list.id = '1';
+    }
 
-    // Set the new id in the List data
-    list.id = newNumericId.toString();
     list.creationDate = new Date();
 
     const createdList = new this.listModel(list);
