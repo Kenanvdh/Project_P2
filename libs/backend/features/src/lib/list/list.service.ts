@@ -31,7 +31,7 @@ export class ListService {
     return list;
   }
 
-  async create(list: CreateListDto): Promise<IList> {
+  async create(userId: string, list: CreateListDto): Promise<IList> {
     const lastList = await this.listModel.findOne().sort({ id: -1 }).exec();
 
     // Calculate the new numeric part of the id
@@ -42,16 +42,7 @@ export class ListService {
     // Set the new id in the List data
     list.id = newNumericId.toString();
     list.creationDate = new Date();
-    list.creator = { 
-      id: '0',
-      firstName: 'Kenan',
-      lastName: 'van der Heijden',
-      email: 'kenanvdh@ziggo.nl',
-      password: 'Welkom01!',
-      age: 18,
-      gender: Gender.male,
-      role: UserRole.guest,
-    };
+    list.creator.id = userId;
     const createdList = new this.listModel(list);
 
     return createdList.save();

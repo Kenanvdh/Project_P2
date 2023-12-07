@@ -11,8 +11,7 @@ export class Song implements ISong {
   @IsMongoId()
   _id!: string;
 
-  @Prop({
-  })
+  @Prop({})
   id!: string;
 
   @Prop({
@@ -38,7 +37,7 @@ export class Song implements ISong {
   @Prop({
     required: true,
     type: Artist,
-    ref: 'Artist'
+    ref: 'Artist',
   })
   artist!: Artist;
 
@@ -51,6 +50,7 @@ export class Song implements ISong {
     required: true,
   })
   url!: string;
+
 }
 
 export const SongSchema = SchemaFactory.createForClass(Song);

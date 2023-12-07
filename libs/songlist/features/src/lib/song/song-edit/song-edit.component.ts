@@ -23,17 +23,16 @@ export class SongEditComponent {
     private artistService: ArtistService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if(!this.authService.isAuthenticated()) {
+    if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
-      if (this.id) {
+      if (this.authService.currentUser$.value?.role === 'admin') {
         this.songService.read(this.id).subscribe((observable) => {
           this.song = observable;
         });

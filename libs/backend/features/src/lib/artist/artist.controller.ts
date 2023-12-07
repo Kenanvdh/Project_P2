@@ -25,7 +25,7 @@ export class ArtistController {
   }
 
   @Post('')
-  create(@Body() artist: IArtist): Promise<IArtist> {
+  create(@Body()artist: IArtist): Promise<IArtist> {
     return this.artistService.create(artist);
   }
 

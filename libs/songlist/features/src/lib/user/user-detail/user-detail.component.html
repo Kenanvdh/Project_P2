@@ -1,13 +1,13 @@
 <div class="text-center ">
-    <h2>Dit zijn de user details van {{users?.firstName}} {{users?.lastName}}</h2>
+    <h2>Dit zijn de user details van {{user?.firstName}} {{user?.lastName}}</h2>
     <br>
-    <p>Firstname: {{users?.firstName}}</p>
-    <p>Lastname: {{users?.lastName}}</p>
-    <p>Email: {{users?.email}}</p>
-    <p>Age: {{users?.age}}</p>
-    <p>Gender: {{users?.gender}}</p>
-    <p>Role: {{users?.role}}</p>
+    <p>Firstname: {{user?.firstName}}</p>
+    <p>Lastname: {{user?.lastName}}</p>
+    <p>Email: {{user?.email}}</p>
+    <p>Age: {{user?.age}}</p>
+    <p>Gender: {{user?.gender}}</p>
+    <p>Role: {{user?.role}}</p>
     <br>
-    <button routerLink="/users/{{users?.id}}/edit">Edit User</button>
-    <button routerLink="/users/{{users?.id}}/delete">Delete User</button>
+    <button routerLink="/users/{{user?.id}}/edit">Edit User</button>
+    <button routerLink="/users/{{user?.id}}/delete">Delete User</button>
 </div>

@@ -10,32 +10,23 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
 export class SongDeleteComponent {
-  song: ISong = {
-    id: '',
-    name: '',
-    album: '',
-    artist: {} as IArtist,
-    duration: 0,
-    genre: '',
-    year: 0,
-    url: '',
-  };
+  song = {} as ISong;
   id: string | null = null;
 
   constructor(
     private songService: SongService,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if(!this.authService.isAuthenticated()) {
+    if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
-      if (this.id) {
+      if (this.authService.currentUser$.value?.role === 'admin') {
         this.songService.read(this.id).subscribe((observable) => {
           this.song = observable;
         });

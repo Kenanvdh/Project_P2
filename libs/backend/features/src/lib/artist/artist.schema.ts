@@ -28,6 +28,7 @@ export class Artist implements IArtist {
     required: true,
   })
   country!: string;
+  
 }
 
 export const ArtistSchema = SchemaFactory.createForClass(Artist);

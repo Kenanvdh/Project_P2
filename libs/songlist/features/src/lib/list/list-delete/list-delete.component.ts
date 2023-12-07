@@ -9,7 +9,6 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './list-delete.component.html',
   styleUrls: ['../../user/user-list/user-list.component.css'],
 })
-
 export class ListDeleteComponent {
   list: IList = {
     id: '',
@@ -24,21 +23,26 @@ export class ListDeleteComponent {
 
   constructor(
     private listService: ListService,
-    private authService: AuthService, 
+    private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    if(!this.authService.isAuthenticated()) {
+    if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
     this.route.paramMap.subscribe((params) => {
       this.id = params.get('id');
-      if (this.id) {
+      if (
+        this.list.creator.id === this.authService.currentUser$.value?.id ||
+        this.authService.currentUser$.value?.role === 'admin'
+      ) {
         this.listService.read(this.id).subscribe((observable) => {
           this.list = observable;
         });
+      }else{
+        this.router.navigate(['/lists']);
       }
     });
   }

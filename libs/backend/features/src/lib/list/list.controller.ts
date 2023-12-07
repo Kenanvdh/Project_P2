@@ -26,8 +26,8 @@ export class ListController {
   }
 
   @Post('')
-  create(@Body() list: CreateListDto): Promise<IList> {
-    return this.listService.create(list);
+  create(@Body()userId: string, list: CreateListDto): Promise<IList> {
+    return this.listService.create(userId, list);
   }
 
   @Put('/:id')

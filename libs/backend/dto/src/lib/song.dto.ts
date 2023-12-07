@@ -46,6 +46,7 @@ import {
     @IsString()
     @IsNotEmpty()
     url!: string;
+
 }
 
 export class UpsertSongDto implements IUpsertSong {
@@ -86,6 +87,7 @@ export class UpsertSongDto implements IUpsertSong {
     @IsString()
     @IsNotEmpty()
     url!: string;
+    
 }
 
 export class UpdateSongDto implements IUpdateSong {

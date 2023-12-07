@@ -9,28 +9,32 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './user-detail.component.html',
   styleUrls: ['../user-list/user-list.component.css'],
 })
-
 export class UserDetail {
   userId: string | null = null;
-  users: IUser | null = null;
+  user: IUser | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    if(!this.authService.isAuthenticated()) {
+    if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
     console.log('UserDetail.ngOnInit()');
 
     this.route.paramMap.subscribe((params) => {
       this.userId = params.get('id');
-
-      this.userService.read(this.userId).subscribe((observable) => this.users = observable);
+      if (this.userId === this.authService.currentUser$.value?.id || this.authService.currentUser$.value?.role === 'admin') {
+        this.userService
+          .read(this.userId)
+          .subscribe((observable) => (this.user = observable));
+      } else {
+        this.router.navigate(['/']);
+      }
     });
   }
 }

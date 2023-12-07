@@ -9,10 +9,6 @@ import {
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IUser } from '@indivproj-p2/shared/api';
-/* 
-import { ModalConfirmYesNoComponent } from '../shared/modal/modal.confirm-yes-no.component';
-import { ModalLeaveYesNoComponent } from '../shared/modal/modal.leave-yes-no.component'; 
-*/
 import { AuthService } from './auth.service';
 
 /**
@@ -22,7 +18,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class LoggedInAuthGuard implements CanActivate, CanActivateChild {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router,) {}
 
   canActivate(): Observable<boolean> {
     console.log('canActivate LoggedIn');
@@ -48,14 +44,3 @@ export class LoggedInAuthGuard implements CanActivate, CanActivateChild {
   }
 }
 
-/* @Injectable()
-export class SaveEditedWorkGuard {
-  constructor(private modalService: NgbModal) {}
-
-  canDeactivate(): Promise<boolean> {
-    return this.modalService
-      .open(ModalLeaveYesNoComponent)
-      .result.then((result) => true)
-      .catch(() => false);
-  }
-} */

@@ -32,21 +32,27 @@ export class ListEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(!this.authService.isAuthenticated()) {
+    if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
+
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      if (id) {
+      if (
+        this.list.creator.id === this.authService.currentUser$.value?.id ||
+        this.authService.currentUser$.value?.role === 'admin'
+      ) {
         this.listService.read(id).subscribe((list) => {
-          this.list = { ...list, songs: list.songs || [] }; 
-          this.selectedSongIds = this.list.songs.map(song => song.id);
+          this.list = { ...list, songs: list.songs || [] };
+          this.selectedSongIds = this.list.songs.map((song) => song.id);
         });
-      }
-    });
 
-    this.songService.list().subscribe((songs) => {
-      this.songs = songs || [];
+        this.songService.list().subscribe((songs) => {
+          this.songs = songs || [];
+        });
+      } else{
+        this.router.navigate(['/lists']);
+      }
     });
   }
 
@@ -64,11 +70,13 @@ export class ListEditComponent implements OnInit {
   }
 
   editList(): void {
-    this.list.songs = this.songs.filter(song => this.selectedSongIds.includes(song.id));
+    this.list.songs = this.songs.filter((song) =>
+      this.selectedSongIds.includes(song.id)
+    );
     this.listService.update(this.list).subscribe(
       (updatedList) => {
         console.log('List updated successfully:', updatedList);
-        this.router.navigate(['/lists']); 
+        this.router.navigate(['/lists']);
       },
       (error) => {
         console.error('Error updating list:', error);
@@ -77,11 +85,13 @@ export class ListEditComponent implements OnInit {
   }
 
   createList(): void {
-    this.list.songs = this.songs.filter(song => this.selectedSongIds.includes(song.id));
+    this.list.songs = this.songs.filter((song) =>
+      this.selectedSongIds.includes(song.id)
+    );
     this.listService.create(this.list).subscribe(
       (createdList) => {
         console.log('List created successfully:', createdList);
-        this.router.navigate(['/lists']); 
+        this.router.navigate(['/lists']);
       },
       (error) => {
         console.error('Error creating list:', error);
@@ -90,6 +100,6 @@ export class ListEditComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/lists']); 
+    this.router.navigate(['/lists']);
   }
 }
