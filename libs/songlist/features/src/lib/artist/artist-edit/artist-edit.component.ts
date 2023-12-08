@@ -12,6 +12,8 @@ import { AuthService } from '../../auth/auth.service';
 export class ArtistEditComponent implements OnInit {
   artist = {} as IArtist;
   id: string | null = null;
+  errorMessage = '';
+
 
   constructor(
     private artistService: ArtistService,
@@ -66,7 +68,7 @@ export class ArtistEditComponent implements OnInit {
   checkValidAge(): boolean {
     return this.artist.age >= 1;
   }
-
+  
   goBack(): void {
     this.router.navigate(['/list']);
   }

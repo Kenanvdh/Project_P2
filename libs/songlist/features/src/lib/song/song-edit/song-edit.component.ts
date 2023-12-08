@@ -93,7 +93,7 @@ export class SongEditComponent implements OnInit {
   }
 
   checkValidDuration(): boolean {
-    return this.song.duration > 0;
+    return this.song.duration >= 1;
   }
 
   goBack(): void {

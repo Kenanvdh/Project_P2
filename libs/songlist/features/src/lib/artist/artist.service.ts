@@ -1,5 +1,9 @@
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ApiResponse, IArtist } from '@indivproj-p2/shared/api';
 import { Injectable } from '@angular/core';
@@ -13,7 +17,6 @@ export const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-
 export class ArtistService {
   endpoint = `${environment.backendUrl}/artist`;
 

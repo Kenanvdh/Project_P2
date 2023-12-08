@@ -37,7 +37,7 @@
       <div class="form-group">
         <label for="artist">Choose an artist or create an artist (if your needed artist isn't in the list):<br></label>
         <select id="artist" [(ngModel)]="selectedArtistId" name="artist" required>
-          <option>Choose an artist</option>
+          <option disabled>Choose an artist</option>
           <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
         </select>
         <button routerLink="/artist/create">Other artist</button>
@@ -63,9 +63,7 @@
           class="text-danger">
           Duration is required.
         </div>
-        <div
-          *ngIf="songEditForm.controls['duration'].touched && songEditForm.controls['duration'].hasError('minlength')"
-          class="text-danger">
+        <div *ngIf="!checkValidDuration()" class="text-danger">
           Duration must be at least 1.
         </div>
       </div>
@@ -128,7 +126,7 @@
       <div class="form-group">
         <label for="artist">Choose an artist or create an artist (if your needed artist isn't in the list):<br></label>
         <select id="artist" [(ngModel)]="selectedArtistId" name="artist" required>
-          <option>Choose an artist</option>
+          <option disabled>Choose an artist</option>
           <option *ngFor="let artist of artists" [value]="artist.id">{{ artist.name }}</option>
         </select>
         <button routerLink="/artist/create">Other artist</button>
