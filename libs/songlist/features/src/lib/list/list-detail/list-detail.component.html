@@ -1,17 +1,17 @@
 <h2>Hieronder is de {{ list.name }}-lijst te zien!</h2>
 <h4>{{list.description}} <br><br>
-    Klik op de title om de details van desbetreffend nummer te zien</h4>
+    Klik op de titel of artiest om de details hiervan te zien</h4>
 
 <div *ngIf="showButton">
-    <button routerLink="/list/{{list.id}}/edit">Edit list</button>
+    <button routerLink="/list/{{list.id}}/edit">Pas lijst aan</button>
 </div>
 
 <br>
 <table>
     <thead>
-        <td>Title</td>
+        <td>Titel</td>
         <td>Album</td>
-        <td>Artist</td>
+        <td>Artiest</td>
     </thead>
     <tbody>
         <tr *ngFor="let song of list?.songs">

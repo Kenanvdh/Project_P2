@@ -93,7 +93,7 @@ export class ListEditComponent implements OnInit {
   }
   
   checkValidNumberOfSongs(): boolean {
-    return this.selectedSongIds.length === this.list.numOfSongs;
+    return this.selectedSongIds.length  === this.list.numOfSongs;
   }
 
   goBack(): void {

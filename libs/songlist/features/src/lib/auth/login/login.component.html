@@ -3,7 +3,7 @@
     <h2>Login</h2>
     <form class="form-signin" [formGroup]='loginForm' (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="inputEmail">Email address</label><br>
+        <label for="inputEmail">Email</label><br>
         <input type="email" class="form-control" placeholder="Email address" formControlName="email" id="inputEmail"
           aria-describedby="emailHelp" [ngClass]="{
                   'is-invalid':
@@ -13,12 +13,12 @@
         <span *ngIf="
                   !loginForm.get('email')?.valid && loginForm.get('email')?.touched
                 " class="invalid-feedback">
-          <p id="email-invalid">Please enter a valid email address</p>
+          <p id="email-invalid">Voer een juiste email in</p>
         </span>
       </div>
       <br>
       <div class="form-group">
-        <label for="inputPassword">Password</label><br>
+        <label for="inputPassword">Wachtwoord</label><br>
         <input type="password" class="form-control" placeholder="Password" formControlName="password" id="inputPassword"
           [ngClass]="{
                   'is-invalid':
@@ -29,14 +29,14 @@
                   !loginForm.get('password')?.valid &&
                   loginForm.get('password')?.touched
                 " class="invalid-feedback">
-          <p id="password-invalid">Please enter a valid password</p>
+          <p id="password-invalid">Uw wachtwoord is niet valide</p>
         </span>
       </div>
       <br>
       <div class="form-group">
         <button id="submitbutton" class="btn btn-lg btn-primary btn-block" type="submit"
           [disabled]="!loginForm.valid && !submitted">
-          Sign in
+          Log in
         </button>
       </div>
     </form>

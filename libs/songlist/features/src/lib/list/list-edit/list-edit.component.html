@@ -7,11 +7,11 @@
         <input type="text" class="form-control" id="name" [(ngModel)]="list.name" name="name" required minlength="2">
         <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('required') "
           class="text-danger">
-          Name is required.
+          Naam is veprlicht.
         </div>
         <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('minlength') "
           class="text-danger">
-          Name must be at least 2 characters.
+          Naam moet 2 karakters bevatten.
         </div>
       </div>
       <br>
@@ -21,12 +21,12 @@
         <div
           *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('required') "
           class="text-danger">
-          Description is required.
+          Omshrijving is verplicht.
         </div>
         <div
           *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('minlength') "
           class="text-danger">
-          Description must be at least 10 characters long.
+          Omschrijving moet minimaal 10 karakters bevatten.
         </div>
       </div>
       <br>
@@ -36,13 +36,13 @@
         <div
           *ngIf="listEditForm.controls['numOfSongs'].touched && listEditForm.controls['numOfSongs'].hasError('required')"
           class="text-danger">
-          Number of songs is required.
+          Hoeveelheid nummers is verplicht.
         </div>
         <div *ngIf="!checkValidNumOfSongs()" class="text-danger">
-          There must be minimal 1 song in the list.
+          Er moet minimaal 1 nummer in de lijst staan.
         </div>
         <div *ngIf="!checkValidNumberOfSongs()" class="text-danger">
-          There must be exactly {{ list.numOfSongs }} songs selected.
+          Er moeten {{ list.numOfSongs }} nummers geselecteerd zijn.
         </div>
       </div>
       <br>
@@ -52,7 +52,7 @@
         <label for="{{song.id}}">{{song.name}}</label>
         <br>
       </div>
-      <button routerLink="/song/create">Other Song</button>
+      <button routerLink="/song/create">Ander nummer</button>
       <br>
       <br>
       <button (click)="goBack()">Back</button>
@@ -62,17 +62,17 @@
 
   <ng-template #editMode>
     <h2>Pas hier uw lijst aan</h2>
-    <form name="Form" #listEditForm="ngForm" (ngSubmit)="createList()">
+    <form name="Form" #listEditForm="ngForm" (ngSubmit)="editList()">
       <div class="form-group">
         <label for="name">Naam voor uw lijst:</label><br>
         <input type="text" class="form-control" id="name" [(ngModel)]="list.name" name="name" required minlength="2">
         <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('required') "
           class="text-danger">
-          Name is required.
+          Naam is veprlicht.
         </div>
         <div *ngIf="listEditForm.controls['name'].touched && listEditForm.controls['name'].hasError('minlength') "
           class="text-danger">
-          Name must be at least 2 characters.
+          Naam moet 2 karakters bevatten.
         </div>
       </div>
       <br>
@@ -82,12 +82,12 @@
         <div
           *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('required') "
           class="text-danger">
-          Description is required.
+          Omshrijving is verplicht.
         </div>
         <div
           *ngIf="listEditForm.controls['description'].touched && listEditForm.controls['description'].hasError('minlength') "
           class="text-danger">
-          Description must be at least 10 characters long.
+          Omschrijving moet minimaal 10 karakters bevatten.
         </div>
       </div>
       <br>
@@ -97,13 +97,13 @@
         <div
           *ngIf="listEditForm.controls['numOfSongs'].touched && listEditForm.controls['numOfSongs'].hasError('required')"
           class="text-danger">
-          Number of songs is required.
+          Hoeveelheid nummers is verplicht.
         </div>
         <div *ngIf="!checkValidNumOfSongs()" class="text-danger">
-          There must be minimal 1 song in the list.
+          Er moet minimaal 1 nummer in de lijst staan.
         </div>
         <div *ngIf="!checkValidNumberOfSongs()" class="text-danger">
-          There must be exactly {{ list.numOfSongs }} songs selected.
+          Er moeten {{ list.numOfSongs }} nummers geselecteerd zijn.
         </div>
       </div>
       <br>
@@ -113,11 +113,11 @@
         <label for="{{song.id}}">{{song.name}}</label>
         <br>
       </div>
-      <button routerLink="/song/create">Other Song</button>
+      <button routerLink="/song/create">Ander nummer</button>
       <br>
       <br>
-      <button (click)="goBack()">Back</button>
-      <button (click)="createList()" type="button" [disabled]="!listEditForm.valid">Create List</button>
+      <button (click)="goBack()">Terug</button>
+      <button (click)="editList()" type="button" [disabled]="!listEditForm.valid">Pas lijst aan</button>
     </form>
   </ng-template>
 </div>

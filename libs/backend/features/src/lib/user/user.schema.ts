@@ -18,19 +18,16 @@ export class User implements IUser {
 
   @Prop({
     required: true,
-    unique: true,
   })
   firstName!: string;
 
   @Prop({
     required: true,
-    unique: true,
   })
   lastName!: string;
 
   @Prop({
     required: true,
-    unique: true,
   })
   age!: number;
 
@@ -55,11 +52,8 @@ export class User implements IUser {
 
   @Prop({
     required: true,
-    type: String,
-    // validate: {
-    //     validator: isEmail,
-    //     message: 'should be a valid email address'
-    // }
+    type: String ,
+    unique: true,
   })
   email = '';
 

@@ -1,14 +1,14 @@
 <div class="text-center">
-    <h2>Dit zijn de artist details van {{artist?.name}} </h2>
+    <h2>Dit zijn de artiest details van {{artist?.name}} </h2>
     <br>
-    <p>Name: {{artist?.name}}</p>
-    <p>Age: {{artist?.age}}</p>
-    <p>Country: {{artist?.country}}</p>
+    <p>Naam: {{artist?.name}}</p>
+    <p>Leeftijd: {{artist?.age}}</p>
+    <p>Land van herkomst: {{artist?.country}}</p>
 
     <br>
     <div *ngIf="showButton">
-        <button routerLink="/artists/{{artist?.id}}/edit">Edit artist</button>
-        <button routerLink="/artists/{{artist?.id}}/delete">Delete artist</button><br>
+        <button routerLink="/artists/{{artist?.id}}/edit">Pas artiest aan</button>
+        <button routerLink="/artists/{{artist?.id}}/delete">Verwijder artiest</button><br>
     </div>
-    <button (click)="goBack()">Back</button>
+    <button (click)="goBack()">Terug</button>
 </div>

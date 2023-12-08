@@ -1,13 +1,19 @@
 <div class="bg-gray-800 text-white py-3 ps-5">
   <nav class="flex items-center justify-between">
     <div class="flex items-center space-x-4">
-      <a routerLink="/list" class="text-xl font-bold hover:text-gray-500">Songlist web</a>
-      <a routerLink="/users" class="text-xl font-bold hover:text-gray-500">User List</a>
-      <a routerLink="/about" class="text-xl font-bold hover:text-gray-500">About</a>
+      <a routerLink="/list" class="text-xl font-bold hover:text-gray-500">Songlist</a>
     </div>
-    <div class="flex items-center space-x-4 pe-5 ">
-      <a routerLink="/login" class="text-xl font-bold hover:text-gray-500">Login</a>
-      <a routerLink="/register" class="text-xl font-bold hover:text-gray-500">Register</a>
+    <div class="flex items-center space-x-4 me-5 ">
+      <a routerLink="/users" class="text-xl font-bold hover:text-gray-500">Gebruikers</a>
+      <a routerLink="/about" class="text-xl font-bold hover:text-gray-500 pe-5">Over</a>
+
+      
+      <div class="flex items-center space-x-4 pe-5 ">
+        <a routerLink="/login" *ngIf="!isLoggedIn" class="text-xl font-bold hover:text-gray-500 ps-5">Login</a>
+        <a routerLink="/register" *ngIf="!isLoggedIn" class="text-xl font-bold hover:text-gray-500 ps-3">Registreer</a>
+        <a routerLink="/list" *ngIf="isLoggedIn" (click)="logout()"
+          class="text-xl font-bold hover:text-gray-500 ps-5">Logout</a>
+      </div>
     </div>
   </nav>
 </div>

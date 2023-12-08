@@ -56,7 +56,7 @@ export class ListDeleteComponent implements OnInit {
       return;
     }
 
-    if (this.list.creatorId !== this.authService.currentUser$.value?.id) {
+    if (this.list.creatorId !== this.authService.currentUser$.value?.id && this.authService.currentUser$.value?.role !== 'admin') {
       this.router.navigate(['/lists']);
       return;
     }

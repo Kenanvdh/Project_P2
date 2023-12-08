@@ -34,10 +34,9 @@ export class ListService {
   async create(list: CreateListDto): Promise<IList> {
     const lastList = await this.listModel.findOne().sort({ _id: -1 }).exec();
 
-    if(lastList){
+    if (lastList) {
       list.id = String(Number(lastList.id) + 1);
-    }
-    else{
+    } else {
       list.id = '1';
     }
 
@@ -49,9 +48,7 @@ export class ListService {
   }
 
   async update(id: string, list: UpdateListDto): Promise<IList | null> {
-    const updatedList = await this.listModel
-      .findOneAndUpdate({ id }, list)
-      .exec();
+    const updatedList = await this.listModel.findOneAndUpdate({ id }, list);
 
     return updatedList;
   }

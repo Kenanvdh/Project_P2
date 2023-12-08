@@ -24,12 +24,16 @@ export class ListDetailComponent {
     this.listId = this.route.snapshot.paramMap.get('id');
     this.listService.read(this.listId).subscribe((list) => {
       this.list = list;
-      this.showButton = this.isCurrentCreator();
+      this.showButton = this.isCurrentCreator() || this.isAdministrator();
     });
   }
   
   isCurrentCreator(): boolean {
     const creatorId = this.list?.creatorId;
     return this.authService.currentUser$.value?.id === creatorId;
+  }
+
+  isAdministrator(): boolean {
+    return this.authService.currentUser$.value?.role === 'admin';
   }
 }

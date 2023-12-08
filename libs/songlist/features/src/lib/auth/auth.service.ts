@@ -43,7 +43,7 @@ export class AuthService {
   login(email: string, password: string): Observable<IUser | null> {
     console.log(`login at ${environment.backendUrl}/user/login`);
     return this.http
-      .post<{ results: IUser } | null>( 
+      .post<{ results: IUser } | null>(
         `${environment.backendUrl}/user/login`,
         { email: email, password: password },
         { headers: this.headers }

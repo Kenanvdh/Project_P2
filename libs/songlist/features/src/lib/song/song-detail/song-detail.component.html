@@ -1,17 +1,16 @@
 <div class="text-center">
-    <h2>Dit zijn de song details van {{song.name}} </h2>
+    <h2>Dit zijn de details van {{song.name}} </h2>
     <br>
-    <p>Id: {{song.id}}</p>
-    <p>Title: {{song.name}}</p>
+    <p>Titel: {{song.name}}</p>
     <p>Album: {{song.album}}</p>
-    <p>Artist: {{song.artist.name}}</p>
+    <p>Artiest: {{song.artist.name}}</p>
     <p>Genre: {{song.genre}}</p>
-    <p>Duration: {{song.duration}} minutes</p>
+    <p>Lengte: {{song.duration}} minutes</p>
     <p>Url: <a href="{{song.url}}">{{song.url}}</a> </p>
     <br>
     <div *ngIf="showButton">
-        <button routerLink="/song/{{song.id}}/edit">Edit Song</button>
-        <button routerLink="/song/{{song.id}}/delete">Delete Song</button>
+        <button routerLink="/song/{{song.id}}/edit">Pas nummer aan</button>
+        <button routerLink="/song/{{song.id}}/delete">Verwijder nummer</button>
     </div>
-    <button (click)="goBack()">Back</button>
+    <button (click)="goBack()">Terug</button>
 </div>

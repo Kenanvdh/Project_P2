@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../user/user.service';
-import { UserRole } from '../../../../../../shared/api/src/lib/models/user.model';
+import { UserRole } from '@indivproj-p2/shared/api';
 
 @Component({
   selector: 'app-register',
@@ -59,12 +59,25 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (this.registerForm?.valid) {
       this.userService.create(this.registerForm.value).subscribe((user) => {
         console.log('Registration succeeded');
-        this.router.navigate(['/users'], { relativeTo: this.route });
+        this.router.navigate(['/login'], { relativeTo: this.route });
       });
     } else {
       console.error('Registration returned null user');
     }
   }
+
+  ageValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const age = control.value;
+    if (age !== null && age !== undefined && age <= 0) {
+      return { 'invalidAge': true };
+    }
+    return null;
+  }
+
+  checkAge(): boolean {
+    return this.registerForm.get('age')?.value > 0;
+  }
+
 
   validEmail(control: FormControl): { [key: string]: boolean } | null {
     const email = control.value;

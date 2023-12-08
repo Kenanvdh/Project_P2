@@ -1,19 +1,20 @@
 <h1> Welkom bij de songlist app! </h1>
 <h3> Hieronder zijn alle lijsten te zien</h3>
 
-<button routerLink="/list/create">Create new list</button>
+<button routerLink="/list/create">Maak nieuwe lijst</button>
 
 <div style="display: flex; flex-wrap: wrap; gap: 16px;">
   <div class="card-container" *ngFor="let list of lists" class="card">
     <h2>{{ list.name }}</h2>
     <p>{{ list.description }}</p>
     <br>
-    <p>Number of songs: {{ list.numOfSongs }}</p>
-    <p>Created on {{ list.creationDate | date: 'dd-MM-yyyy'}}</p><br>
+    <p>Aantal nummers: {{ list.numOfSongs }}</p>
+    <p>Gemaakt op {{ list.creationDate | date: 'dd-MM-yyyy'}}</p><br>
     <div class="'button">
       <div class="flex items-center justify-center">
         <button style="margin: auto;" routerLink="/list/{{list.id}}">Details</button>
-        <button style="margin: auto;" routerLink="/list/{{list.id}}/delete">Delete</button>
+        
+        <button style="margin: auto;" routerLink="/list/{{list.id}}/delete">Verwijder</button>
       </div>
     </div>
   </div>

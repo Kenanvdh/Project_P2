@@ -1,34 +1,34 @@
 <div class="text-center">
-  <h2>Pas hier uw user aan</h2>
+  <h2>Pas hier uw gebruiker aan</h2>
   <div class="flex items-center justify-center ">
     <form name="Form" #userEditForm="ngForm" (ngSubmit)="editUser()">
       <div class="form-group">
-        <label for="firstName">First Name:</label><br>
+        <label for="firstName">Voornaam:</label><br>
         <input type="text" id="firstName" [(ngModel)]="user.firstName" name="firstName" required minlength="2">
         <div
           *ngIf="userEditForm.controls['firstName'].touched && userEditForm.controls['firstName'].hasError('required') "
           class="text-danger">
-          Firstname is required.
+          Voornaam is verplicht.
         </div>
         <div
           *ngIf="userEditForm.controls['firstName'].touched && userEditForm.controls['firstName'].hasError('minlength') "
           class="text-danger">
-          Firstame must be at least 2 characters.
+          Voornaam moet minimaal 2 karakters bevatten.
         </div>
       </div>
       <br>
       <div class="form-group">
-        <label for="lastName">Last Name:</label><br>
+        <label for="lastName">Achternaam:</label><br>
         <input type="text" id="lastName" [(ngModel)]="user.lastName" name="lastName" required>
         <div
           *ngIf="userEditForm.controls['lastName'].touched && userEditForm.controls['lastName'].hasError('required') "
           class="text-danger">
-          Lastname is required.
+          Achternaam is verplicht.
         </div>
         <div
           *ngIf="userEditForm.controls['lastName'].touched && userEditForm.controls['lastName'].hasError('minlength') "
           class="text-danger">
-          Lastname must be at least 2 characters.
+          Achternaam moet minimaal 2 karakters bevatten.
         </div>
       </div>
       <br>
@@ -38,43 +38,43 @@
           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
         <div *ngIf="userEditForm.controls['email'].touched && userEditForm.controls['email'].hasError('required')"
           class="text-danger">
-          Email is required.
+          Email is verplicht.
         </div>
         <div *ngIf="userEditForm.controls['email'].touched && userEditForm.controls['email'].hasError('pattern')"
           class="text-danger">
-          Please enter a valid email address.
+          Voer een valide email in.
         </div>
       </div>
       <br>
       <div class="form-group">
-        <label for="age">Age:</label><br>
+        <label for="age">Leeftijd:</label><br>
         <input type="number" id="age" [(ngModel)]="user.age" name="age" required>
         <div *ngIf="userEditForm.controls['age'].touched && userEditForm.controls['age'].hasError('required')"
           class="text-danger">
-          Age is required.
+          Leeftijd is verplicht.
         </div>
         <div *ngIf="!checkValidAge()" class="text-danger">
-          Age must be higher than 0.
+          ALeeftijd moet hoger zijn dan 0.
         </div>
       </div>
       <br>
       <div class="form-group">
         <label for="gender">Gender:</label><br>
         <input type="radio" id="male" [(ngModel)]="user.gender" name="gender" value="Male" required>
-        <label for="male">Male</label><br>
+        <label for="male">Man</label><br>
         <input type="radio" id="female" [(ngModel)]="user.gender" name="gender" value="Female" required>
-        <label for="female">Female</label><br>
+        <label for="female">Vrouw</label><br>
         <input type="radio" id="other" [(ngModel)]="user.gender" name="gender" value="Other" required>
-        <label for="other">Other</label>
+        <label for="other">Anders</label>
         <div *ngIf="userEditForm.controls['gender'].touched && userEditForm.controls['gender'].hasError('required')"
           class="text-danger">
-          Please select a gender.
+          Selecteer een gender.
         </div>
       </div>
       <br>
       <br>
-      <button (click)="goBack()">Back</button>
-      <button (click)="editUser()" type="button" [disabled]="!userEditForm.valid">Edit User</button>
+      <button (click)="goBack()">Terug</button>
+      <button (click)="editUser()" type="button" [disabled]="!userEditForm.valid">Pas gebruiker aan</button>
     </form>
   </div>
 </div>

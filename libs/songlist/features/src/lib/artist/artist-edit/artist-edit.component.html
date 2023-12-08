@@ -3,52 +3,52 @@
         <h2>Maak hier uw artist aan</h2>
         <form name="Form" #artistEditForm="ngForm" (ngSubmit)="createArtist()">
             <div class="form-group">
-                <label for="name">Name:</label><br>
+                <label for="name">Naam:</label><br>
                 <input type="text" class="form-control" id="name" [(ngModel)]="artist.name" name="name" required
                     minlength="2">
                 <div *ngIf="artistEditForm.controls['name'].touched && artistEditForm.controls['name'].hasError('required') "
                     class="text-danger">
-                    Name is required.
+                    Naam is verplicht.
                 </div>
                 <div *ngIf="artistEditForm.controls['name'].touched && artistEditForm.controls['name'].hasError('minlength') "
                     class="text-danger">
-                    Name must be at least 2 characters.
+                    Naam moet ten minste twee karakters bevatten.
                 </div>
             </div>
             <br>
             <div class="form-group">
-                <label for="age">Age:</label><br>
+                <label for="age">Leeftijd:</label><br>
                 <input type="number" class="form-control" id="age" [(ngModel)]="artist.age" name="age" required>
                 <div *ngIf="artistEditForm.controls['age'].touched && artistEditForm.controls['age'].hasError('required')"
                     class="text-danger">
-                    Age is required.
+                    Leeftijd is verplicht.
                 </div>
                 <div *ngIf="!checkValidAge()" class="text-danger">
-                    Age must be higher than 0.
+                    Leeftijd moet hoger dan 0 zijn.
                 </div>
             </div>
             <br>
             <div class="form-group">
-                <label for="country">Country:</label><br>
+                <label for="country">Land van herkomst:</label><br>
                 <input type="text" class="form-control" id="country" [(ngModel)]="artist.country" name="country"
                     required minlength="4" maxlength="47">
                 <div *ngIf="artistEditForm.controls['country'].touched && artistEditForm.controls['country'].hasError('required')"
                     class="text-danger">
-                    Country is required.
+                    Land van herkomst is verplicht.
                 </div>
                 <div *ngIf="artistEditForm.controls['country'].touched && artistEditForm.controls['country'].hasError('minlength') "
                     class="text-danger">
-                    Country must be at least 4 characters.
+                    Land van herkomst moet ten minste 4 karakters bevatten.
                 </div>
                 <div *ngIf="artistEditForm.controls['country'].touched && artistEditForm.controls['country'].hasError('maxlength') "
                     class="text-danger">
-                    Country must be at least 47 characters.
+                    Land van herkomst mag maximaal 47 karakters bevatten.
                 </div>
             </div>
             <br>
             <br>
-            <button (click)="goBack()">Back</button>
-            <button type="submit" [disabled]="!artistEditForm.valid">Create Artist</button>
+            <button (click)="goBack()">Terug</button>
+            <button type="submit" [disabled]="!artistEditForm.valid">Maak artiest</button>
         </form>
     </ng-container>
 
@@ -56,51 +56,52 @@
         <h2>Pas hier uw artist aan</h2>
         <form name="Form" #artistEditForm="ngForm" (ngSubmit)="editArtist()">
             <div class="form-group">
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" [(ngModel)]="artist.name" name="name" required minlength="2">
+                <label for="name">Naam:</label><br>
+                <input type="text" class="form-control" id="name" [(ngModel)]="artist.name" name="name" required
+                    minlength="2">
                 <div *ngIf="artistEditForm.controls['name'].touched && artistEditForm.controls['name'].hasError('required') "
                     class="text-danger">
-                    Name is required.
+                    Naam is verplicht.
                 </div>
                 <div *ngIf="artistEditForm.controls['name'].touched && artistEditForm.controls['name'].hasError('minlength') "
                     class="text-danger">
-                    Name must be at least 2 characters.
+                    Naam moet ten minste twee karakters bevatten.
                 </div>
             </div>
             <br>
             <div class="form-group">
-                <label for=" age">Age:</label><br>
-                <input type="number" id="age" [(ngModel)]="artist.age" name="age" required>
+                <label for="age">Leeftijd:</label><br>
+                <input type="number" class="form-control" id="age" [(ngModel)]="artist.age" name="age" required>
                 <div *ngIf="artistEditForm.controls['age'].touched && artistEditForm.controls['age'].hasError('required')"
                     class="text-danger">
-                    Age is required.
+                    Leeftijd is verplicht.
                 </div>
                 <div *ngIf="!checkValidAge()" class="text-danger">
-                    Age must be higher than 0.
+                    Leeftijd moet hoger dan 0 zijn.
                 </div>
             </div>
             <br>
             <div class="form-group">
-                <label for="country">Country:</label><br>
-                <input type="text" id="country" [(ngModel)]="artist.country" name="country" required minlength="4"
-                    maxlength="47">
+                <label for="country">Land van herkomst:</label><br>
+                <input type="text" class="form-control" id="country" [(ngModel)]="artist.country" name="country"
+                    required minlength="4" maxlength="47">
                 <div *ngIf="artistEditForm.controls['country'].touched && artistEditForm.controls['country'].hasError('required')"
                     class="text-danger">
-                    Country is required.
+                    Land van herkomst is verplicht.
                 </div>
                 <div *ngIf="artistEditForm.controls['country'].touched && artistEditForm.controls['country'].hasError('minlength') "
                     class="text-danger">
-                    Country must be at least 4 characters.
+                    Land van herkomst moet ten minste 4 karakters bevatten.
                 </div>
                 <div *ngIf="artistEditForm.controls['country'].touched && artistEditForm.controls['country'].hasError('maxlength') "
                     class="text-danger">
-                    Country must be at least 47 characters.
+                    Land van herkomst mag maximaal 47 karakters bevatten.
                 </div>
             </div>
             <br>
             <br>
             <button (click)="goBack()">Back</button>
-            <button type="submit">Edit Artist</button>
+            <button type="submit">Pas artiest aan</button>
         </form>
     </ng-template>
 </div>
