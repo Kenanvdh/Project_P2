@@ -1,5 +1,13 @@
 <h1>About the case</h1>
-<p>Mijn naam is Kenan van der Heijden (21972808).</p>
+<p>
+    Mijn naam is Kenan van der Heijden (21972808) en mijn doel met deze applicatie is dat mensen hun liefde voor muziek
+    kunnen delen door informatie te plaatsen in de applicatie. Dit houdt in dat er lijsten aangemaakt kunnen worden met
+    nummers, deze nummers zal de gebruiker zelf toevoegen met de jusite data. Deze songs hebben artiesten. Deze laatste
+    entiteit heeft ook een functie om een artiest aan te maken. Deze entiteiten kunnen ook aangepast en verwijderd
+    worden, mits het je eigen data is uiteraard. Het aanmaken van een van de entiteiten heeft als vereiste dat een
+    gebruiker ingelogd moet zijn. OOk zouden de gebruikers meer met elkaar kunnen verbinden door ratings en
+    aanbevelingen te delen over de lijsten. Zo kan elke gebruiker zijn voorkeur laten zien aan anderen.
+</p>
 <br>
 <h2>Functionele requirements</h2>
 <table>
@@ -12,45 +20,141 @@
     <tbody>
         <tr>
             <td>1</td>
-            <td>Toevoegen nummer</td>
-            <td>Een gebruiker kan een nummer toevoegen</td>
+            <td>Als gebruiker wil ik een lijst toevoegen met nummers, zodaing dat ik nummers die iets met elkaar gemeen
+                hebben in 1 lijst kan plaatsen en zo makkelijk de informatie op kan zoeken</td>
+            <td>
+                <ul>
+                    <li>
+                        - Er moet een knop zijn om een lijst toe te voegen.
+                    </li>
+                    <li>
+                        - Er moeten input velden aanwezig zijn om data in te zetten.
+                    </li>
+                    <li>
+                        - Er moet validatie op de velden zitten zodat er geen verkeerde data ingevoerd kan worden.
+                    </li>
+                </ul>
+            </td>
             <td>M</td>
         </tr>
         <tr>
             <td>2</td>
-            <td>Toevoegen artiest</td>
-            <td>Een gebruiker kan een artiest toevoegen</td>
-            <td>S</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Toevoegen lijst</td>
-            <td>Een gebruiker kan een lijst toevoegen met nummers</td>
+            <td>Als gebruiker wil ik een nummer toevoegen, zodanig dat ik en medegebruikers deze in een lisjt kan
+                plaatsen.</td>
+            <td>
+                <ul>
+                    <li>
+                        - Er moet een knop zijn om een nummer toe te voegen.
+                    </li>
+                    <li>
+                        - Er moeten input velden aanwezig zijn om data in te zetten.
+                    </li>
+                    <li>
+                        - Er moet validatie op de velden zitten zodat er geen verkeerde data ingevoerd kan worden.
+                    </li>
+                    <li>
+                        - De gebruiker moet ingelogd zijn.
+                    </li>
+                </ul>
+            </td>
             <td>M</td>
         </tr>
         <tr>
+            <td>3</td>
+            <td>Als gebruiker wil ik een artiest toevoegen, zodanig dat ik de juiste artiest aan mijn nummer toe kan
+                voegen.</td>
+            <td>
+                <ul>
+                    <li>
+                        - Er moet een knop zijn om een artist toe te voegen.
+                    </li>
+                    <li>
+                        - Er moeten input velden aanwezig zijn om data in te zetten.
+                    </li>
+                    <li>
+                        - Er moet validatie op de velden zitten zodat er geen verkeerde data ingevoerd kan worden.
+                    </li>
+                    <li>
+                        - De gebruiker moet ingelogd zijn.
+                    </li>
+                </ul>
+            </td>
+            <td>S</td>
+        </tr>
+        <tr>
             <td>4</td>
-            <td>Toevoegen nummer aan lijst</td>
-            <td>Een gebruiker kan een nummer toevoegen aan een lijst</td>
+            <td>Als gebruiker wil ik een nummer toevoegen aan een lijst, zodanig dat ik mijn lijst uit kan breiden</td>
+            <td>
+                <ul>
+                    <li>
+                        - Er moet een knop zijn om een nummer toe te voegen aan de lijst.
+                    </li>
+                    <li>
+                        - Er moeten input velden aanwezig zijn om het nummer toe te voegen.
+                    </li>
+                    <li>
+                        - Er moet validatie op de velden zitten zodat er geen verkeerde data ingevoerd kan worden.
+                    </li>
+                    <li>
+                        - De gebruiker moet ingelogd zijn.
+                    </li>
+                    <li>
+                        - De gebruiker moet eigenaar van de lisjt zijn.
+                    </li>
+                </ul>
+            </td>
             <td>C</td>
         </tr>
         <tr>
             <td>5</td>
-            <td>Bekijken lijst, nummer, artiest en rating</td>
-            <td>Een gebruiker moet een lijst, nummers en artiesten kunnen bekijken</td>
+            <td>Als gebruiker wil ik de details van een lijst, nummer en artiest kunnen bekijken, zodanig dat ik
+                specifieke informatie of een van de drie objecten kan vinden.</td>
+            <td>
+                <ul>
+                    <li>
+                        - Er moet een route zijn naar een van de drie objecten om de detail pagina weer te geven.
+                    </li>
+                    <li>
+                        - Op de detail-pagina staan details over het object. Deze details zijn relevant voor de
+                        gebruiker.
+                    </li>
+                </ul>
+            </td>
             <td>M</td>
         </tr>
         <tr>
             <td>6</td>
-            <td>Aanbevelingen</td>
-            <td>Een gebruiker kan een lijst aanbevelen aan medegebruikers</td>
+            <td>Als gebruiker wil ik aanbevelingen van lisjt kunnen versturen, zodanig dat ik mijn vrienden kan laten
+                weten welke lijsten ik aan zou bevelen.</td>
+            <td>
+                <ul>
+                    <li>
+                        - Er moet een knop zijn om een lijst aaan te bevelen.
+                    </li>
+                    <li>
+                        - Andere gebruikers moeten de aanbeveling kunnen zien in de applicatie met informatie over de
+                        gebruiker die de aanbeveling heeft gedaan en waarom.
+                    </li>
+                </ul>
+            </td>
             <td>C</td>
         </tr>
         <tr>
             <td>6</td>
-            <td>Authenticatie</td>
-            <td>Een gebruiker kan eigen gemaakte data aanpassen</td>
-            <td>S</td>
+            <td>Als gebruiker wil ik alleen mijn eigen data aanpassen, zodanig dat ik de data van anderen niet kan
+                veranderen.</td>
+            <td>
+                <ul>
+                    <li>
+                        - Een gebruiker moet ingelogd zijn om data aan te maken.
+                    </li>
+                    <li>
+                        - Een gebruiker moet knoppen zien om data aan te passen. Deze knoppen staan alleen bi zijn eigen
+                        data.
+                    </li>
+                </ul>
+            </td>
+            <td>C</td>
         </tr>
     </tbody>
 </table>
@@ -58,47 +162,23 @@
 <br>
 
 <h2>ERD</h2>
-<h4>Onderstaand is het erd te zien, passend bij de database die gebouwd gaat word</h4>
+<h4>Onderstaand is het erd te zien, passend bij het idee hoe de database opgebouwd zou moeten worden.</h4>
 <br>
-<img class="img-fluid" src="/assets/Erd.png" alt="requirements">
+<p>
+    In het ERD is te zien dat er 4 entiteiten zijn die relaties met elkaar hebben. De entiteiten zijn: User, Song,
+    Artist en List. Een user kan meerdere objecten aanmaken, vandaar dat er een een-op-veel relatie vanuit user naar
+    lijst en Song loopt. Deze entiteiten hebben maar 1 user waardoor ze aangemaakt zijn, vandaar dat de relatie dit type
+    heeft. <br> Een User kan (maar dit is niet verplicht) een rating geven aan een lijst. Deze realtie is een
+    veel-op-veel:
+    een user kan een rating geven aan meerdere lijsten en een lijst kan meerdere ratings hebben. Een Song heeft minimaal
+    1 artiest, hetzelfde geldt voor een artiest: deze heeft minimaal 1 song. Een lijst kan meerdere songs bevatten en
+    een song kan in meerdere lijsten voorkomen. Dit is een veel-op-veel relatie.<br>
+    In de uiteindelijke uitwerking van deze document database in Mongo is gebleken dat de namen van de attributen soms
+    niet helemaal jusit waren, hier zijn dus kleine veranderingen in gekomen. Ook zijn artiesten uiteindelijk een losse
+    entiteiten geworden en zijn zij ge-embed in song. hetzelfde geldt voor song in een lijst.
+</p>
 <br>
-<br>
+<img class="img-fluid" src="/assets/ERD_Casus.drawio.png" alt="requirements">
 
-<h2>Niet-functionele requirements</h2>
-<table>
-    <thead>
-        <td>Nr</td>
-        <td>Requirement</td>
-        <td>Toelichting</td>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>CI/CD</td>
-            <td>Je project is gerealiseerd binnen een CI/CD ontwikkelstraat. Een push naar je online respository
-                triggert het uitvoeren van geautomatiseerde testen, en het slagen van de testen zorgt voor deployment
-                van je project naar een online cloudprovider.</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>UX</td>
-            <td>Je past de principes toe voor het ontwerpen en bouwen van een gebruiksvriendelijke user-interface, zoals
-                je die bij de module UX-design hebt geleerd.</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Testdata</td>
-            <td>Vul je systeem met voldoende data, zodat je de werking van je systeem kunt aantonen. Zorg dus voor
-                verschillende gebruikersaccounts, waarmee je kunt laten zien dat gebruikers elkaars data niet kunnen
-                wijzigen. Zorg ook voor ten minste 5 verschillende records van iedere entiteit.</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Applicatie</td>
-            <td>De backend maakt gebruik van het NestJs framework. Je ontwikkelt je gehele applicatie binnen een Nx
-                monorepo structuur.</td>
-        </tr>
-    </tbody>
-</table>
 <br>
 <br>
