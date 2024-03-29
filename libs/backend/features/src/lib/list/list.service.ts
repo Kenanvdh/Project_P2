@@ -30,7 +30,7 @@ export class ListService {
     if (!list) {
       throw new NotFoundException(`List with id ${id} not found`);
     }
-    this.neoService.getListWithSongs(list);
+    
     return list;
   }
 

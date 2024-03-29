@@ -59,20 +59,6 @@ export class NeoService {
     );
   }
 
-  getListWithSongs(list: IList) {
-    this.logger.log('getListWithSongs');
-    return this.neoService.read(
-      `MATCH (l:List {id: "${list.id}"})-[:CONTAINS]->(s:Song) RETURN s`
-    );
-  }
-
-  getArtistWithSongs(artist: IArtist) {
-    this.logger.log('getArtistWithSongs');
-    return this.neoService.read(
-      `MATCH (a:Artist {id: "${artist.id}"})-[:PERFORMED]->(s:Song) RETURN s`
-    );
-  }
-
   deleteSong(song: ISong) {
     this.logger.log('deleteSong');
     this.neoService.write(`MATCH (s:Song {id: "${song.id}"}) DETACH DELETE s`);
