@@ -5,6 +5,7 @@ import { List as ListModel, ListDocument } from './list.schema';
 import { IList } from '@indivproj-p2/shared/api';
 import { Logger } from '@nestjs/common';
 import { CreateListDto, UpdateListDto } from '@indivproj-p2/backend/dto';
+import { NeoService } from '../neo/neo.service';
 
 @Injectable()
 export class ListService {
@@ -13,7 +14,8 @@ export class ListService {
   private readonly logger: Logger = new Logger(ListService.name);
 
   constructor(
-    @InjectModel(ListModel.name) private listModel: Model<ListDocument>
+    @InjectModel(ListModel.name) private listModel: Model<ListDocument>,
+    private readonly neoService: NeoService
   ) {}
 
   async getAll(): Promise<IList[]> {
@@ -28,6 +30,7 @@ export class ListService {
     if (!list) {
       throw new NotFoundException(`List with id ${id} not found`);
     }
+    this.neoService.getListWithSongs(list);
     return list;
   }
 
@@ -43,17 +46,29 @@ export class ListService {
     list.creationDate = new Date();
 
     const createdList = new this.listModel(list);
-
+    this.neoService.addOrUpdateList(createdList);
+    for (const song of list.songs) {
+      this.neoService.addSongToList(song, createdList);
+    }
     return createdList.save();
   }
 
   async update(id: string, list: UpdateListDto): Promise<IList | null> {
-    const updatedList = await this.listModel.findOneAndUpdate({ id }, list);
+    const listToUpdate = await this.getOne(id);
 
-    return updatedList;
+    if (listToUpdate) {
+      await this.listModel.updateOne({ id }, list);
+      this.neoService.addOrUpdateList(listToUpdate);
+    }
+
+    return listToUpdate;
   }
 
   async deleteList(id: string): Promise<void> {
-    this.listModel.findOneAndDelete({ id }).exec();
+    const list = await this.getOne(id);
+    await this.listModel.deleteOne({ id }).exec();
+    if (list) {
+      this.neoService.deleteList(list);
+    }
   }
 }

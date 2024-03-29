@@ -7,14 +7,19 @@ import { SongModule } from './song.module';
 import { Song } from './song/song.schema';
 import { List } from './list/list.schema';
 import { ListModule } from './list.module';
+import { NeoService } from './neo/neo.service';
+import { ConfigModule } from '@nestjs/config';
+import { NeoModule } from './neo.module';
 
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Artist.name, schema: ArtistSchema,}, { name: Song.name, schema: SongModule}, { name: List.name, schema: ListModule}]),
+    ConfigModule,
+    NeoModule
   ],
   controllers: [ArtistController],
-  providers: [ArtistService],
+  providers: [ArtistService, NeoService],
   exports: [ArtistService],
 })
 export class ArtistModule {}
