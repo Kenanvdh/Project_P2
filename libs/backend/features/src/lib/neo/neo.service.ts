@@ -19,6 +19,14 @@ export class NeoService {
     );
   }
 
+  recommend(list:IList){
+    this.logger.log("recommend");
+    this.neoService.read(
+      `MATCH (inputList:List{id: "${list.id}"})-[:CONTAINS]->(song:Song)<-[:CONTAINS]-(recommendedList:List)
+      RETURN recommendedList, song`
+    );
+  }
+
   addOrUpdateList(list: IList) {
     this.logger.log('addList');
 
@@ -30,7 +38,7 @@ export class NeoService {
     // Then add or update the list and its relations with songs and artists
     const queries = list.songs.map((song) => {
       const query = `MERGE (s:Song {id: "${song.id}", name: "${song.name}", album: "${song.album}"})
-       MERGE (a:Artist {id: "${song.artist.id}", name: "${song.artist.name}"})
+       MERGE (a:Artist {id: "${song.artist.id}", name: "${song.artist.name}"})   
        MERGE (a)-[:PERFORMED]->(s)
        MERGE (l:List {id: "${list.id}", name: "${list.name}"})
        MERGE (l)-[:CONTAINS]->(s)`;

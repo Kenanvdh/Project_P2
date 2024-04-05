@@ -31,6 +31,8 @@ export class ListService {
       throw new NotFoundException(`List with id ${id} not found`);
     }
     
+    this.neoService.recommend(list);
+    
     return list;
   }
 

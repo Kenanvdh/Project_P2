@@ -24,6 +24,7 @@ export class ListService {
 
   public list(options?: any): Observable<IList[] | null> {
     console.log(`list ${this.endpoint}`);
+    
     return this.http
       .get<ApiResponse<IList[]>>(this.endpoint, {
         ...options,
