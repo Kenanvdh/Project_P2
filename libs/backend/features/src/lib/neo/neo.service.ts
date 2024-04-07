@@ -19,12 +19,33 @@ export class NeoService {
     );
   }
 
-  recommend(list:IList){
-    this.logger.log("recommend");
-    this.neoService.read(
-      `MATCH (inputList:List{id: "${list.id}"})-[:CONTAINS]->(song:Song)<-[:CONTAINS]-(recommendedList:List)
-      RETURN recommendedList, song`
+  async recommend(id: string) {
+    this.logger.log('recommend');
+    // Query Neo4j to get recommended lists
+    const neoResult = await this.neoService.read(
+      `MATCH (inputList:List{id: "${id}"})-[:CONTAINS]->(song:Song)<-[:CONTAINS]-(recommendedList:List)
+      WITH recommendedList, COLLECT(DISTINCT song) AS basedSongs
+      RETURN recommendedList, basedSongs`
     );
+
+    const recommendedList = neoResult.records.map((record) => {
+      const recommendedList = record.get('recommendedList');
+      const basedSongs = record.get('basedSongs');
+
+      const list: Partial<IList> = {
+        id: recommendedList.properties.id,
+        name: recommendedList.properties.name,
+        songs: basedSongs.map((song: any) => ({  
+          id: song.properties.id,
+          name: song.properties.name,
+          album: song.properties.album,
+        }))
+      };
+
+      return list as IList;
+    });
+
+    return recommendedList;
   }
 
   addOrUpdateList(list: IList) {

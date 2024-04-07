@@ -1,4 +1,4 @@
-import { Observable, throwError } from 'rxjs';
+import { Observable, forkJoin, throwError } from 'rxjs';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -24,7 +24,7 @@ export class ListService {
 
   public list(options?: any): Observable<IList[] | null> {
     console.log(`list ${this.endpoint}`);
-    
+
     return this.http
       .get<ApiResponse<IList[]>>(this.endpoint, {
         ...options,
@@ -53,6 +53,21 @@ export class ListService {
       );
   }
 
+  public recommended(id: string | null, options?: any): Observable<IList[]> {
+    console.log(`recommended ${this.endpoint}`);
+    return this.http
+      .get<ApiResponse<IList[]>>(`${this.endpoint}/${id}/recommended`, {
+        ...options,
+        observe: 'body',
+        responseType: 'json',
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as IList[]),
+        catchError(this.handleError)
+      );
+  }
+
   public create(list: IList): Observable<IList> {
     console.log(`create ${this.endpoint}`);
 
@@ -61,7 +76,7 @@ export class ListService {
         'Content-Type': 'application/json',
       }),
     };
-    
+
     return this.http
       .post<ApiResponse<IList>>(this.endpoint, list, httpOptions)
       .pipe(

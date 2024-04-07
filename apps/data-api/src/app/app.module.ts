@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { NeoModule } from '@indivproj-p2/backend/features';
 import {
   BackendFeaturesSongModule,
   SongModule,
@@ -25,6 +26,7 @@ import { environment } from '@indivproj-p2/shared/util-env';
         return error;
       },
     }),
+    NeoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

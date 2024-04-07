@@ -10,3 +10,4 @@ export * from './lib/artist/artist.service';
 export * from './lib/list.module';
 export * from './lib/neo.module';
 export * from './lib/neo/neo.service';
+export * from './lib/list/list.service';

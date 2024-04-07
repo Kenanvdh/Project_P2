@@ -10,10 +10,11 @@ import {
 import { ListService } from './list.service';
 import { IList } from '@indivproj-p2/shared/api';
 import { CreateListDto, UpdateListDto } from '@indivproj-p2/backend/dto';
+import { NeoService } from '../neo/neo.service';
 
 @Controller('list')
 export class ListController {
-  constructor(private listService: ListService) {}
+  constructor(private listService: ListService, private neoService: NeoService) {}
 
   @Get('')
   getAll(): Promise<IList[]> {
@@ -23,6 +24,11 @@ export class ListController {
   @Get('/:id')
   getOne(@Param('id') id: string): Promise<IList | null> {
     return this.listService.getOne(id);
+  }
+
+  @Get('/:id/recommended')
+  reccommend(@Param('id') id: string): Promise<IList[] | null> {
+    return this.neoService.recommend(id);
   }
 
   @Post('')
